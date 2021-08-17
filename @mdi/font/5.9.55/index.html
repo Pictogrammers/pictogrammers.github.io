@@ -352,6 +352,14 @@
             min-width: 3rem;
         }
 
+        .icon-item-container {
+            border-radius: 6px;
+        }
+
+        .icon-item-container:target {
+            background: #fff8ba;
+        }
+
         footer {
             display: flex;
             padding: 20px;
@@ -649,14 +657,21 @@
             var div = document.createElement('div'),
                 i = document.createElement('i');
             i.className = 'mdi mdi-' + icon.name;
+
+            div.className="icon-item-container"
+            div.id = `mdi-${icon.name}`;
+
             div.appendChild(i);
+            
             var code = document.createElement('code');
             code.appendChild(document.createTextNode(icon.hex));
             div.appendChild(code);
             var span = document.createElement('span');
+            
             span.appendChild(document.createTextNode('mdi-' + icon.name));
             div.appendChild(span);
             span.onclick = function () {
+                history.replaceState({}, null, `#mdi-${icon.name}`);
                 document.getElementById('name').innerHTML = icon.name;
             };
             i.onmouseup = function () {
