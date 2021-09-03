@@ -1458,11 +1458,11 @@
   content: "\F0619";
 }
 
-.mdi-application-export-outline::before {
+.mdi-application-export::before {
   content: "\F0DAD";
 }
 
-.mdi-application-import-outline::before {
+.mdi-application-import::before {
   content: "\F0DAE";
 }
 
