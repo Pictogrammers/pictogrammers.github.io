@@ -7810,14 +7810,6 @@
   content: "\F0EE0";
 }
 
-.mdi-cradle::before {
-  content: "\F1928";
-}
-
-.mdi-cradle-outline::before {
-  content: "\F1929";
-}
-
 .mdi-crane::before {
   content: "\F0862";
 }
@@ -12092,10 +12084,6 @@
 
 .mdi-fountain-pen-tip::before {
   content: "\F0D13";
-}
-
-.mdi-fraction-one-half::before {
-  content: "\F195F";
 }
 
 .mdi-freebsd::before {
@@ -18118,12 +18106,24 @@
   content: "\F03DD";
 }
 
+.mdi-panorama-horizontal::before {
+  content: "\F1928";
+}
+
 .mdi-panorama-horizontal-outline::before {
   content: "\F03DE";
 }
 
+.mdi-panorama-vertical::before {
+  content: "\F1929";
+}
+
 .mdi-panorama-vertical-outline::before {
   content: "\F03DF";
+}
+
+.mdi-panorama-wide-angle::before {
+  content: "\F195F";
 }
 
 .mdi-panorama-wide-angle-outline::before {
