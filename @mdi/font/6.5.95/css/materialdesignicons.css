@@ -11422,6 +11422,14 @@
   content: "\F0DCD";
 }
 
+.mdi-folder-check::before {
+  content: "\F197E";
+}
+
+.mdi-folder-check-outline::before {
+  content: "\F197F";
+}
+
 .mdi-folder-clock::before {
   content: "\F0ABA";
 }
@@ -12096,14 +12104,6 @@
 
 .mdi-format-pilcrow::before {
   content: "\F06D8";
-}
-
-.mdi-format-pilcrow-arrow-left::before {
-  content: "\F197E";
-}
-
-.mdi-format-pilcrow-arrow-right::before {
-  content: "\F197F";
 }
 
 .mdi-format-quote-close::before {
