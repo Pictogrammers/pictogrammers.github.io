@@ -542,6 +542,11 @@ pg-button-link
 <script>
 markdown("pgButtonLink", "\n\nThe `pg-button-link` component is essentially just a styled anchor, but it also allows special rendering for `pg-button-group` and `pg-icon`.\n\n```typescript\nimport '@pictogrammers/components/pg/buttonLink';\nimport PgButtonLink from '@pictogrammers/components/pg/buttonLink';\n```\n\n```html\n<pg-button-link>Click Me!</pg-button-link>\n```\n\n| Slots       | Tested   | Description |\n| ----------- | -------- | ----------- |\n| default     | &#x2705; | Button contents. |\n\n| Attribute  | Tested   | Description |\n| ---------- | -------- | ----------- |\n| block      |          | block sizing |\n| active     |          | Depressed visual state. |\n| start      |          | Internal Only |\n| end        |          | Internal Only |\n| center     |          | Internal Only |\n\n| Events     | Tested   | Description |\n| ---------- | -------- | ----------- |\n| click      | &#x2705; | Standard click. |\n\n| CSS Variables       | Default   | Description |\n| ------------------- | --------- | ----------- |\n| `--pg-button-color` | `#453C4F` | Text color       |\n| `--pg-button-background-color` | `#fff` | Background color       |\n| `--pg-button-border-color` | `#453C4F`  | Border color       |\n| `--pg-button-hover-color` | `#fff`  | `:hover` Text color      |\n| `--pg-button-hover-background-color` | `#453C4F`  | `:hover` Background color      |\n| `--pg-button-hover-border-color` | `#453C4F`  | `:hover` Border color      |\n| `--pg-button-active-color` | `#fff`  | `active` Text color      |\n| `--pg-button-active-background-color` | `#453C4F`  | `active` Background color      |\n| `--pg-button-active-border-color` | `#453C4F`  | `active` Border color      |\n\n### Slots\n\nSpecial styling is applied for `pg-icon`.\n\n```html\n<pg-button-link>\n  <pg-icon path=\"M...Z\"></pg-icon>\n  Hello!\n</pg-button-link>\n```")
 </script>
+<section>
+<h3><span>basic</span></h3>
+<x-pg-button-link-basic></x-pg-button-link-basic>
+</section>
+
 <h2 id="pgButtonToggleH2">
 pg-button-toggle
 <a title="Link to pg-button-toggle" href="#pg-button-toggle" id="pg-button-toggle">
