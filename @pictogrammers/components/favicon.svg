@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
     <style>
     #main {
-        fill: #453C4F;
+        fill: #FFFFFF;
     }
     @media (prefers-color-scheme: dark) {
         #main {
-            fill: #FFFFFF;
+            fill: #453C4F;
         }
     }
     </style>
