@@ -4846,6 +4846,14 @@
   content: "\F0B24";
 }
 
+.mdi-calendar-filter::before {
+  content: "\F1A32";
+}
+
+.mdi-calendar-filter-outline::before {
+  content: "\F1A33";
+}
+
 .mdi-calendar-heart::before {
   content: "\F09D2";
 }
@@ -4968,14 +4976,6 @@
 
 .mdi-calendar-week-begin-outline::before {
   content: "\F1A31";
-}
-
-.mdi-calendar-week-end::before {
-  content: "\F1A32";
-}
-
-.mdi-calendar-week-end-outline::before {
-  content: "\F1A33";
 }
 
 .mdi-calendar-week-outline::before {
