@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>June Fonts</title>
+    <style>
+        @font-face {
+            font-family: 'June Mono';
+            src: url('june-mono.otf');
+        }
+
+        body {
+            font-family: 'June Mono';
+            line-height: 23px;
+            font-size: 20px;
+            color: #111;
+        }
+
+        pre {
+            font-family: 'June Mono';
+            line-height: 22px;
+            font-size: 20px;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: normal;
+        }
+
+        h2 {
+            font-size: 40px;
+            font-weight: normal;
+        }
+
+        .table {
+            display: grid;
+            grid-template-columns: calc((14px * 6) + 4px) repeat(15, 18px);
+            grid-template-rows: calc(22px + 8px);
+            width: calc((18px * 16) + (14px * 6) + 8px);
+        }
+
+        .table div {
+            padding: 2px;
+            box-sizing: border-box;
+        }
+
+        .cell {
+            width: calc(14px + 8px);
+            border: 2px solid transparent;
+            cursor: default;
+        }
+
+        .cell:hover {
+            color: #FFF;
+            border-color: #111;
+            background-color: #111;
+            border-radius: 4px 4px;
+            z-index: 99;
+        }
+
+        .tooltip {
+            color: #FFF;
+            border-color: #111;
+            background-color: #111;
+            border-radius: 4px 4px;
+            padding: 2px 4px;
+            opacity: 0.85;
+        }
+
+        .row-u {
+            grid-row: 1;
+            color: #555;
+        }
+
+        .row-1 {
+            grid-row: 2;
+        }
+
+        .row-2 {
+            grid-row: 3;
+        }
+
+        .row-3 {
+            grid-row: 4;
+        }
+
+        .col-u {
+            grid-column: 1;
+            color: #555;
+        }
+
+        .col-0 {
+            grid-column: 2;
+        }
+
+        .col-1 {
+            grid-column: 3;
+        }
+
+        .col-2 {
+            grid-column: 4;
+        }
+
+        .col-3 {
+            grid-column: 5;
+        }
+
+        .col-4 {
+            grid-column: 6;
+        }
+
+        .col-5 {
+            grid-column: 7;
+        }
+
+        .col-6 {
+            grid-column: 8;
+        }
+
+        .col-7 {
+            grid-column: 9;
+        }
+
+        .col-8 {
+            grid-column: 10;
+        }
+
+        .col-9 {
+            grid-column: 11;
+        }
+
+        .col-a {
+            grid-column: 12;
+        }
+
+        .col-b {
+            grid-column: 13;
+        }
+
+        .col-c {
+            grid-column: 14;
+        }
+
+        .col-d {
+            grid-column: 15;
+        }
+
+        .col-e {
+            grid-column: 16;
+        }
+
+        .col-f {
+            grid-column: 17;
+        }
+
+        code.block {
+            display: block;
+            border-radius: 0 0.25rem 0.25rem 0.25rem;
+            background-color: #1E1E1E;
+            color: #fff;
+            padding: 0.5rem;
+        }
+
+        code.block .blue {
+            color: #5C9BD3;
+        }
+
+        code.block .row {
+            min-height: 1rem;
+        }
+
+        ul.tabs {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            margin: 1rem 0 0 0;
+        }
+        ul.tabs li {
+            margin-right: 2px;
+        }
+        ul.tabs li button {
+            font-family: inherit;
+            line-height: 22px;
+            font-size: 20px;
+            padding: 4px 8px;
+            background: transparent;
+            border-top: 2px solid #555;
+            border-right: 2px solid #555;
+            border-bottom: 0;
+            border-left: 2px solid #555;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+        ul.tabs li.selected button {
+            margin-right: 2px;
+            border-color: #1E1E1E;
+        }
+    </style>
+    <script>
+        let tooltip = null;
+        function showTooltip(source, text) {
+            if (tooltip) { tooltip.remove(); }
+            const rect = source.getBoundingClientRect();
+            const pRect = source.parentNode.getBoundingClientRect();
+            tooltip = document.createElement('div');
+            tooltip.innerText = text;
+            tooltip.classList.add('tooltip')
+            tooltip.style.position = 'fixed';
+            tooltip.style.left = `${pRect.right + 4}px`;
+            tooltip.style.top = `${rect.top}px`;
+            document.body.appendChild(tooltip);
+        }
+        function hideTooltip() {
+            if (!tooltip) { return; }
+            tooltip.remove();
+        }
+        function init() {
+            const cells = document.getElementsByClassName('cell');
+            [...cells].forEach(cell => {
+                cell.addEventListener('mouseenter', (e) => {
+                    showTooltip(e.target, e.target.dataset.label);
+                });
+                cell.addEventListener('mouseleave', (e) => {
+                    hideTooltip();
+                });
+            });
+        }
+        window.addEventListener('load', init);
+    </script>
+</head>
+
+<body>
+    <h1>June Mono</h1>
+    <p>The quick brown fox jumps over a lazy dog.</p>
+    <div class="table">
+        <div class="row-u col-u">&nbsp;</div>
+        <div class="row-u col-0">0</div>
+        <div class="row-u col-1">1</div>
+        <div class="row-u col-2">2</div>
+        <div class="row-u col-3">3</div>
+        <div class="row-u col-4">4</div>
+        <div class="row-u col-5">5</div>
+        <div class="row-u col-6">6</div>
+        <div class="row-u col-7">7</div>
+        <div class="row-u col-8">8</div>
+        <div class="row-u col-9">9</div>
+        <div class="row-u col-a">A</div>
+        <div class="row-u col-b">B</div>
+        <div class="row-u col-c">C</div>
+        <div class="row-u col-d">D</div>
+        <div class="row-u col-e">E</div>
+        <div class="row-u col-f">F</div>
+        <div class="row-1 col-u">U+002x</div>
+        <div class="row-1 col-0 cell" data-label="space" data-unicode="20">&#032;</div>
+        <div class="row-1 col-1 cell" data-label="exclamation mark" data-unicode="21">&#033;</div>
+        <div class="row-1 col-2 cell" data-label="double quotation mark" data-unicode="22">&#034;</div>
+        <div class="row-1 col-3 cell" data-label="number sign, pound" data-unicode="23">&#035;</div>
+        <div class="row-1 col-4 cell" data-label="dollar sign" data-unicode="24">&#036;</div>
+        <div class="row-1 col-5 cell" data-label="percent sign" data-unicode="25">&#037;</div>
+        <div class="row-1 col-6 cell" data-label="ampersand" data-unicode="26">&#038;</div>
+        <div class="row-1 col-7 cell" data-label="apostrophe, single quote mark" data-unicode="27">&#039;</div>
+        <div class="row-1 col-8 cell" data-label="left parenthesis" data-unicode="28">&#040;</div>
+        <div class="row-1 col-9 cell" data-label="right parenthesis" data-unicode="29">&#041;</div>
+        <div class="row-1 col-a cell" data-label="asterisk" data-unicode="30">&#042;</div>
+        <div class="row-1 col-b cell" data-label="plus sign" data-unicode="31">&#043;</div>
+        <div class="row-1 col-c cell" data-label="comma" data-unicode="32">&#044;</div>
+        <div class="row-1 col-d cell" data-label="minus sign, hyphen" data-unicode="33">&#045;</div>
+        <div class="row-1 col-e cell" data-label="period, decimal point, full stop" data-unicode="34">&#046;</div>
+        <div class="row-1 col-f cell" data-label="slash, virgule, solidus" data-unicode="35">&#047;</div>
+        <div class="row-2 col-u">U+003x</div>
+        <div class="row-2 col-0 cell" data-label="digit 0" data-unicode="36">&#048;</div>
+        <div class="row-2 col-1 cell" data-label="digit 1">&#049;</div>
+        <div class="row-2 col-2 cell" data-label="digit 2">&#050;</div>
+        <div class="row-2 col-3 cell" data-label="digit 3">&#051;</div>
+        <div class="row-2 col-4 cell" data-label="digit 4">&#052;</div>
+        <div class="row-2 col-5 cell" data-label="digit 5">&#053;</div>
+        <div class="row-2 col-6 cell" data-label="digit 6">&#054;</div>
+        <div class="row-2 col-7 cell" data-label="digit 7">&#055;</div>
+        <div class="row-2 col-8 cell" data-label="digit 8">&#056;</div>
+        <div class="row-2 col-9 cell" data-label="digit 9">&#057;</div>
+        <div class="row-2 col-a cell" data-label="colon">&#058;</div>
+        <div class="row-2 col-b cell" data-label="semicolon">&#059;</div>
+        <div class="row-2 col-c cell" data-label="less-than sign">&#060;</div>
+        <div class="row-2 col-d cell" data-label="equal sign">&#061;</div>
+        <div class="row-2 col-e cell" data-label="greater-than sign">&#062;</div>
+        <div class="row-2 col-f cell" data-label="question mark">&#063;</div>
+    </div>
+    <h2>Block Elements</h2>
+    <div class="table">
+        <div class="row-u col-u">&nbsp;</div>
+        <div class="row-u col-0">0</div>
+        <div class="row-u col-1">1</div>
+        <div class="row-u col-2">2</div>
+        <div class="row-u col-3">3</div>
+        <div class="row-u col-4">4</div>
+        <div class="row-u col-5">5</div>
+        <div class="row-u col-6">6</div>
+        <div class="row-u col-7">7</div>
+        <div class="row-u col-8">8</div>
+        <div class="row-u col-9">9</div>
+        <div class="row-u col-a">A</div>
+        <div class="row-u col-b">B</div>
+        <div class="row-u col-c">C</div>
+        <div class="row-u col-d">D</div>
+        <div class="row-u col-e">E</div>
+        <div class="row-u col-f">F</div>
+        <div class="row-1 col-u">U+258x</div>
+        <div class="row-1 col-0 cell" data-label="upper half block" data-unicode="2580">&#9600;</div>
+        <div class="row-1 col-1 cell" data-label="lower one eighth block" data-unicode="2581">&#9601;</div>
+        <div class="row-1 col-2 cell" data-label="lower one quarter block" data-unicode="2582">&#9602;</div>
+        <div class="row-1 col-3 cell" data-label="lower three eighths block" data-unicode="2583">&#9603;</div>
+        <div class="row-1 col-4 cell" data-label="Lower half block" data-unicode="2584">&#9604;</div>
+        <div class="row-1 col-5 cell" data-label="Lower five eighths block" data-unicode="2585">&#9605;</div>
+        <div class="row-1 col-6 cell" data-label="Lower three quarters block" data-unicode="2586">&#9606;</div>
+        <div class="row-1 col-7 cell" data-label="Lower seven eighths block" data-unicode="2587">&#9607;</div>
+        <div class="row-1 col-8 cell" data-label="Full block" data-unicode="2588">&#9608;</div>
+        <div class="row-1 col-9 cell" data-label="Left seven eighths block" data-unicode="2589">&#9609;</div>
+        <div class="row-1 col-a cell" data-label="Left three quarters block" data-unicode="258A">&#9610;</div>
+        <div class="row-1 col-b cell" data-label="Left five eighths block" data-unicode="258B">&#9611;</div>
+        <div class="row-1 col-c cell" data-label="Left half block" data-unicode="258C">&#9612;</div>
+        <div class="row-1 col-d cell" data-label="Left three eighths block" data-unicode="258D">&#9613;</div>
+        <div class="row-1 col-e cell" data-label="Left one quarter block" data-unicode="258E">&#9614;</div>
+        <div class="row-1 col-f cell" data-label="Left one eighth block" data-unicode="258F">&#9615;</div>
+        <div class="row-2 col-u">U+259x</div>
+        <div class="row-2 col-0 cell" data-label="Right half block" data-unicode="2590">&#9616;</div>
+        <div class="row-2 col-1 cell" data-label="Light shade" data-unicode="2591">&#9617;</div>
+        <div class="row-2 col-2 cell" data-label="Medium shade" data-unicode="2592">&#9618;</div>
+        <div class="row-2 col-3 cell" data-label="Dark shade" data-unicode="2593">&#9619;</div>
+        <div class="row-2 col-4 cell" data-label="Upper one eighth block" data-unicode="2594">&#9620;</div>
+        <div class="row-2 col-5 cell" data-label="Right one eighth block" data-unicode="2595">&#9621;</div>
+        <div class="row-2 col-6 cell" data-label="Quadrant lower left" data-unicode="2596">&#9622;</div>
+        <div class="row-2 col-7 cell" data-label="Quadrant lower right" data-unicode="2597">&#9623;</div>
+        <div class="row-2 col-8 cell" data-label="Quadrant upper left" data-unicode="2598">&#9624;</div>
+        <div class="row-2 col-9 cell" data-label="Quadrant upper left and lower left and lower right"
+            data-unicode="2599">&#9625;</div>
+        <div class="row-2 col-a cell" data-label="Quadrant upper left and lower right" data-unicode="259A">&#9626;</div>
+        <div class="row-2 col-b cell" data-label="Quadrant upper left and upper right and lower left"
+            data-unicode="259B">&#9627;</div>
+        <div class="row-2 col-c cell" data-label="Quadrant upper left and upper right and lower right"
+            data-unicode="259C">&#9628;</div>
+        <div class="row-2 col-d cell" data-label="Quadrant upper right" data-unicode="259D">&#9629;</div>
+        <div class="row-2 col-e cell" data-label="Quadrant upper right and lower left" data-unicode="259E">&#9630;</div>
+        <div class="row-2 col-f cell" data-label="Quadrant upper right and lower left and lower right"
+            data-unicode="259F">&#9631;</div>
+    </div>
+    <h2>Code Examples</h2>
+    <ul class="tabs">
+        <li class="selected"><button data-tab="markdown">Markdown</button></li>
+        <li><button data-tab="javascript">JavaScript</button></li>
+        <li><button data-tab="css">CSS</button></li>
+        <li><button data-tab="html">HTML</button></li>
+    </ul>
+    <div data-tab="javascript">
+        <code class="block">
+            <div class="row"><span class="blue"># Header 1</span></div>
+            <div class="row"></div>
+            <div class="row">Paragraph <span class="blue">**bold**</span> formatting.</div>
+            <div class="row"></div>
+            <div class="row"><span class="blue">-</span> Item 1</div>
+            <div class="row"><span class="blue">-</span> Item 2</div>
+            <div class="row"><span class="blue">-</span> Item 3</div>
+            <div class="row"></div>
+            <div class="row"><span class="blue">## Header 2</span></div>
+            <div class="row"></div>
+            <div class="row">Paragraph.</div>
+        </code>
+    </div>
+    <h2>Table Examples</h2>
+    <pre>
+╔══════════╦══════════╦══════════════════╗
+║  Col1    ║  Col2    ║  Numeric Column  ║
+╠══════════╬══════════╬══════════════════╣
+║ Value 1  ║ Value 2  ║             10.0 ║
+║          ║          ║                  ║
+╚══════════╩══════════╩══════════════════╝
+┌──────────┬──────────┬──────────────────┐
+│  Col1    │  Col2    │  Numeric Column  │
+├──────────┼──────────┼──────────────────┤
+│ Value 1  │ Value 2  │             10.0 │
+│          │          │                  │
+└──────────┴──────────┴──────────────────┘
+╭──────────┬──────────┬──────────────────╮
+│  Col1    │  Col2    │  Numeric Column  │
+├──────────┼──────────┼──────────────────┤
+│ Hello    │ World    │             10.0 │
+│          │          │                  │
+╰──────────┴──────────┴──────────────────╯
+    </pre>
+</body>
+
+</html>
