@@ -13,9 +13,11 @@
 
         body {
             font-family: 'June Mono';
-            line-height: 23px;
+            line-height: 22px;
             font-size: 20px;
             color: #111;
+            padding: 1rem;
+            margin: 0;
         }
 
         pre {
@@ -25,6 +27,7 @@
         }
 
         h1 {
+            display: inline-flex;
             font-size: 60px;
             font-weight: normal;
         }
@@ -200,6 +203,20 @@
         ul.tabs li.selected button {
             border-color: #1E1E1E;
         }
+        textarea {
+            display: flex;
+            font-family: inherit;
+            font-size: 22px;
+            line-height: 22px;
+            padding: 0.5rem;
+            background: transparent;
+            border: 2px solid #1E1E1E;
+            height: calc(1rem + 3rem);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            width: 500px;
+        }
     </style>
     <script>
         let tooltip = null;
@@ -220,6 +237,7 @@
             tooltip.remove();
         }
         function init() {
+            // Tooltips for Hex Grid
             const cells = document.getElementsByClassName('cell');
             [...cells].forEach(cell => {
                 cell.addEventListener('mouseenter', (e) => {
@@ -229,6 +247,8 @@
                     hideTooltip();
                 });
             });
+            // Tabs
+            
         }
         window.addEventListener('load', init);
     </script>
@@ -236,7 +256,8 @@
 
 <body>
     <h1>June Mono</h1>
-    <p>The quick brown fox jumps over a lazy dog.</p>
+    <a href="">Download</a>
+    <textarea>The quick brown fox jumps over a lazy dog.</textarea>
     <div class="table">
         <div class="row-u col-u">&nbsp;</div>
         <div class="row-u col-0">0</div>
