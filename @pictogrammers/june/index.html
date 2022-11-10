@@ -8,16 +8,19 @@
     <style>
         @font-face {
             font-family: 'June Mono';
-            src: url('june-mono.otf');
+            src: url('june-mono.otf') format("opentype");
         }
 
-        body {
+        html {
             font-family: 'June Mono';
             line-height: 22px;
             font-size: 20px;
-            color: #111;
+        }
+
+        body {
             padding: 1rem;
             margin: 0;
+            color: #111;
         }
 
         pre {
