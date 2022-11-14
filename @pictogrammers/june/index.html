@@ -35,8 +35,14 @@
 
         pre {
             font-family: 'June Mono';
-            line-height: 22px;
-            font-size: 20px;
+            line-height: 1.1rem;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        p {
+            line-height: 1.25rem;
+            margin: 0;
         }
 
         h1 {
@@ -52,6 +58,13 @@
             line-height: 3rem;
             font-weight: normal;
             margin: 1rem 0 0 0;
+        }
+
+        h3 {
+            font-size: 1rem;
+            line-height: 1.5rem;
+            font-weight: normal;
+            margin: 0.25rem 0 0 0;
         }
 
         .table {
@@ -241,7 +254,11 @@
             border-color: #1E1E1E;
         }
 
-        textarea {
+        .demo {
+            position: relative;
+        }
+
+        .demo textarea {
             display: flex;
             font-family: inherit;
             font-size: 22px;
@@ -250,11 +267,31 @@
             background: transparent;
             border: 0.125rem solid #1E1E1E;
             height: calc(1rem + 3rem + 0.5rem);
-            border-radius: 0.5rem;
+            border-radius: 0.5rem 0.5rem 0 0.5rem;
             overflow: hidden;
             margin-bottom: 1rem;
             width: 100%;
             box-sizing: border-box;
+            margin-top: 1rem;
+        }
+
+        .demo textarea:focus {
+            border-color: #3C55AA;
+        }
+
+        .demo span {
+            position: absolute;
+            right: 0;
+            bottom: -1.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: #111;
+            border-radius: 0 0 0.25rem 0.25rem;
+            color: #FFF;
+            cursor: default;
+        }
+
+        .demo textarea:focus + span {
+            background-color: #3C55AA;
         }
 
         .corner {
@@ -288,7 +325,7 @@
 
         .actions a:hover {
             background-color: rgba(255, 255, 255, 1);
-            border-bottom-color: #111;
+            border-bottom-color: #3C55AA;
             transition: background-color 0.3s linear, border-color 0.3s linear;
         }
 
@@ -346,7 +383,13 @@
             <a href="">Download Font</a>
             <a href="">View on GitHub</a>
         </div>
-        <textarea aria-label="Preview font by typing in textarea">The quick brown fox jumps over a lazy dog.</textarea>
+        <div class="content">
+            <p>June is a 20px font tailored for larger screens while keeping the retro aesthetic.</p>
+        </div>
+        <div class="demo">
+            <textarea aria-label="Preview font by typing in textarea">The quick brown fox jumps over a lazy dog.</textarea>
+            <span>Try it Out</span>
+        </div>
         <h2>Basic Latin</h2>
         <div class="content">
             <div class="table">
@@ -630,6 +673,25 @@
         </div>
         <h2>Table Examples</h2>
         <div class="content">
+            <h3>Table</h3>
+            <pre>
+┌────────┬────────┬────────────┐
+│  Col1  │  Col2  │  Numeric   │
+├────────┼────────┼────────────┤
+│ Value  │ Value  │       10.0 │
+│ one    │ two    │            │
+└────────┴────────┴────────────┘
+</pre>
+            <h3>Rounded Table</h3>
+            <pre>
+╭────────┬────────┬────────────╮
+│  Col1  │  Col2  │  Numeric   │
+├────────┼────────┼────────────┤
+│ Hello  │ World  │       10.0 │
+│        │        │            │
+╰────────┴────────┴────────────╯
+</pre>
+            <h3>Double Line</h3>
             <pre>
 ╔════════╦════════╦════════════╗
 ║  Col1  ║  Col2  ║  Numeric   ║
@@ -637,20 +699,10 @@
 ║ Value  ║ Value  ║       10.0 ║
 ║ one    ║ two    ║            ║
 ╚════════╩════════╩════════════╝
-┌────────┬────────┬────────────┐
-│  Col1  │  Col2  │  Numeric   │
-├────────┼────────┼────────────┤
-│ Value  │ Value  │       10.0 │
-│ one    │ two    │            │
-└────────┴────────┴────────────┘
-╭────────┬────────┬────────────╮
-│  Col1  │  Col2  │  Numeric   │
-├────────┼────────┼────────────┤
-│ Hello  │ World  │       10.0 │
-│        │        │            │
-╰────────┴────────┴────────────╯
-    </pre>
+</pre>
         </div>
+        <h2>About</h2>
+        <p>Total Characters: 149</p>
     </main>
 </body>
 
