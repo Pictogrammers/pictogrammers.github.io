@@ -315,6 +315,7 @@
         }
 
         .actions a {
+            display: flex;
             border: 0.125rem;
             background-color: rgba(255, 255, 255, 0.5);
             color: #111;
@@ -328,6 +329,28 @@
             background-color: rgba(255, 255, 255, 1);
             border-bottom-color: #3C55AA;
             transition: background-color 0.3s linear, border-color 0.3s linear;
+        }
+
+        .actions .download svg {
+            width: 10px;
+            height: 18px;
+            align-self: center;
+            margin-right: 0.375rem;
+        }
+
+        .actions a.download:hover svg {
+            fill: #3C55AA;
+        }
+
+        .actions .github svg {
+            width: 8px;
+            height: 18px;
+            align-self: center;
+            margin-right: 0.375rem;
+        }
+
+        .actions a.github:hover svg {
+            fill: #3C55AA;
         }
 
         .content {
@@ -381,8 +404,18 @@
         </div>
         <h1>June Mono</h1>
         <div class="actions">
-            <a href="">Download Font</a>
-            <a href="">View on GitHub</a>
+            <a href="" class="download">
+                <svg viewBox="0 0 10 18">
+                    <path d="M0 14H10V16H0V14M0 6H2V7H3V8H4V2H6V8H7V7H8V6H10V8H9V9H8V10H7V11H6V12H4V11H3V10H2V9H1V8H0V6Z"></path>
+                </svg>
+                <span>Download Font</span>
+            </a>
+            <a href="" class="github">
+                <svg viewBox="0 0 8 18">
+                    <path d="M3 7H5V11H3V7M2 3H3V2H5V3H6V4H7V5H8V8H6V6H5V5H3V6H2V8H0V5H1V4H2V3M6 15H5V16H3V15H2V14H1V13H0V10H2V12H3V13H5V12H6V10H8V13H7V14H6V15Z"></path>
+                </svg>
+                View on GitHub
+            </a>
         </div>
         <div class="content">
             <p>June is tailored for retro aesthetic.</p>
