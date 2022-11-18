@@ -221,6 +221,10 @@
             color: #5C9BD3;
         }
 
+        code.block .pink {
+            color: #D574D3;
+        }
+
         code.block .light-blue {
             color: #A1DBFC;
         }
@@ -1371,15 +1375,15 @@
                     <div class="row"></div>
                     <div class="row"><span class="blue">class</span> <span class="green">Dog</span> <span class="blue">extends</span> <span class="green">Animal</span> <span class="yellow">{</span></div>
                     <div class="row"></div>
-                    <div class="row">&nbsp;&nbsp;#isCute: boolean = true;</div>
+                    <div class="row">&nbsp;&nbsp;<span class="light-blue">#isCute</span>: <span class="green">boolean</span> = <span class="blue">true</span>;</div>
                     <div class="row"></div>
-                    <div class="row">&nbsp;&nbsp;get isCute(): boolean {</div>
-                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;return this.#isCute;</div>
+                    <div class="row">&nbsp;&nbsp;<span class="blue">get</span> <span class="light-blue">isCute</span><span class="pink">()</span>: <span class="green">boolean</span> <span class="pink">{</span></div>
+                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;<span class="violet">return</span> <span class="blue">this</span>.<span class="light-blue">#isCute</span>;</div>
                     <div class="row">&nbsp;&nbsp;}</div>
                     <div class="row"></div>
-                    <div class="row">&nbsp;&nbsp;set isCute(value) {</div>
-                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;this.#isCute = value;</div>
-                    <div class="row">&nbsp;&nbsp;}</div>
+                    <div class="row">&nbsp;&nbsp;<span class="blue">set</span> <span class="light-blue">isCute</span><span class="pink">(</span><span class="light-blue">value</span><span class="pink">)</span> <span class="pink">{</span></div>
+                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;<span class="blue">this</span>.<span class="light-blue">#isCute</span> = <span class="light-blue">value</span>;</div>
+                    <div class="row">&nbsp;&nbsp;<span class="pink">}</span></div>
                     <div class="row"><span class="yellow">}</span></div>
                 </code>
             </div>
