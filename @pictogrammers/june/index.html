@@ -262,7 +262,7 @@
             line-height: 22px;
             font-size: 20px;
             padding: 4px 8px;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.5);
             border-top: 2px solid #555;
             border-right: 2px solid #555;
             border-bottom: 0;
@@ -272,6 +272,7 @@
 
         ul.tabs li button:hover {
             border-color: #3C55AA;
+            background-color: #FFF;
         }
 
         ul.tabs li.selected button {
@@ -388,6 +389,16 @@
             border-left: 0.5rem solid rgba(0, 0, 0, 0.1);
             padding: 0.5rem 1rem 0.5rem 0.5rem;
             margin: 0.25rem -1rem;
+        }
+
+        .detail {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.25rem;
+        }
+        .detail span:nth-child(2) {
+            font-size: 0.75rem;
+            color: #555;
         }
     </style>
     <script>
@@ -844,7 +855,7 @@
             </a>
         </div>
         <div class="content">
-            <p>June is tailored for retro aesthetic.</p>
+            <p>June pixel font is tailored for a larger 20pt use.</p>
         </div>
         <div class="demo">
             <label>
@@ -1436,9 +1447,27 @@
 </pre>
         </div>
         <h2>About</h2>
-        <p>Total Characters: 149</p>
-        <p>Designer: Dzuk [add social links]</p>
-        <p>Extended By: Austin Andrews</p>
+        <div class="detail">
+            <span>149</span>
+            <span>Total Characters</span>
+        </div>
+        <div class="detail">
+            <span>Dzuk [Social Media Links here]</span>
+            <span>Designer</span>
+        </div>
+        <div class="detail">
+            <span>Austin Andrews</span>
+            <span>Box & Block Characters</span>
+        </div>
+        <div class="detail">
+            <span>TBD</span>
+            <span>License</span>
+        </div>
+        <div class="seperator"></div>
+        <div class="detail">
+            <span><a href="https://pictogrammers.com">Pictogrammers</a></span>
+            <span>Icon Community</span>
+        </div>
     </main>
 </body>
 
