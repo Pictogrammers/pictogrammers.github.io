@@ -221,6 +221,26 @@
             color: #5C9BD3;
         }
 
+        code.block .light-blue {
+            color: #A1DBFC;
+        }
+
+        code.block .violet {
+            color: #C188BE;
+        }
+
+        code.block .orange {
+            color: #CB927B;
+        }
+
+        code.block .yellow {
+            color: #FDD73A;
+        }
+
+        code.block .green {
+            color: #5EC7B0;
+        }
+
         code.block .row {
             min-height: 1rem;
         }
@@ -256,6 +276,10 @@
 
         ul.tabs li.selected button {
             border-color: #1E1E1E;
+        }
+
+        .hide {
+            display: none;
         }
 
         .demo {
@@ -365,6 +389,365 @@
         }
     </style>
     <script>
+        // Friendly names
+        const map = {
+            // Basic Latin
+            '0020': 'space',
+            '0021': 'exclamation mark',
+            '0022': 'double quotation mark',
+            '0023': 'number sign, pound',
+            '0024': 'dollar sign',
+            '0025': 'percent sign',
+            '0026': 'ampersand',
+            '0027': 'apostrophe, single quote mark',
+            '0028': 'left parenthesis',
+            '0029': 'right parenthesis',
+            '002A': 'asterisk',
+            '002B': 'plus sign',
+            '002C': 'comma',
+            '002D': 'minus sign, hyphen',
+            '002E': 'period, decimal point, full stop',
+            '002F': 'slash, virgule, solidus',
+            '0030': 'digit 0',
+            '0031': 'digit 1',
+            '0032': 'digit 2',
+            '0033': 'digit 3',
+            '0034': 'digit 4',
+            '0035': 'digit 5',
+            '0036': 'digit 6',
+            '0037': 'digit 7',
+            '0038': 'digit 8',
+            '0039': 'digit 9',
+            '003A': 'colon',
+            '003B': 'semicolon',
+            '003C': 'less-than sign',
+            '003D': 'equal sign',
+            '003E': 'greater-than sign',
+            '003F': 'question mark',
+            '0040': 'at',
+            '0041': 'uppercase a',
+            '0042': 'uppercase b',
+            '0043': 'uppercase c',
+            '0044': 'uppercase d',
+            '0045': 'uppercase e',
+            '0046': 'uppercase f',
+            '0047': 'uppercase g',
+            '0048': 'uppercase h',
+            '0049': 'uppercase i',
+            '004A': 'uppercase j',
+            '004B': 'uppercase k',
+            '004C': 'uppercase l',
+            '004D': 'uppercase m',
+            '004E': 'uppercase n',
+            '004F': 'uppercase o',
+            '0050': 'uppercase p',
+            '0051': 'uppercase q',
+            '0052': 'uppercase r',
+            '0053': 'uppercase s',
+            '0054': 'uppercase t',
+            '0055': 'uppercase u',
+            '0056': 'uppercase v',
+            '0057': 'uppercase w',
+            '0058': 'uppercase x',
+            '0059': 'uppercase y',
+            '005A': 'uppercase z',
+            '005B': 'left square bracket',
+            '005C': 'backslash',
+            '005D': 'right square bracket',
+            '005E': 'caret',
+            '005F': 'underscore',
+            '0060': 'backtick',
+            '0061': 'lowercase a',
+            '0062': 'lowercase b',
+            '0063': 'lowercase c',
+            '0064': 'lowercase d',
+            '0065': 'lowercase e',
+            '0066': 'lowercase f',
+            '0067': 'lowercase g',
+            '0068': 'lowercase h',
+            '0069': 'lowercase i',
+            '006A': 'lowercase j',
+            '006B': 'lowercase k',
+            '006C': 'lowercase l',
+            '006D': 'lowercase m',
+            '006E': 'lowercase n',
+            '006F': 'lowercase o',
+            '0070': 'lowercase p',
+            '0071': 'lowercase q',
+            '0072': 'lowercase r',
+            '0073': 'lowercase s',
+            '0074': 'lowercase t',
+            '0075': 'lowercase u',
+            '0076': 'lowercase v',
+            '0077': 'lowercase w',
+            '0078': 'lowercase x',
+            '0079': 'lowercase y',
+            '007A': 'lowercase z',
+            '007B': 'left curly bracket',
+            '007C': 'pipe',
+            '007D': 'right curly bracket',
+            '007E': 'tilde',
+            '007F': 'del',
+            // Latin Supplement
+            '00A0': 'non-breaking space',
+            '00A1': 'inverted exclamation mark',
+            '00A2': 'cent sign',
+            '00A3': 'pound sign',
+            '00A4': 'currency sign',
+            '00A5': 'yen sign',
+            '00A6': 'broken bar',
+            '00A7': 'section sign',
+            '00A8': 'diaeresis',
+            '00A9': 'copyright sign',
+            '00AA': 'feminine ordinal indicator',
+            '00AB': 'left-pointing double angle quotation mark',
+            '00AC': 'not sign',
+            '00AD': 'soft hyphen',
+            '00AE': 'registered sign',
+            '00AF': 'macron',
+            '00B0': 'degree symbol',
+            '00B1': 'plus-minus sign',
+            '00B2': 'superscript two',
+            '00B3': 'superscript three',
+            '00B4': 'acute accent',
+            '00B5': 'micro sign',
+            '00B6': 'pilcrow sign',
+            '00B7': 'middle dot',
+            '00B8': 'cedilla',
+            '00B9': 'superscript one',
+            '00BA': 'masculine ordinal indicator',
+            '00BB': 'right-pointing double-angle quotation mark',
+            '00BC': 'vulgar fraction one quarter',
+            '00BD': 'vulgar fraction one half',
+            '00BE': 'vulgar fraction three quarters',
+            '00BF': 'inverted question mark',
+            '00C0': 'uppercase a with grave',
+            '00C1': 'uppercase a with acute',
+            '00C2': 'uppercase a with circumflex',
+            '00C3': 'uppercase a with tilde',
+            '00C4': 'uppercase a with diaeresis',
+            '00C5': 'uppercase a with ring above',
+            '00C6': 'uppercase ae',
+            '00C7': 'uppercase c with cedilla',
+            '00C8': 'uppercase e with grave',
+            '00C9': 'uppercase e with acute',
+            '00CA': 'uppercase e with circumflex',
+            '00CB': 'uppercase e with diaeresis',
+            '00CC': 'uppercase i with grave',
+            '00CD': 'uppercase i with acute',
+            '00CE': 'uppercase i with circumflex',
+            '00CF': 'uppercase i with diaeresis',
+            '00D0': 'uppercase eth',
+            '00D1': 'uppercase n with tilde',
+            '00D2': 'uppercase o with grave',
+            '00D3': 'uppercase o with acute',
+            '00D4': 'uppercase o with circumflex',
+            '00D5': 'uppercase o with tilde',
+            '00D6': 'uppercase o with diaeresis',
+            '00D7': 'uppercase multiplication sign',
+            '00D8': 'uppercase o with stroke',
+            '00D9': 'uppercase u with grave',
+            '00DA': 'uppercase u with acute',
+            '00DB': 'uppercase u with circumflex',
+            '00DC': 'uppercase u with diaeresis',
+            '00DD': 'uppercase y with acute',
+            '00DE': 'uppercase thorn',
+            '00DF': 'lowercase sharp S',
+            '00E0': 'lowercase a with grave',
+            '00E1': 'lowercase a with acute',
+            '00E2': 'lowercase a with circumflex',
+            '00E3': 'lowercase a with tilde',
+            '00E4': 'lowercase a with diaeresis',
+            '00E5': 'lowercase a with ring above',
+            '00E6': 'lowercase ae',
+            '00E7': 'lowercase c with cedilla',
+            '00E8': 'lowercase e with grave',
+            '00E9': 'lowercase e with acute',
+            '00EA': 'lowercase e with circumflex',
+            '00EB': 'lowercase e with diaeresis',
+            '00EC': 'lowercase i with grave',
+            '00ED': 'lowercase i with acute',
+            '00EE': 'lowercase i with circumflex',
+            '00EF': 'lowercase i with diaeresis',
+            '00F0': 'lowercase eth',
+            '00F1': 'lowercase n with tilde',
+            '00F2': 'lowercase o with grave',
+            '00F3': 'lowercase o with acute',
+            '00F4': 'lowercase o with circumflex',
+            '00F5': 'lowercase o with tilde',
+            '00F6': 'lowercase o with diaeresis',
+            '00F7': 'division sign',
+            '00F8': 'lowercase o with stroke',
+            '00F9': 'lowercase u with grave',
+            '00FA': 'lowercase u with acute',
+            '00FB': 'lowercase u with circumflex',
+            '00FC': 'lowercase u with diaeresis',
+            '00FD': 'lowercase y with acute',
+            '00FE': 'lowercase thorn',
+            '00FF': 'lowercase y with diaeresis',
+            // Box Drawing
+            '2500': '',
+            '2501': '',
+            '2502': '',
+            '2503': '',
+            '2504': '',
+            '2505': '',
+            '2506': '',
+            '2507': '',
+            '2508': '',
+            '2509': '',
+            '250A': '',
+            '250B': '',
+            '250C': '',
+            '250D': '',
+            '250E': '',
+            '250F': '',
+            '2510': '',
+            '2511': '',
+            '2512': '',
+            '2513': '',
+            '2514': '',
+            '2515': '',
+            '2516': '',
+            '2517': '',
+            '2518': '',
+            '2519': '',
+            '251A': '',
+            '251B': '',
+            '251C': '',
+            '251D': '',
+            '251E': '',
+            '251F': '',
+            '2520': '',
+            '2521': '',
+            '2522': '',
+            '2523': '',
+            '2524': '',
+            '2525': '',
+            '2526': '',
+            '2527': '',
+            '2528': '',
+            '2529': '',
+            '252A': '',
+            '252B': '',
+            '252C': '',
+            '252D': '',
+            '252E': '',
+            '252F': '',
+            '2530': '',
+            '2531': '',
+            '2532': '',
+            '2533': '',
+            '2534': '',
+            '2535': '',
+            '2536': '',
+            '2537': '',
+            '2538': '',
+            '2539': '',
+            '253A': '',
+            '253B': '',
+            '253C': '',
+            '253D': '',
+            '253E': '',
+            '253F': '',
+            '2540': '',
+            '2541': '',
+            '2542': '',
+            '2543': '',
+            '2544': '',
+            '2545': '',
+            '2546': '',
+            '2547': '',
+            '2548': '',
+            '2549': '',
+            '254A': '',
+            '254B': '',
+            '254C': '',
+            '254D': '',
+            '254E': '',
+            '254F': '',
+            '2550': '',
+            '2551': '',
+            '2552': '',
+            '2553': '',
+            '2554': '',
+            '2555': '',
+            '2556': '',
+            '2557': '',
+            '2558': '',
+            '2559': '',
+            '255A': '',
+            '255B': '',
+            '255C': '',
+            '255D': '',
+            '255E': '',
+            '255F': '',
+            '2560': '',
+            '2561': '',
+            '2562': '',
+            '2563': '',
+            '2564': '',
+            '2565': '',
+            '2566': '',
+            '2567': '',
+            '2568': '',
+            '2569': '',
+            '256A': '',
+            '256B': '',
+            '256C': '',
+            '256D': '',
+            '256E': '',
+            '256F': '',
+            '2570': '',
+            '2571': '',
+            '2572': '',
+            '2573': '',
+            '2574': '',
+            '2575': '',
+            '2576': '',
+            '2577': '',
+            '2578': '',
+            '2579': '',
+            '257A': '',
+            '257B': '',
+            '257C': '',
+            '257D': '',
+            '257E': '',
+            '257F': '',
+            // Block Elements
+            '2580': '',
+            '2581': '',
+            '2582': '',
+            '2583': '',
+            '2584': '',
+            '2585': '',
+            '2586': '',
+            '2587': '',
+            '2588': '',
+            '2589': '',
+            '258A': '',
+            '258B': '',
+            '258C': '',
+            '258D': '',
+            '258E': '',
+            '258F': '',
+            '2500': '',
+            '2591': '',
+            '2592': '',
+            '2593': '',
+            '2594': '',
+            '2595': '',
+            '2596': '',
+            '2597': '',
+            '2598': '',
+            '2599': '',
+            '259A': '',
+            '259B': '',
+            '259C': '',
+            '259D': '',
+            '259E': '',
+            '259F': '',
+        };
         let tooltip = null;
         function showTooltip(source, text) {
             if (tooltip) { tooltip.remove(); }
@@ -383,6 +766,12 @@
             tooltip.remove();
         }
         function init() {
+            // Wire up labels
+            const unicodes = document.querySelectorAll('[data-unicode]');
+            [...unicodes].forEach((unicode) => {
+                const u = unicode.dataset.unicode;
+                unicode.dataset.label = map[u];
+            });
             // Tooltips for Hex Grid
             const cells = document.getElementsByClassName('cell');
             [...cells].forEach(cell => {
@@ -394,7 +783,33 @@
                 });
             });
             // Tabs
-
+            const tabs = document.querySelectorAll('[data-tab]');
+            const tabButtons = [];
+            const tabContents = [];
+            [...tabs].forEach((tab, i) => {
+                switch(tab.nodeName) {
+                    case 'BUTTON':
+                        tab.parentNode.classList.toggle('selected', false);
+                        tab.addEventListener('click', () => {
+                            tabButtons.forEach((btn) => {
+                                btn.parentNode.classList.toggle('selected', false);
+                            });
+                            tabContents.forEach((tb) => {
+                                tb.classList.toggle('hide', true);
+                            });
+                            tab.parentNode.classList.toggle('selected', true);
+                            tabContents[i].classList.toggle('hide', false);
+                        });
+                        tabButtons.push(tab);
+                        break;
+                    case 'DIV':
+                        tab.classList.toggle('hide', true);
+                        tabContents.push(tab);
+                        break;
+                }
+            });
+            tabButtons[0].parentNode.classList.toggle('selected', true);
+            tabContents[0].classList.toggle('hide', false);
         }
         window.addEventListener('load', init);
     </script>
@@ -457,113 +872,232 @@
                 <div class="row-u col-e">E</div>
                 <div class="row-u col-f">F</div>
                 <div class="row-1 col-u">U+002x</div>
-                <div class="row-1 col-0 cell" data-label="space" data-unicode="20">&#032;</div>
-                <div class="row-1 col-1 cell" data-label="exclamation mark" data-unicode="21">&#033;</div>
-                <div class="row-1 col-2 cell" data-label="double quotation mark" data-unicode="22">&#034;</div>
-                <div class="row-1 col-3 cell" data-label="number sign, pound" data-unicode="23">&#035;</div>
-                <div class="row-1 col-4 cell" data-label="dollar sign" data-unicode="24">&#036;</div>
-                <div class="row-1 col-5 cell" data-label="percent sign" data-unicode="25">&#037;</div>
-                <div class="row-1 col-6 cell" data-label="ampersand" data-unicode="26">&#038;</div>
-                <div class="row-1 col-7 cell" data-label="apostrophe, single quote mark" data-unicode="27">&#039;</div>
-                <div class="row-1 col-8 cell" data-label="left parenthesis" data-unicode="28">&#040;</div>
-                <div class="row-1 col-9 cell" data-label="right parenthesis" data-unicode="29">&#041;</div>
-                <div class="row-1 col-a cell" data-label="asterisk" data-unicode="30">&#042;</div>
-                <div class="row-1 col-b cell" data-label="plus sign" data-unicode="31">&#043;</div>
-                <div class="row-1 col-c cell" data-label="comma" data-unicode="32">&#044;</div>
-                <div class="row-1 col-d cell" data-label="minus sign, hyphen" data-unicode="33">&#045;</div>
-                <div class="row-1 col-e cell" data-label="period, decimal point, full stop" data-unicode="34">&#046;
-                </div>
-                <div class="row-1 col-f cell" data-label="slash, virgule, solidus" data-unicode="35">&#047;</div>
+                <div class="row-1 col-0 cell" data-unicode="0020">&#x0020;</div>
+                <div class="row-1 col-1 cell" data-unicode="0021">&#x0021;</div>
+                <div class="row-1 col-2 cell" data-unicode="0022">&#x0022;</div>
+                <div class="row-1 col-3 cell" data-unicode="0023">&#x0023;</div>
+                <div class="row-1 col-4 cell" data-unicode="0024">&#x0024;</div>
+                <div class="row-1 col-5 cell" data-unicode="0025">&#x0025;</div>
+                <div class="row-1 col-6 cell" data-unicode="0026">&#x0026;</div>
+                <div class="row-1 col-7 cell" data-unicode="0027">&#x0027;</div>
+                <div class="row-1 col-8 cell" data-unicode="0028">&#x0028;</div>
+                <div class="row-1 col-9 cell" data-unicode="0029">&#x0029;</div>
+                <div class="row-1 col-a cell" data-unicode="002A">&#x002A;</div>
+                <div class="row-1 col-b cell" data-unicode="002B">&#x002B;</div>
+                <div class="row-1 col-c cell" data-unicode="002C">&#x002C;</div>
+                <div class="row-1 col-d cell" data-unicode="002D">&#x002D;</div>
+                <div class="row-1 col-e cell" data-unicode="002E">&#x002E;</div>
+                <div class="row-1 col-f cell" data-unicode="002F">&#x002F;</div>
                 <div class="row-2 col-u">U+003x</div>
-                <div class="row-2 col-0 cell" data-label="digit 0" data-unicode="36">&#048;</div>
-                <div class="row-2 col-1 cell" data-label="digit 1">&#049;</div>
-                <div class="row-2 col-2 cell" data-label="digit 2">&#050;</div>
-                <div class="row-2 col-3 cell" data-label="digit 3">&#051;</div>
-                <div class="row-2 col-4 cell" data-label="digit 4">&#052;</div>
-                <div class="row-2 col-5 cell" data-label="digit 5">&#053;</div>
-                <div class="row-2 col-6 cell" data-label="digit 6">&#054;</div>
-                <div class="row-2 col-7 cell" data-label="digit 7">&#055;</div>
-                <div class="row-2 col-8 cell" data-label="digit 8">&#056;</div>
-                <div class="row-2 col-9 cell" data-label="digit 9">&#057;</div>
-                <div class="row-2 col-a cell" data-label="colon">&#058;</div>
-                <div class="row-2 col-b cell" data-label="semicolon">&#059;</div>
-                <div class="row-2 col-c cell" data-label="less-than sign">&#060;</div>
-                <div class="row-2 col-d cell" data-label="equal sign">&#061;</div>
-                <div class="row-2 col-e cell" data-label="greater-than sign">&#062;</div>
-                <div class="row-2 col-f cell" data-label="question mark">&#063;</div>
+                <div class="row-2 col-0 cell" data-unicode="0030">&#x0030;</div>
+                <div class="row-2 col-1 cell" data-unicode="0031">&#x0031;</div>
+                <div class="row-2 col-2 cell" data-unicode="0032">&#x0032;</div>
+                <div class="row-2 col-3 cell" data-unicode="0033">&#x0033;</div>
+                <div class="row-2 col-4 cell" data-unicode="0034">&#x0034;</div>
+                <div class="row-2 col-5 cell" data-unicode="0035">&#x0035;</div>
+                <div class="row-2 col-6 cell" data-unicode="0036">&#x0036;</div>
+                <div class="row-2 col-7 cell" data-unicode="0037">&#x0037;</div>
+                <div class="row-2 col-8 cell" data-unicode="0038">&#x0038;</div>
+                <div class="row-2 col-9 cell" data-unicode="0039">&#x0039;</div>
+                <div class="row-2 col-a cell" data-unicode="003A">&#x003A;</div>
+                <div class="row-2 col-b cell" data-unicode="003B">&#x003B;</div>
+                <div class="row-2 col-c cell" data-unicode="003C">&#x003C;</div>
+                <div class="row-2 col-d cell" data-unicode="003D">&#x003D;</div>
+                <div class="row-2 col-e cell" data-unicode="003E">&#x003E;</div>
+                <div class="row-2 col-f cell" data-unicode="003F">&#x003F;</div>
                 <div class="row-3 col-u">U+004x</div>
-                <div class="row-3 col-0 cell" data-label="at" data-unicode="64">&#064;</div>
-                <div class="row-3 col-1 cell" data-label="uppercase a">&#065;</div>
-                <div class="row-3 col-2 cell" data-label="uppercase b">&#066;</div>
-                <div class="row-3 col-3 cell" data-label="uppercase c">&#067;</div>
-                <div class="row-3 col-4 cell" data-label="uppercase d">&#068;</div>
-                <div class="row-3 col-5 cell" data-label="uppercase e">&#069;</div>
-                <div class="row-3 col-6 cell" data-label="uppercase f">&#070;</div>
-                <div class="row-3 col-7 cell" data-label="uppercase g">&#071;</div>
-                <div class="row-3 col-8 cell" data-label="uppercase h">&#072;</div>
-                <div class="row-3 col-9 cell" data-label="uppercase i">&#073;</div>
-                <div class="row-3 col-a cell" data-label="uppercase j">&#074;</div>
-                <div class="row-3 col-b cell" data-label="uppercase k">&#075;</div>
-                <div class="row-3 col-c cell" data-label="uppercase l">&#076;</div>
-                <div class="row-3 col-d cell" data-label="uppercase m">&#077;</div>
-                <div class="row-3 col-e cell" data-label="uppercase n">&#078;</div>
-                <div class="row-3 col-f cell" data-label="uppercase o">&#079;</div>
+                <div class="row-3 col-0 cell" data-unicode="0040">&#x0040;</div>
+                <div class="row-3 col-1 cell" data-unicode="0041">&#x0041;</div>
+                <div class="row-3 col-2 cell" data-unicode="0042">&#x0042;</div>
+                <div class="row-3 col-3 cell" data-unicode="0043">&#x0043;</div>
+                <div class="row-3 col-4 cell" data-unicode="0044">&#x0044;</div>
+                <div class="row-3 col-5 cell" data-unicode="0045">&#x0045;</div>
+                <div class="row-3 col-6 cell" data-unicode="0046">&#x0046;</div>
+                <div class="row-3 col-7 cell" data-unicode="0047">&#x0047;</div>
+                <div class="row-3 col-8 cell" data-unicode="0048">&#x0048;</div>
+                <div class="row-3 col-9 cell" data-unicode="0049">&#x0049;</div>
+                <div class="row-3 col-a cell" data-unicode="004A">&#x004A;</div>
+                <div class="row-3 col-b cell" data-unicode="004B">&#x004B;</div>
+                <div class="row-3 col-c cell" data-unicode="004C">&#x004C;</div>
+                <div class="row-3 col-d cell" data-unicode="004D">&#x004D;</div>
+                <div class="row-3 col-e cell" data-unicode="004E">&#x004E;</div>
+                <div class="row-3 col-f cell" data-unicode="004F">&#x004F;</div>
                 <div class="row-4 col-u">U+005x</div>
-                <div class="row-4 col-0 cell" data-label="upercase p" data-unicode="0050">&#x0050;</div>
-                <div class="row-4 col-1 cell" data-label="uppercase q" data-unicode="0051">&#x0051;</div>
-                <div class="row-4 col-2 cell" data-label="uppercase r" data-unicode="0052">&#x0052;</div>
-                <div class="row-4 col-3 cell" data-label="uppercase s" data-unicode="0053">&#x0053;</div>
-                <div class="row-4 col-4 cell" data-label="uppercase t" data-unicode="0054">&#x0054;</div>
-                <div class="row-4 col-5 cell" data-label="uppercase u" data-unicode="0055">&#x0055;</div>
-                <div class="row-4 col-6 cell" data-label="uppercase v" data-unicode="0056">&#x0056;</div>
-                <div class="row-4 col-7 cell" data-label="uppercase w" data-unicode="0057">&#x0057;</div>
-                <div class="row-4 col-8 cell" data-label="uppercase x" data-unicode="0058">&#x0058;</div>
-                <div class="row-4 col-9 cell" data-label="uppercase y" data-unicode="0059">&#x0059;</div>
-                <div class="row-4 col-a cell" data-label="uppercase z" data-unicode="005A">&#x005A;</div>
-                <div class="row-4 col-b cell" data-label="left square bracket" data-unicode="005B">&#x005B;</div>
-                <div class="row-4 col-c cell" data-label="backslash" data-unicode="005C">&#x005C;</div>
-                <div class="row-4 col-d cell" data-label="right square bracket" data-unicode="005D">&#x005D;</div>
-                <div class="row-4 col-e cell" data-label="caret" data-unicode="005E">&#x005E;</div>
-                <div class="row-4 col-f cell" data-label="underscore" data-unicode="005F">&#x005F;</div>
+                <div class="row-4 col-0 cell" data-unicode="0050">&#x0050;</div>
+                <div class="row-4 col-1 cell" data-unicode="0051">&#x0051;</div>
+                <div class="row-4 col-2 cell" data-unicode="0052">&#x0052;</div>
+                <div class="row-4 col-3 cell" data-unicode="0053">&#x0053;</div>
+                <div class="row-4 col-4 cell" data-unicode="0054">&#x0054;</div>
+                <div class="row-4 col-5 cell" data-unicode="0055">&#x0055;</div>
+                <div class="row-4 col-6 cell" data-unicode="0056">&#x0056;</div>
+                <div class="row-4 col-7 cell" data-unicode="0057">&#x0057;</div>
+                <div class="row-4 col-8 cell" data-unicode="0058">&#x0058;</div>
+                <div class="row-4 col-9 cell" data-unicode="0059">&#x0059;</div>
+                <div class="row-4 col-a cell" data-unicode="005A">&#x005A;</div>
+                <div class="row-4 col-b cell" data-unicode="005B">&#x005B;</div>
+                <div class="row-4 col-c cell" data-unicode="005C">&#x005C;</div>
+                <div class="row-4 col-d cell" data-unicode="005D">&#x005D;</div>
+                <div class="row-4 col-e cell" data-unicode="005E">&#x005E;</div>
+                <div class="row-4 col-f cell" data-unicode="005F">&#x005F;</div>
                 <div class="row-5 col-u">U+006x</div>
-                <div class="row-5 col-0 cell" data-label="backtick" data-unicode="0060">&#x0060;</div>
-                <div class="row-5 col-1 cell" data-label="lowercase a" data-unicode="0061">&#x0061;</div>
-                <div class="row-5 col-2 cell" data-label="lowercase b" data-unicode="0062">&#x0062;</div>
-                <div class="row-5 col-3 cell" data-label="lowercase c" data-unicode="0063">&#x0063;</div>
-                <div class="row-5 col-4 cell" data-label="lowercase d" data-unicode="0064">&#x0064;</div>
-                <div class="row-5 col-5 cell" data-label="lowercase e" data-unicode="0065">&#x0065;</div>
-                <div class="row-5 col-6 cell" data-label="lowercase f" data-unicode="0066">&#x0066;</div>
-                <div class="row-5 col-7 cell" data-label="lowercase g" data-unicode="0067">&#x0067;</div>
-                <div class="row-5 col-8 cell" data-label="lowercase h" data-unicode="0068">&#x0068;</div>
-                <div class="row-5 col-9 cell" data-label="lowercase i" data-unicode="0069">&#x0069;</div>
-                <div class="row-5 col-a cell" data-label="lowercase j" data-unicode="006A">&#x006A;</div>
-                <div class="row-5 col-b cell" data-label="lowercase k" data-unicode="006B">&#x006B;</div>
-                <div class="row-5 col-c cell" data-label="lowercase l" data-unicode="006C">&#x006C;</div>
-                <div class="row-5 col-d cell" data-label="lowercase m" data-unicode="006D">&#x006D;</div>
-                <div class="row-5 col-e cell" data-label="lowercase n" data-unicode="006E">&#x006E;</div>
-                <div class="row-5 col-f cell" data-label="lowercase o" data-unicode="006F">&#x006F;</div>
+                <div class="row-5 col-0 cell" data-unicode="0060">&#x0060;</div>
+                <div class="row-5 col-1 cell" data-unicode="0061">&#x0061;</div>
+                <div class="row-5 col-2 cell" data-unicode="0062">&#x0062;</div>
+                <div class="row-5 col-3 cell" data-unicode="0063">&#x0063;</div>
+                <div class="row-5 col-4 cell" data-unicode="0064">&#x0064;</div>
+                <div class="row-5 col-5 cell" data-unicode="0065">&#x0065;</div>
+                <div class="row-5 col-6 cell" data-unicode="0066">&#x0066;</div>
+                <div class="row-5 col-7 cell" data-unicode="0067">&#x0067;</div>
+                <div class="row-5 col-8 cell" data-unicode="0068">&#x0068;</div>
+                <div class="row-5 col-9 cell" data-unicode="0069">&#x0069;</div>
+                <div class="row-5 col-a cell" data-unicode="006A">&#x006A;</div>
+                <div class="row-5 col-b cell" data-unicode="006B">&#x006B;</div>
+                <div class="row-5 col-c cell" data-unicode="006C">&#x006C;</div>
+                <div class="row-5 col-d cell" data-unicode="006D">&#x006D;</div>
+                <div class="row-5 col-e cell" data-unicode="006E">&#x006E;</div>
+                <div class="row-5 col-f cell" data-unicode="006F">&#x006F;</div>
                 <div class="row-6 col-u">U+007x</div>
-                <div class="row-6 col-0 cell" data-label="lowercase p" data-unicode="0070">&#x0070;</div>
-                <div class="row-6 col-1 cell" data-label="lowercase q">&#x0071;</div>
-                <div class="row-6 col-2 cell" data-label="lowercase r">&#x0072;</div>
-                <div class="row-6 col-3 cell" data-label="lowercase s">&#x0073;</div>
-                <div class="row-6 col-4 cell" data-label="lowercase t">&#x0074;</div>
-                <div class="row-6 col-5 cell" data-label="lowercase u">&#x0075;</div>
-                <div class="row-6 col-6 cell" data-label="lowercase v">&#x0076;</div>
-                <div class="row-6 col-7 cell" data-label="lowercase w">&#x0077;</div>
-                <div class="row-6 col-8 cell" data-label="lowercase x">&#x0078;</div>
-                <div class="row-6 col-9 cell" data-label="lowercase y">&#x0079;</div>
-                <div class="row-6 col-a cell" data-label="lowercase z" data-unicode="007A">&#x007A;</div>
-                <div class="row-6 col-b cell" data-label="left curly bracket" data-unicode="007B">&#x007B;</div>
-                <div class="row-6 col-c cell" data-label="pipe" data-unicode="007C">&#x007C;</div>
-                <div class="row-6 col-d cell" data-label="right curly bracket" data-unicode="007D">&#x007D;</div>
-                <div class="row-6 col-e cell" data-label="tilde" data-unicode="007E">&#x007E;</div>
-                <div class="row-6 col-f cell" data-label="del" data-unicode="007F">&#x007F;</div>
+                <div class="row-6 col-0 cell" data-unicode="0070">&#x0070;</div>
+                <div class="row-6 col-1 cell" data-unicode="0071">&#x0071;</div>
+                <div class="row-6 col-2 cell" data-unicode="0072">&#x0072;</div>
+                <div class="row-6 col-3 cell" data-unicode="0073">&#x0073;</div>
+                <div class="row-6 col-4 cell" data-unicode="0074">&#x0074;</div>
+                <div class="row-6 col-5 cell" data-unicode="0075">&#x0075;</div>
+                <div class="row-6 col-6 cell" data-unicode="0076">&#x0076;</div>
+                <div class="row-6 col-7 cell" data-unicode="0077">&#x0077;</div>
+                <div class="row-6 col-8 cell" data-unicode="0078">&#x0078;</div>
+                <div class="row-6 col-9 cell" data-unicode="0079">&#x0079;</div>
+                <div class="row-6 col-a cell" data-unicode="007A">&#x007A;</div>
+                <div class="row-6 col-b cell" data-unicode="007B">&#x007B;</div>
+                <div class="row-6 col-c cell" data-unicode="007C">&#x007C;</div>
+                <div class="row-6 col-d cell" data-unicode="007D">&#x007D;</div>
+                <div class="row-6 col-e cell" data-unicode="007E">&#x007E;</div>
+                <div class="row-6 col-f cell" data-unicode="007F">&#x007F;</div>
             </div>
         </div>
         <h2>Latin Supplement</h2>
         <div class="content">
-            <p>Coming Soon</p>
+            <div class="table">
+                <div class="row-u col-u">&nbsp;</div>
+                <div class="row-u col-0">0</div>
+                <div class="row-u col-1">1</div>
+                <div class="row-u col-2">2</div>
+                <div class="row-u col-3">3</div>
+                <div class="row-u col-4">4</div>
+                <div class="row-u col-5">5</div>
+                <div class="row-u col-6">6</div>
+                <div class="row-u col-7">7</div>
+                <div class="row-u col-8">8</div>
+                <div class="row-u col-9">9</div>
+                <div class="row-u col-a">A</div>
+                <div class="row-u col-b">B</div>
+                <div class="row-u col-c">C</div>
+                <div class="row-u col-d">D</div>
+                <div class="row-u col-e">E</div>
+                <div class="row-u col-f">F</div>
+                <div class="row-1 col-u">U+00Ax</div>
+                <div class="row-1 col-0 cell" data-unicode="00A0">&#x00A0;</div>
+                <div class="row-1 col-1 cell" data-unicode="00A1">&#x00A1;</div>
+                <div class="row-1 col-2 cell" data-unicode="00A2">&#x00A2;</div>
+                <div class="row-1 col-3 cell" data-unicode="00A3">&#x00A3;</div>
+                <div class="row-1 col-4 cell" data-unicode="00A4">&#x00A4;</div>
+                <div class="row-1 col-5 cell" data-unicode="00A5">&#x00A5;</div>
+                <div class="row-1 col-6 cell" data-unicode="00A6">&#x00A6;</div>
+                <div class="row-1 col-7 cell" data-unicode="00A7">&#x00A7;</div>
+                <div class="row-1 col-8 cell" data-unicode="00A8">&#x00A8;</div>
+                <div class="row-1 col-9 cell" data-unicode="00A9">&#x00A9;</div>
+                <div class="row-1 col-a cell" data-unicode="00AA">&#x00AA;</div>
+                <div class="row-1 col-b cell" data-unicode="00AB">&#x00AB;</div>
+                <div class="row-1 col-c cell" data-unicode="00AC">&#x00AC;</div>
+                <div class="row-1 col-d cell" data-unicode="00AD">&#x00AD;</div>
+                <div class="row-1 col-e cell" data-unicode="00AE">&#x00AE;</div>
+                <div class="row-1 col-f cell" data-unicode="00AF">&#x00AF;</div>
+                <div class="row-2 col-u">U+00Bx</div>
+                <div class="row-2 col-0 cell" data-unicode="00B0">&#x00B0;</div>
+                <div class="row-2 col-1 cell" data-unicode="00B1">&#x00B1;</div>
+                <div class="row-2 col-2 cell" data-unicode="00B2">&#x00B2;</div>
+                <div class="row-2 col-3 cell" data-unicode="00B3">&#x00B3;</div>
+                <div class="row-2 col-4 cell" data-unicode="00B4">&#x00B4;</div>
+                <div class="row-2 col-5 cell" data-unicode="00B5">&#x00B5;</div>
+                <div class="row-2 col-6 cell" data-unicode="00B6">&#x00B6;</div>
+                <div class="row-2 col-7 cell" data-unicode="00B7">&#x00B7;</div>
+                <div class="row-2 col-8 cell" data-unicode="00B8">&#x00B8;</div>
+                <div class="row-2 col-9 cell" data-unicode="00B9">&#x00B9;</div>
+                <div class="row-2 col-a cell" data-unicode="00BA">&#x00BA;</div>
+                <div class="row-2 col-b cell" data-unicode="00BB">&#x00BB;</div>
+                <div class="row-2 col-c cell" data-unicode="00BC">&#x00BC;</div>
+                <div class="row-2 col-d cell" data-unicode="00BD">&#x00BD;</div>
+                <div class="row-2 col-e cell" data-unicode="00BE">&#x00BE;</div>
+                <div class="row-2 col-f cell" data-unicode="00BF">&#x00BF;</div>
+                <div class="row-3 col-u">U+00Cx</div>
+                <div class="row-3 col-0 cell" data-unicode="00C0">&#x00C0;</div>
+                <div class="row-3 col-1 cell" data-unicode="00C1">&#x00C1;</div>
+                <div class="row-3 col-2 cell" data-unicode="00C2">&#x00C2;</div>
+                <div class="row-3 col-3 cell" data-unicode="00C3">&#x00C3;</div>
+                <div class="row-3 col-4 cell" data-unicode="00C4">&#x00C4;</div>
+                <div class="row-3 col-5 cell" data-unicode="00C5">&#x00C5;</div>
+                <div class="row-3 col-6 cell" data-unicode="00C6">&#x00C6;</div>
+                <div class="row-3 col-7 cell" data-unicode="00C7">&#x00C7;</div>
+                <div class="row-3 col-8 cell" data-unicode="00C8">&#x00C8;</div>
+                <div class="row-3 col-9 cell" data-unicode="00C9">&#x00C9;</div>
+                <div class="row-3 col-a cell" data-unicode="00CA">&#x00CA;</div>
+                <div class="row-3 col-b cell" data-unicode="00CB">&#x00CB;</div>
+                <div class="row-3 col-c cell" data-unicode="00CC">&#x00CC;</div>
+                <div class="row-3 col-d cell" data-unicode="00CD">&#x00CD;</div>
+                <div class="row-3 col-e cell" data-unicode="00CE">&#x00CE;</div>
+                <div class="row-3 col-f cell" data-unicode="00CF">&#x00CF;</div>
+                <div class="row-4 col-u">U+00Dx</div>
+                <div class="row-4 col-0 cell" data-unicode="00D0">&#x00D0;</div>
+                <div class="row-4 col-1 cell" data-unicode="00D1">&#x00D1;</div>
+                <div class="row-4 col-2 cell" data-unicode="00D2">&#x00D2;</div>
+                <div class="row-4 col-3 cell" data-unicode="00D3">&#x00D3;</div>
+                <div class="row-4 col-4 cell" data-unicode="00D4">&#x00D4;</div>
+                <div class="row-4 col-5 cell" data-unicode="00D5">&#x00D5;</div>
+                <div class="row-4 col-6 cell" data-unicode="00D6">&#x00D6;</div>
+                <div class="row-4 col-7 cell" data-unicode="00D7">&#x00D7;</div>
+                <div class="row-4 col-8 cell" data-unicode="00D8">&#x00D8;</div>
+                <div class="row-4 col-9 cell" data-unicode="00D9">&#x00D9;</div>
+                <div class="row-4 col-a cell" data-unicode="00DA">&#x00DA;</div>
+                <div class="row-4 col-b cell" data-unicode="00DB">&#x00DB;</div>
+                <div class="row-4 col-c cell" data-unicode="00DC">&#x00DC;</div>
+                <div class="row-4 col-d cell" data-unicode="00DD">&#x00DD;</div>
+                <div class="row-4 col-e cell" data-unicode="00DE">&#x00DE;</div>
+                <div class="row-4 col-f cell" data-unicode="00DF">&#x00DF;</div>
+                <div class="row-5 col-u">U+00Ex</div>
+                <div class="row-5 col-0 cell" data-unicode="00E0">&#x00E0;</div>
+                <div class="row-5 col-1 cell" data-unicode="00E1">&#x00E1;</div>
+                <div class="row-5 col-2 cell" data-unicode="00E2">&#x00E2;</div>
+                <div class="row-5 col-3 cell" data-unicode="00E3">&#x00E3;</div>
+                <div class="row-5 col-4 cell" data-unicode="00E4">&#x00E4;</div>
+                <div class="row-5 col-5 cell" data-unicode="00E5">&#x00E5;</div>
+                <div class="row-5 col-6 cell" data-unicode="00E6">&#x00E6;</div>
+                <div class="row-5 col-7 cell" data-unicode="00E7">&#x00E7;</div>
+                <div class="row-5 col-8 cell" data-unicode="00E8">&#x00E8;</div>
+                <div class="row-5 col-9 cell" data-unicode="00E9">&#x00E9;</div>
+                <div class="row-5 col-a cell" data-unicode="00EA">&#x00EA;</div>
+                <div class="row-5 col-b cell" data-unicode="00EB">&#x00EB;</div>
+                <div class="row-5 col-c cell" data-unicode="00EC">&#x00EC;</div>
+                <div class="row-5 col-d cell" data-unicode="00ED">&#x00ED;</div>
+                <div class="row-5 col-e cell" data-unicode="00EE">&#x00EE;</div>
+                <div class="row-5 col-f cell" data-unicode="00EF">&#x00EF;</div>
+                <div class="row-6 col-u">U+00Fx</div>
+                <div class="row-6 col-0 cell" data-unicode="00F0">&#x00F0;</div>
+                <div class="row-6 col-1 cell" data-unicode="00F1">&#x00F1;</div>
+                <div class="row-6 col-2 cell" data-unicode="00F2">&#x00F2;</div>
+                <div class="row-6 col-3 cell" data-unicode="00F3">&#x00F3;</div>
+                <div class="row-6 col-4 cell" data-unicode="00F4">&#x00F4;</div>
+                <div class="row-6 col-5 cell" data-unicode="00F5">&#x00F5;</div>
+                <div class="row-6 col-6 cell" data-unicode="00F6">&#x00F6;</div>
+                <div class="row-6 col-7 cell" data-unicode="00F7">&#x00F7;</div>
+                <div class="row-6 col-8 cell" data-unicode="00F8">&#x00F8;</div>
+                <div class="row-6 col-9 cell" data-unicode="00F9">&#x00F9;</div>
+                <div class="row-6 col-a cell" data-unicode="00FA">&#x00FA;</div>
+                <div class="row-6 col-b cell" data-unicode="00FB">&#x00FB;</div>
+                <div class="row-6 col-c cell" data-unicode="00FC">&#x00FC;</div>
+                <div class="row-6 col-d cell" data-unicode="00FD">&#x00FD;</div>
+                <div class="row-6 col-e cell" data-unicode="00FE">&#x00FE;</div>
+                <div class="row-6 col-f cell" data-unicode="00FF">&#x00FF;</div>
+            </div>
         </div>
         <h2>Box Drawing</h2>
         <div class="content">
@@ -799,24 +1333,74 @@
         <div class="content">
             <ul class="tabs">
                 <li class="selected"><button data-tab="markdown">Markdown</button></li>
-                <li><button data-tab="javascript">JavaScript</button></li>
+                <li><button data-tab="typescript">TypeScript</button></li>
                 <li><button data-tab="css">CSS</button></li>
                 <li><button data-tab="html">HTML</button></li>
             </ul>
+            <div data-tab="markdown">
+                <code class="block">
+                    <div class="row"><span class="blue"># Header 1</span></div>
+                    <div class="row"></div>
+                    <div class="row">Paragraph <span class="blue">**bold**</span> formatting.</div>
+                    <div class="row"></div>
+                    <div class="row"><span class="blue">-</span> Item 1</div>
+                    <div class="row"><span class="blue">-</span> Item 2</div>
+                    <div class="row"><span class="blue">-</span> Item 3</div>
+                    <div class="row"></div>
+                    <div class="row"><span class="blue">## Header 2</span></div>
+                    <div class="row"></div>
+                    <div class="row">Paragraph.</div>
+                </code>
+            </div>
             <div data-tab="javascript">
                 <code class="block">
-                <div class="row"><span class="blue"># Header 1</span></div>
-                <div class="row"></div>
-                <div class="row">Paragraph <span class="blue">**bold**</span> formatting.</div>
-                <div class="row"></div>
-                <div class="row"><span class="blue">-</span> Item 1</div>
-                <div class="row"><span class="blue">-</span> Item 2</div>
-                <div class="row"><span class="blue">-</span> Item 3</div>
-                <div class="row"></div>
-                <div class="row"><span class="blue">## Header 2</span></div>
-                <div class="row"></div>
-                <div class="row">Paragraph.</div>
-            </code>
+                    <div class="row"><span class="violet">import</span> <span class="light-blue">Animal</span> <span class="violet">from</span> <span class="orange">'./animal'</span>;</div>
+                    <div class="row"></div>
+                    <div class="row"><span class="blue">class</span> <span class="green">Dog</span> <span class="blue">extends</span> <span class="green">Animal</span> <span class="yellow">{</span></div>
+                    <div class="row"></div>
+                    <div class="row">&nbsp;&nbsp;#isCute: boolean = true;</div>
+                    <div class="row"></div>
+                    <div class="row">&nbsp;&nbsp;get isCute(): boolean {</div>
+                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;return this.#isCute;</div>
+                    <div class="row">&nbsp;&nbsp;}</div>
+                    <div class="row"></div>
+                    <div class="row">&nbsp;&nbsp;set isCute(value) {</div>
+                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;this.#isCute = value;</div>
+                    <div class="row">&nbsp;&nbsp;}</div>
+                    <div class="row"><span class="yellow">}</span></div>
+                </code>
+            </div>
+            <div data-tab="css">
+                <code class="block">
+                    <div class="row">html {</div>
+                    <div class="row">&nbsp;&nbsp;font-size: 16px;</div>
+                    <div class="row">&nbsp;&nbsp;font-family: 'Segoe UI';</div>
+                    <div class="row">}</div>
+                    <div class="row"></div>
+                    <div class="row">body {</div>
+                    <div class="row">&nbsp;&nbsp;background: tan;</div>
+                    <div class="row">}</div>
+                    <div class="row"></div>
+                    <div class="row">h1 {</div>
+                    <div class="row">&nbsp;&nbsp;font-size: 1.5rem;</div>
+                    <div class="row">&nbsp;&nbsp;color: darkslategray;</div>
+                    <div class="row">}</div>
+                </code>
+            </div>
+            <div data-tab="html">
+                <code class="block">
+                    <div class="row">&lt;!DOCTYPE html&gt;</div>
+                    <div class="row">&lt;html lang=&quot;en&quot;&gt;</div>
+                    <div class="row">&nbsp;&nbsp;&lt;head&gt;</div>
+                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset=&quot;UTF-8&quot;&gt;</div>
+                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Hello World!&lt;/title&gt;</div>
+                    <div class="row">&nbsp;&nbsp;&lt;/head&gt;</div>
+                    <div class="row">&nbsp;&nbsp;&lt;body&gt;</div>
+                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello World!&lt;/h1&gt;</div>
+                    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Paragraph&lt;/p&gt;</div>
+                    <div class="row">&nbsp;&nbsp;&lt;/body&gt;</div>
+                    <div class="row">&lt;/html&gt;</div>
+                </code>
             </div>
         </div>
         <h2>Table Examples</h2>
