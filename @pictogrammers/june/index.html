@@ -276,8 +276,8 @@
 
         ul.tabs li.selected button {
             border-color: #3C55AA;
-            background-color: #3C55AA;
-            color: #FFF;
+            background-color: #FFF;
+            color: #1E1E1E;
         }
 
         .hide {
@@ -789,7 +789,7 @@
             const tabButtons = [];
             const tabContents = [];
             [...tabs].forEach((tab, i) => {
-                switch(tab.nodeName) {
+                switch (tab.nodeName) {
                     case 'BUTTON':
                         tab.parentNode.classList.toggle('selected', false);
                         tab.addEventListener('click', () => {
@@ -1354,7 +1354,7 @@
                     <div class="row">Paragraph.</div>
                 </code>
             </div>
-            <div data-tab="javascript">
+            <div data-tab="javascript" class="hide">
                 <code class="block">
                     <div class="row"><span class="violet">import</span> <span class="light-blue">Animal</span> <span class="violet">from</span> <span class="orange">'./animal'</span>;</div>
                     <div class="row"></div>
@@ -1373,7 +1373,7 @@
                 </code>
             </div>
             <div data-tab="css">
-                <code class="block">
+                <code class="block" class="hide">
                     <div class="row">html {</div>
                     <div class="row">&nbsp;&nbsp;font-size: 16px;</div>
                     <div class="row">&nbsp;&nbsp;font-family: 'Segoe UI';</div>
@@ -1389,7 +1389,7 @@
                     <div class="row">}</div>
                 </code>
             </div>
-            <div data-tab="html">
+            <div data-tab="html" class="hide">
                 <code class="block">
                     <div class="row">&lt;!DOCTYPE html&gt;</div>
                     <div class="row">&lt;html lang=&quot;en&quot;&gt;</div>
