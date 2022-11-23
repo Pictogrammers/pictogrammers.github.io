@@ -105,6 +105,7 @@
 
         .overlay {
             position: fixed;
+            display: flex;
             left: 0;
             right: 0;
             top: 0;
@@ -112,10 +113,14 @@
             background: rgba(0, 0, 0, 0.4);
             padding: 1rem 1rem 0.75rem 1rem;
             z-index: 99;
+            align-items: center;
+            justify-items: center
         }
 
         .overlay>div {
+            position: relative;
             display: flex;
+            flex: 1;
             flex-direction: column;
             border: 2px solid #111;
             padding: 1rem;
@@ -131,30 +136,33 @@
             border-radius: 0.375rem 0.375rem 0 0;
             background: rgba(0, 0, 0, 0.1);
             box-shadow: 0 0 0.5rem inset rgb(0, 0, 0, 0.25);
+            display: flex;
+            align-content: center;
+            justify-content: center;
         }
 
         .overlay div span.character::before {
             content: ' ';
             border-top: 2px solid rgba(255, 255, 255, 0.5);
             position: absolute;
-            top: calc(4rem + 2px);
-            left: calc(1rem + 2px);
-            right: calc(1rem + 2px);
+            top: 3rem;
+            left: 0;
+            right: 0;
         }
 
         .overlay div span.character::after {
             content: ' ';
             border-top: 2px solid rgba(255, 255, 255, 0.5);
             position: absolute;
-            top: 14rem;
-            left: calc(1rem + 2px);
-            right: calc(1rem + 2px);
+            top: calc(13rem - 2px);
+            left: 0;
+            right: 0;
         }
 
         .overlay .close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 0;
+            right: 0;
             z-index: 100;
             border: 0;
             background: transparent;
