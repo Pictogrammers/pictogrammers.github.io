@@ -57,7 +57,7 @@
             font-size: 2rem;
             line-height: 3rem;
             font-weight: normal;
-            margin: 1rem -0.5rem 0 0;
+            margin: 1rem 0 0 0;
         }
 
         h3 {
@@ -301,7 +301,7 @@
 
         .demo {
             position: relative;
-            margin: 0 0 2rem 0;
+            margin: 0 0 2.5rem 0;
         }
 
         .demo textarea {
@@ -432,15 +432,20 @@
             color: #555;
         }
 
-        @media (min-width:480px) {
+        /* Desktop */
+        @media (min-width:481px) {
             .mobile {
                 display: none;
             }
         }
 
+        /* Mobile */
         @media (max-width:480px) {
             .other {
                 display: none;
+            }
+            h2 {
+                font-size: 1.75rem;
             }
         }
     </style>
