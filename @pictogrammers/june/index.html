@@ -57,7 +57,7 @@
             font-size: 2rem;
             line-height: 3rem;
             font-weight: normal;
-            margin: 1rem 0 0 0;
+            margin: 1rem -0.5rem 0 0;
         }
 
         h3 {
@@ -301,6 +301,7 @@
 
         .demo {
             position: relative;
+            margin: 0 0 2rem 0;
         }
 
         .demo textarea {
@@ -309,7 +310,7 @@
             font-size: 22px;
             line-height: 22px;
             padding: 0.5rem;
-            background: transparent;
+            background: #F2ECD0;
             border: 0.125rem solid #1E1E1E;
             height: calc(1rem + 3rem + 0.5rem);
             border-radius: 0.5rem 0.5rem 0 0.5rem;
@@ -319,13 +320,28 @@
             box-sizing: border-box;
             margin-top: 1rem;
             outline: none;
+            position: relative;
+            z-index: 1;
         }
 
         .demo textarea:focus {
             border-color: #3C55AA;
         }
 
-        .demo span {
+        .demo span.accent {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1.5rem;
+            padding: 0.5rem 0.5rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 0.25rem 0.25rem;
+            color: #FFF;
+            cursor: default;
+            user-select: none;
+        }
+
+        .demo span.try {
             position: absolute;
             right: 0;
             bottom: -1.5rem;
@@ -410,18 +426,19 @@
             flex-direction: column;
             margin-bottom: 0.25rem;
         }
+
         .detail span:nth-child(2) {
             font-size: 0.75rem;
             color: #555;
         }
 
-        @media (min-width:480px)  {
+        @media (min-width:480px) {
             .mobile {
                 display: none;
             }
         }
 
-        @media (max-width:480px)  {
+        @media (max-width:480px) {
             .other {
                 display: none;
             }
@@ -889,7 +906,8 @@
             <label>
                 <textarea
                     aria-label="Preview font by typing in textarea">The quick brown fox jumps over a lazy dog.</textarea>
-                <span>Try it Out</span>
+                <span class="try">Try it Out</span>
+                <span class="accent">&nbsp;</span>
             </label>
         </div>
         <h2>Basic Latin</h2>
