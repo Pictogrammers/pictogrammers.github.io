@@ -888,6 +888,9 @@
             close.classList.add('close');
             close.innerHTML = `X`;
             container.appendChild(close);
+            close.addEventListener('click', () => {
+                overlay.remove();
+            });
             // Character
             const char = document.createElement('span');
             char.classList.add('character');
@@ -915,6 +918,11 @@
             container.appendChild(label);
             // ...
             overlay.appendChild(container);
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.remove();
+                }
+            });
             document.body.appendChild(overlay);
         }
         function isMobile() {
