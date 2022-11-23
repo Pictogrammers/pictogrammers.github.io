@@ -258,25 +258,35 @@
         }
 
         ul.tabs li {
-            margin-right: 2px;
+            margin-right: -2px;
         }
 
         ul.tabs li button {
             font-family: inherit;
             line-height: 22px;
             font-size: 20px;
-            padding: 4px 8px;
+            padding: 4px 6px;
             background: rgba(255, 255, 255, 0.5);
             border-top: 2px solid #555;
             border-right: 2px solid #555;
             border-bottom: 0;
             border-left: 2px solid #555;
-            border-radius: 0.25rem 0.25rem 0 0;
+            border-radius: 0;
+            position: relative;
         }
 
         ul.tabs li button:hover {
             border-color: #3C55AA;
             background-color: #FFF;
+            z-index: 1;
+        }
+
+        ul.tabs li:first-child button {
+            border-top-left-radius: 0.25rem;
+        }
+
+        ul.tabs li:last-child button {
+            border-top-right-radius: 0.25rem;
         }
 
         ul.tabs li.selected button {
@@ -1425,30 +1435,30 @@
         <div class="content">
             <h3>Table</h3>
             <pre>
-┌────────┬────────┬────────────┐
-│  Col1  │  Col2  │  Numeric   │
-├────────┼────────┼────────────┤
-│ Value  │ Value  │       10.0 │
-│ one    │ two    │            │
-└────────┴────────┴────────────┘
+┌───────┬───────┬───────────┐
+│ Col1  │ Col2  │ Numeric   │
+├───────┼───────┼───────────┤
+│ Value │ Value │      10.0 │
+│ one   │ two   │           │
+└───────┴───────┴───────────┘
 </pre>
             <h3>Rounded Table</h3>
             <pre>
-╭────────┬────────┬────────────╮
-│  Col1  │  Col2  │  Numeric   │
-├────────┼────────┼────────────┤
-│ Hello  │ World  │       10.0 │
-│        │        │            │
-╰────────┴────────┴────────────╯
+╭───────┬───────┬───────────╮
+│ Col1  │ Col2  │ Numeric   │
+├───────┼───────┼───────────┤
+│ Hello │ World │      10.0 │
+│       │       │           │
+╰───────┴───────┴───────────╯
 </pre>
             <h3>Double Line</h3>
             <pre>
-╔════════╦════════╦════════════╗
-║  Col1  ║  Col2  ║  Numeric   ║
-╠════════╬════════╬════════════╣
-║ Value  ║ Value  ║       10.0 ║
-║ one    ║ two    ║            ║
-╚════════╩════════╩════════════╝
+╔═══════╦═══════╦═══════════╗
+║ Col1  ║ Col2  ║ Numeric   ║
+╠═══════╬═══════╬═══════════╣
+║ Value ║ Value ║      10.0 ║
+║ one   ║ two   ║           ║
+╚═══════╩═══════╩═══════════╝
 </pre>
         </div>
         <h2>About</h2>
