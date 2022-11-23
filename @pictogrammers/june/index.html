@@ -102,6 +102,55 @@
             opacity: 0.85;
         }
 
+        .overlay {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem 1rem 0.75rem 1rem;
+            z-index: 99;
+        }
+
+        .overlay>div {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #111;
+            padding: 1rem;
+            background: #F2ECD0;
+            border-radius: 0.5rem;
+        }
+
+        .overlay div span.character {
+            font-size: 14rem;
+            line-height: 14rem;
+            margin: -1rem -1rem 1rem -1rem;
+            text-align: center;
+            border-radius: 0.375rem 0.375rem 0 0;
+            background: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 0.5rem inset rgb(0, 0, 0, 0.25);
+        }
+
+        .overlay .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+            border: 0;
+            background: transparent;
+            width: 3rem;
+            height: 3.25rem;
+            font-size: 2rem;
+            font-family: inherit;
+            line-height: 3rem;
+            padding: 0;
+        }
+
+        .overlay .close:hover {
+            color: #3C55AA;
+        }
+
         .row-u {
             grid-row: 1;
             color: #555;
@@ -444,6 +493,7 @@
             .other {
                 display: none;
             }
+
             h2 {
                 font-size: 1.75rem;
             }
@@ -827,6 +877,49 @@
             if (!tooltip) { return; }
             tooltip.remove();
         }
+        let overlay = null;
+        function showMobileOverlay(unicode, labelText) {
+            if (overlay) { overlay.remove(); }
+            overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            const container = document.createElement('div');
+            // Close
+            const close = document.createElement('button');
+            close.classList.add('close');
+            close.innerHTML = `X`;
+            container.appendChild(close);
+            // Character
+            const char = document.createElement('span');
+            char.classList.add('character');
+            char.innerHTML = `&#x${unicode};`;
+            container.appendChild(char);
+            // Unicode
+            const title = document.createElement('div');
+            title.classList.add('detail');
+            const title1 = document.createElement('span');
+            const title2 = document.createElement('span');
+            title1.innerText = unicode;
+            title2.innerText = 'Unicode';
+            title.appendChild(title1);
+            title.appendChild(title2);
+            container.appendChild(title);
+            // Unicode
+            const label = document.createElement('div');
+            label.classList.add('detail');
+            const label1 = document.createElement('span');
+            const label2 = document.createElement('span');
+            label1.innerText = labelText;
+            label2.innerText = 'Name';
+            label.appendChild(label1);
+            label.appendChild(label2);
+            container.appendChild(label);
+            // ...
+            overlay.appendChild(container);
+            document.body.appendChild(overlay);
+        }
+        function isMobile() {
+            return document.body.clientWidth <= 480;
+        }
         function init() {
             // Wire up labels
             const unicodes = document.querySelectorAll('[data-unicode]');
@@ -838,10 +931,16 @@
             const cells = document.getElementsByClassName('cell');
             [...cells].forEach(cell => {
                 cell.addEventListener('mouseenter', (e) => {
+                    if (isMobile()) { return; }
                     showTooltip(e.target, e.target.dataset.label);
                 });
                 cell.addEventListener('mouseleave', (e) => {
+                    if (isMobile()) { return; }
                     hideTooltip();
+                });
+                cell.addEventListener('click', (e) => {
+                    if (!isMobile()) { return; }
+                    showMobileOverlay(e.target.dataset.unicode, e.target.dataset.label);
                 });
             });
             // Tabs
