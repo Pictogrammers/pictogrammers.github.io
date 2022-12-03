@@ -531,6 +531,11 @@
             fill: #3C55AA;
         }
 
+        .seperator {
+            margin: 0.5rem 0;
+            border-top: 2px dashed rgba(0, 0, 0, 0.2);
+        }
+
         /* Desktop */
         @media (min-width:481px) {
             .mobile {
@@ -909,6 +914,7 @@
             '259D': 'quadrant upper right',
             '259E': 'quadrant upper right and lower left',
             '259F': 'quadrant upper right and lower left and lower right',
+            // Unown Language (from Pokemon)
             'unowna': 'unown a',
             'unownb': 'unown b',
             'unownc': 'unown c',
@@ -945,7 +951,7 @@
             const pRect = source.parentNode.getBoundingClientRect();
             tooltip = document.createElement('div');
             tooltip.innerText = text;
-            tooltip.classList.add('tooltip')
+            tooltip.classList.add('tooltip');
             tooltip.style.position = 'fixed';
             tooltip.style.left = `${pRect.right + 4}px`;
             tooltip.style.top = `${rect.top + 2}px`;
@@ -1404,7 +1410,7 @@
                 <div class="row-2 col-7 cell" data-unicode="2517">&#x2517;</div>
                 <div class="row-2 col-8 cell" data-unicode="2518">&#x2518;</div>
                 <div class="row-2 col-9 cell" data-unicode="2519">&#x2519;</div>
-                <div class="row-2 col-a cell" data-unicode="251A"> &#x251A;</div>
+                <div class="row-2 col-a cell" data-unicode="251A">&#x251A;</div>
                 <div class="row-2 col-b cell" data-unicode="251B">&#x251B;</div>
                 <div class="row-2 col-c cell" data-unicode="251C">&#x251C;</div>
                 <div class="row-2 col-d cell" data-unicode="251D">&#x251D;</div>
@@ -1757,19 +1763,19 @@
             <span>
                 Dzuk
                 <span class="socials">
-                    <a href="https://dzuk.zone" title="dzuk.zone Website">
+                    <a href="https://dzuk.zone" data-label="dzuk.zone Website" title="dzuk.zone Website">
                         <svg viewBox="0 0 22 22">
                             <path
                                 d="M7 13H8V12H9V11H7V12H6V13H5V17H9V16H10V15H11V13H10V14H9V15H7V13M12 17H11V18H10V19H4V18H3V12H4V11H5V10H6V9H9V6H10V5H11V4H12V3H18V4H19V10H18V11H17V12H16V13H13V16H12V17M17 5H13V6H12V7H11V9H12V8H13V7H15V9H14V10H13V11H15V10H16V9H17V5M13 11H12V12H11V13H13V11M9 9V11H10V10H11V9H9Z" />
                         </svg>
                     </a>
-                    <a href="https://weirder.earth/@dzuk" title="Dzuk on Mastodon">
+                    <a href="https://weirder.earth/@dzuk" data-label="Dzuk on Mastodon" title="Dzuk on Mastodon">
                         <svg viewBox="0 0 22 22">
                             <path
                                 d="M12 18H15V19H14V20H13V21H7V20H6V19H5V18H4V17H3V14H2V5H3V4H4V3H6V2H16V3H18V4H19V5H20V13H19V14H18V15H16V16H8V18H10V19H12V18M6 13H8V7H9V8H10V11H12V8H13V7H14V13H16V7H15V5H12V7H10V5H7V7H6V13Z" />
                         </svg>
                     </a>
-                    <a href="https://twitter.com/Dzuque" title="Dzuque on Twitter">
+                    <a href="https://twitter.com/Dzuque" data-label="Dzuque on Twitter" title="Dzuque on Twitter">
                         <svg viewBox="0 0 22 22">
                             <path
                                 d="M10 19V20H4V19H1V18H3V17H6V16H5V15H4V14H3V12H2V11H1V9H3V8H2V7H1V4H2V5H4V6H6V7H10V6H11V4H12V3H13V2H16V3H17V4H19V5H20V6H19V11H18V13H17V15H16V16H15V17H14V18H12V19H10Z" />
@@ -1780,8 +1786,16 @@
             <span>Designer</span>
         </div>
         <div class="detail">
-            <span>Austin Andrews</span>
-            <span>Box & Block Characters</span>
+            <span>
+                Austin Andrews
+                <a href="https://fosstodon.org/@templarian" data-label="Templarian on Mastodon" title="Templarian on Mastodon">
+                    <svg viewBox="0 0 22 22">
+                        <path
+                            d="M12 18H15V19H14V20H13V21H7V20H6V19H5V18H4V17H3V14H2V5H3V4H4V3H6V2H16V3H18V4H19V5H20V13H19V14H18V15H16V16H8V18H10V19H12V18M6 13H8V7H9V8H10V11H12V8H13V7H14V13H16V7H15V5H12V7H10V5H7V7H6V13Z" />
+                    </svg>
+                </a>
+            </span>
+            <span>Box, Block, and Unown Characters</span>
         </div>
         <div class="detail">
             <span>TBD</span>
@@ -1789,8 +1803,34 @@
         </div>
         <div class="seperator"></div>
         <div class="detail">
-            <span><a href="https://pictogrammers.com">Pictogrammers</a></span>
+            <span>
+                Pictogrammers
+                <a href="https://pictogrammers.com" data-label="Pictogrammers.com Website" title="Pictogrammers.com Website">
+                    <svg viewBox="0 0 22 22">
+                        <path
+                            d="M7 13H8V12H9V11H7V12H6V13H5V17H9V16H10V15H11V13H10V14H9V15H7V13M12 17H11V18H10V19H4V18H3V12H4V11H5V10H6V9H9V6H10V5H11V4H12V3H18V4H19V10H18V11H17V12H16V13H13V16H12V17M17 5H13V6H12V7H11V9H12V8H13V7H15V9H14V10H13V11H15V10H16V9H17V5M13 11H12V12H11V13H13V11M9 9V11H10V10H11V9H9Z" />
+                    </svg>
+                </a>
+                <a href="https://fosstodon.org/@pictogrammers" data-label="Pictogrammers on Mastodon" title="Pictogrammers on Mastodon">
+                    <svg viewBox="0 0 22 22">
+                        <path
+                            d="M12 18H15V19H14V20H13V21H7V20H6V19H5V18H4V17H3V14H2V5H3V4H4V3H6V2H16V3H18V4H19V5H20V13H19V14H18V15H16V16H8V18H10V19H12V18M6 13H8V7H9V8H10V11H12V8H13V7H14V13H16V7H15V5H12V7H10V5H7V7H6V13Z" />
+                    </svg>
+                </a>
+            </span>
             <span>Icon Community</span>
+        </div>
+        <div class="detail">
+            <span>
+                Memory Icon Set
+                <a href="https://github.com/Pictogrammers/Memory" data-label="Memory Icons GitHub" title="Memory Icons GitHub">
+                    <svg viewBox="0 0 22 22">
+                        <path
+                            d="M7 13H8V12H9V11H7V12H6V13H5V17H9V16H10V15H11V13H10V14H9V15H7V13M12 17H11V18H10V19H4V18H3V12H4V11H5V10H6V9H9V6H10V5H11V4H12V3H18V4H19V10H18V11H17V12H16V13H13V16H12V17M17 5H13V6H12V7H11V9H12V8H13V7H15V9H14V10H13V11H15V10H16V9H17V5M13 11H12V12H11V13H13V11M9 9V11H10V10H11V9H9Z" />
+                    </svg>
+                </a>
+            </span>
+            <span>20pt Pixel Icons</span>
         </div>
     </main>
 </body>
