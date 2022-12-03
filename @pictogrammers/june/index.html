@@ -34,7 +34,7 @@
         }
 
         pre {
-            font-family: 'June Mono';
+            font-family: inherit;
             line-height: 1.1rem;
             font-size: 1rem;
             margin: 0;
@@ -43,6 +43,15 @@
         p {
             line-height: 1.25rem;
             margin: 0;
+        }
+
+        p code,
+        .detail code {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.25rem;
+            padding: 0 0.25rem;
+            font-family: inherit;
         }
 
         h1 {
@@ -884,7 +893,35 @@
             '259C': 'quadrant upper left and upper right and lower right',
             '259D': 'quadrant upper right',
             '259E': 'quadrant upper right and lower left',
-            '259F': 'quadrant upper right and lower left and lower right'
+            '259F': 'quadrant upper right and lower left and lower right',
+            'unowna': 'unown a',
+            'unownb': 'unown b',
+            'unownc': 'unown c',
+            'unownd': 'unown d',
+            'unowne': 'unown e',
+            'unownf': 'unown f',
+            'unowng': 'unown g',
+            'unownh': 'unown h',
+            'unowni': 'unown i',
+            'unownj': 'unown j',
+            'unownk': 'unown k',
+            'unownl': 'unown l',
+            'unownm': 'unown m',
+            'unownn': 'unown n',
+            'unowno': 'unown o',
+            'unownp': 'unown p',
+            'unownq': 'unown q',
+            'unownr': 'unown r',
+            'unowns': 'unown s',
+            'unownt': 'unown t',
+            'unownu': 'unown u',
+            'unownv': 'unown v',
+            'unownw': 'unown w',
+            'unownx': 'unown x',
+            'unowny': 'unown y',
+            'unownz': 'unown z',
+            'unown!': 'unown !',
+            'unown?': 'unown ?',
         };
         let tooltip = null;
         function showTooltip(source, text) {
@@ -920,14 +957,22 @@
             // Character
             const char = document.createElement('span');
             char.classList.add('character');
-            char.innerHTML = `&#x${unicode};`;
+            if (unicode.match(/unown/)) {
+                char.innerText = unicode;
+            } else {
+                char.innerHTML = `&#x${unicode};`;
+            }
             container.appendChild(char);
             // Unicode
             const title = document.createElement('div');
             title.classList.add('detail');
             const title1 = document.createElement('span');
             const title2 = document.createElement('span');
-            title1.innerText = unicode;
+            if (unicode.match(/unown/)) {
+                title1.innerHTML = `N/A, <code>unown</code>+<code>${unicode.replace('unown', '')}</code>`;
+            } else {
+                title1.innerText = unicode;
+            }
             title2.innerText = 'Unicode';
             title.appendChild(title1);
             title.appendChild(title2);
@@ -1317,149 +1362,141 @@
                 <div class="row-u col-e">E</div>
                 <div class="row-u col-f">F</div>
                 <div class="row-1 col-u">U+250x</div>
-                <div class="row-1 col-0 cell" data-label="upper half block" data-unicode="2500">&#x2500;</div>
-                <div class="row-1 col-1 cell" data-label="lower one eighth block" data-unicode="2501">&#x2501;</div>
-                <div class="row-1 col-2 cell" data-label="lower one quarter block" data-unicode="2502">&#x2502;</div>
-                <div class="row-1 col-3 cell" data-label="lower three eighths block" data-unicode="2503">&#x2503;</div>
-                <div class="row-1 col-4 cell" data-label="Lower half block" data-unicode="2504">&#x2504;</div>
-                <div class="row-1 col-5 cell" data-label="Lower five eighths block" data-unicode="2505">&#x2505;</div>
-                <div class="row-1 col-6 cell" data-label="Lower three quarters block" data-unicode="2506">&#x2506;</div>
-                <div class="row-1 col-7 cell" data-label="Lower seven eighths block" data-unicode="2507">&#x2507;</div>
-                <div class="row-1 col-8 cell" data-label="Full block" data-unicode="2508">&#x2508;</div>
-                <div class="row-1 col-9 cell" data-label="Left seven eighths block" data-unicode="2509">&#x2509;</div>
-                <div class="row-1 col-a cell" data-label="Left three quarters block" data-unicode="250A">&#x250A;</div>
-                <div class="row-1 col-b cell" data-label="Left five eighths block" data-unicode="250B">&#x250B;</div>
-                <div class="row-1 col-c cell" data-label="Left half block" data-unicode="250C">&#x250C;</div>
-                <div class="row-1 col-d cell" data-label="Left three eighths block" data-unicode="250D">&#x250D;</div>
-                <div class="row-1 col-e cell" data-label="Left one quarter block" data-unicode="250E">&#x250E;</div>
-                <div class="row-1 col-f cell" data-label="Left one eighth block" data-unicode="250F">&#x250F;</div>
+                <div class="row-1 col-0 cell" data-unicode="2500">&#x2500;</div>
+                <div class="row-1 col-1 cell" data-unicode="2501">&#x2501;</div>
+                <div class="row-1 col-2 cell" data-unicode="2502">&#x2502;</div>
+                <div class="row-1 col-3 cell" data-unicode="2503">&#x2503;</div>
+                <div class="row-1 col-4 cell" data-unicode="2504">&#x2504;</div>
+                <div class="row-1 col-5 cell" data-unicode="2505">&#x2505;</div>
+                <div class="row-1 col-6 cell" data-unicode="2506">&#x2506;</div>
+                <div class="row-1 col-7 cell" data-unicode="2507">&#x2507;</div>
+                <div class="row-1 col-8 cell" data-unicode="2508">&#x2508;</div>
+                <div class="row-1 col-9 cell" data-unicode="2509">&#x2509;</div>
+                <div class="row-1 col-a cell" data-unicode="250A">&#x250A;</div>
+                <div class="row-1 col-b cell" data-unicode="250B">&#x250B;</div>
+                <div class="row-1 col-c cell" data-unicode="250C">&#x250C;</div>
+                <div class="row-1 col-d cell" data-unicode="250D">&#x250D;</div>
+                <div class="row-1 col-e cell" data-unicode="250E">&#x250E;</div>
+                <div class="row-1 col-f cell" data-unicode="250F">&#x250F;</div>
                 <div class="row-2 col-u">U+251x</div>
-                <div class="row-2 col-0 cell" data-label="Right half block" data-unicode="2510">&#x2510;</div>
-                <div class="row-2 col-1 cell" data-label="Light shade" data-unicode="2511">&#x2511;</div>
-                <div class="row-2 col-2 cell" data-label="Medium shade" data-unicode="2512">&#x2512;</div>
-                <div class="row-2 col-3 cell" data-label="Dark shade" data-unicode="2513">&#x2513;</div>
-                <div class="row-2 col-4 cell" data-label="Upper one eighth block" data-unicode="2514">&#x2514;</div>
-                <div class="row-2 col-5 cell" data-label="Right one eighth block" data-unicode="2515">&#x2515;</div>
-                <div class="row-2 col-6 cell" data-label="Quadrant lower left" data-unicode="2516">&#x2516;</div>
-                <div class="row-2 col-7 cell" data-label="Quadrant lower right" data-unicode="2517">&#x2517;</div>
-                <div class="row-2 col-8 cell" data-label="Quadrant upper left" data-unicode="2518">&#x2518;</div>
-                <div class="row-2 col-9 cell" data-label="Quadrant upper left and lower left and lower right"
-                    data-unicode="2519">&#x2519;</div>
-                <div class="row-2 col-a cell" data-label="Quadrant upper left and lower right" data-unicode="251A">
-                    &#x251A;
-                </div>
-                <div class="row-2 col-b cell" data-label="Quadrant upper left and upper right and lower left"
-                    data-unicode="251B">&#x251B;</div>
-                <div class="row-2 col-c cell" data-label="Quadrant upper left and upper right and lower right"
-                    data-unicode="251C">&#x251C;</div>
-                <div class="row-2 col-d cell" data-label="Quadrant upper right" data-unicode="251D">&#x251D;</div>
-                <div class="row-2 col-e cell" data-label="Quadrant upper right and lower left" data-unicode="251E">
-                    &#x251E;
-                </div>
-                <div class="row-2 col-f cell" data-label="Quadrant upper right and lower left and lower right"
-                    data-unicode="251F">&#x251F;</div>
+                <div class="row-2 col-0 cell" data-unicode="2510">&#x2510;</div>
+                <div class="row-2 col-1 cell" data-unicode="2511">&#x2511;</div>
+                <div class="row-2 col-2 cell" data-unicode="2512">&#x2512;</div>
+                <div class="row-2 col-3 cell" data-unicode="2513">&#x2513;</div>
+                <div class="row-2 col-4 cell" data-unicode="2514">&#x2514;</div>
+                <div class="row-2 col-5 cell" data-unicode="2515">&#x2515;</div>
+                <div class="row-2 col-6 cell" data-unicode="2516">&#x2516;</div>
+                <div class="row-2 col-7 cell" data-unicode="2517">&#x2517;</div>
+                <div class="row-2 col-8 cell" data-unicode="2518">&#x2518;</div>
+                <div class="row-2 col-9 cell" data-unicode="2519">&#x2519;</div>
+                <div class="row-2 col-a cell" data-unicode="251A"> &#x251A;</div>
+                <div class="row-2 col-b cell" data-unicode="251B">&#x251B;</div>
+                <div class="row-2 col-c cell" data-unicode="251C">&#x251C;</div>
+                <div class="row-2 col-d cell" data-unicode="251D">&#x251D;</div>
+                <div class="row-2 col-e cell" data-unicode="251E">&#x251E;</div>
+                <div class="row-2 col-f cell" data-unicode="251F">&#x251F;</div>
                 <div class="row-3 col-u">U+252x</div>
-                <div class="row-3 col-0 cell" data-label="0" data-unicode="2520">&#x2520;</div>
-                <div class="row-3 col-1 cell" data-label="1" data-unicode="2521">&#x2521;</div>
-                <div class="row-3 col-2 cell" data-label="2" data-unicode="2522">&#x2522;</div>
-                <div class="row-3 col-3 cell" data-label="3" data-unicode="2523">&#x2523;</div>
-                <div class="row-3 col-4 cell" data-label="4" data-unicode="2524">&#x2524;</div>
-                <div class="row-3 col-5 cell" data-label="5" data-unicode="2525">&#x2525;</div>
-                <div class="row-3 col-6 cell" data-label="6" data-unicode="2526">&#x2526;</div>
-                <div class="row-3 col-7 cell" data-label="7" data-unicode="2527">&#x2527;</div>
-                <div class="row-3 col-8 cell" data-label="8" data-unicode="2528">&#x2528;</div>
-                <div class="row-3 col-9 cell" data-label="9" data-unicode="2529">&#x2529;</div>
-                <div class="row-3 col-a cell" data-label="A" data-unicode="252A">&#x252A;</div>
-                <div class="row-3 col-b cell" data-label="B" data-unicode="252B">&#x252B;</div>
-                <div class="row-3 col-c cell" data-label="C" data-unicode="252C">&#x252C;</div>
-                <div class="row-3 col-d cell" data-label="D" data-unicode="252D">&#x252D;</div>
-                <div class="row-3 col-e cell" data-label="E" data-unicode="252E">&#x252E;</div>
-                <div class="row-3 col-f cell" data-label="F" data-unicode="252F">&#x252F;</div>
+                <div class="row-3 col-0 cell" data-unicode="2520">&#x2520;</div>
+                <div class="row-3 col-1 cell" data-unicode="2521">&#x2521;</div>
+                <div class="row-3 col-2 cell" data-unicode="2522">&#x2522;</div>
+                <div class="row-3 col-3 cell" data-unicode="2523">&#x2523;</div>
+                <div class="row-3 col-4 cell" data-unicode="2524">&#x2524;</div>
+                <div class="row-3 col-5 cell" data-unicode="2525">&#x2525;</div>
+                <div class="row-3 col-6 cell" data-unicode="2526">&#x2526;</div>
+                <div class="row-3 col-7 cell" data-unicode="2527">&#x2527;</div>
+                <div class="row-3 col-8 cell" data-unicode="2528">&#x2528;</div>
+                <div class="row-3 col-9 cell" data-unicode="2529">&#x2529;</div>
+                <div class="row-3 col-a cell" data-unicode="252A">&#x252A;</div>
+                <div class="row-3 col-b cell" data-unicode="252B">&#x252B;</div>
+                <div class="row-3 col-c cell" data-unicode="252C">&#x252C;</div>
+                <div class="row-3 col-d cell" data-unicode="252D">&#x252D;</div>
+                <div class="row-3 col-e cell" data-unicode="252E">&#x252E;</div>
+                <div class="row-3 col-f cell" data-unicode="252F">&#x252F;</div>
                 <div class="row-4 col-u">U+253x</div>
-                <div class="row-4 col-0 cell" data-label="0" data-unicode="2530">&#x2530;</div>
-                <div class="row-4 col-1 cell" data-label="1" data-unicode="2531">&#x2531;</div>
-                <div class="row-4 col-2 cell" data-label="2" data-unicode="2532">&#x2532;</div>
-                <div class="row-4 col-3 cell" data-label="3" data-unicode="2533">&#x2533;</div>
-                <div class="row-4 col-4 cell" data-label="4" data-unicode="2534">&#x2534;</div>
-                <div class="row-4 col-5 cell" data-label="5" data-unicode="2535">&#x2535;</div>
-                <div class="row-4 col-6 cell" data-label="6" data-unicode="2536">&#x2536;</div>
-                <div class="row-4 col-7 cell" data-label="7" data-unicode="2537">&#x2537;</div>
-                <div class="row-4 col-8 cell" data-label="8" data-unicode="2538">&#x2538;</div>
-                <div class="row-4 col-9 cell" data-label="9" data-unicode="2539">&#x2539;</div>
-                <div class="row-4 col-a cell" data-label="A" data-unicode="253A">&#x253A;</div>
-                <div class="row-4 col-b cell" data-label="B" data-unicode="253B">&#x253B;</div>
-                <div class="row-4 col-c cell" data-label="C" data-unicode="253C">&#x253C;</div>
-                <div class="row-4 col-d cell" data-label="D" data-unicode="253D">&#x253D;</div>
-                <div class="row-4 col-e cell" data-label="E" data-unicode="253E">&#x253E;</div>
-                <div class="row-4 col-f cell" data-label="F" data-unicode="253F">&#x253F;</div>
+                <div class="row-4 col-0 cell" data-unicode="2530">&#x2530;</div>
+                <div class="row-4 col-1 cell" data-unicode="2531">&#x2531;</div>
+                <div class="row-4 col-2 cell" data-unicode="2532">&#x2532;</div>
+                <div class="row-4 col-3 cell" data-unicode="2533">&#x2533;</div>
+                <div class="row-4 col-4 cell" data-unicode="2534">&#x2534;</div>
+                <div class="row-4 col-5 cell" data-unicode="2535">&#x2535;</div>
+                <div class="row-4 col-6 cell" data-unicode="2536">&#x2536;</div>
+                <div class="row-4 col-7 cell" data-unicode="2537">&#x2537;</div>
+                <div class="row-4 col-8 cell" data-unicode="2538">&#x2538;</div>
+                <div class="row-4 col-9 cell" data-unicode="2539">&#x2539;</div>
+                <div class="row-4 col-a cell" data-unicode="253A">&#x253A;</div>
+                <div class="row-4 col-b cell" data-unicode="253B">&#x253B;</div>
+                <div class="row-4 col-c cell" data-unicode="253C">&#x253C;</div>
+                <div class="row-4 col-d cell" data-unicode="253D">&#x253D;</div>
+                <div class="row-4 col-e cell" data-unicode="253E">&#x253E;</div>
+                <div class="row-4 col-f cell" data-unicode="253F">&#x253F;</div>
                 <div class="row-5 col-u">U+254x</div>
-                <div class="row-5 col-0 cell" data-label="0" data-unicode="2540">&#x2540;</div>
-                <div class="row-5 col-1 cell" data-label="1" data-unicode="2541">&#x2541;</div>
-                <div class="row-5 col-2 cell" data-label="2" data-unicode="2542">&#x2542;</div>
-                <div class="row-5 col-3 cell" data-label="3" data-unicode="2543">&#x2543;</div>
-                <div class="row-5 col-4 cell" data-label="4" data-unicode="2544">&#x2544;</div>
-                <div class="row-5 col-5 cell" data-label="5" data-unicode="2545">&#x2545;</div>
-                <div class="row-5 col-6 cell" data-label="6" data-unicode="2546">&#x2546;</div>
-                <div class="row-5 col-7 cell" data-label="7" data-unicode="2547">&#x2547;</div>
-                <div class="row-5 col-8 cell" data-label="8" data-unicode="2548">&#x2548;</div>
-                <div class="row-5 col-9 cell" data-label="9" data-unicode="2549">&#x2549;</div>
-                <div class="row-5 col-a cell" data-label="A" data-unicode="254A">&#x254A;</div>
-                <div class="row-5 col-b cell" data-label="B" data-unicode="254B">&#x254B;</div>
-                <div class="row-5 col-c cell" data-label="C" data-unicode="254C">&#x254C;</div>
-                <div class="row-5 col-d cell" data-label="D" data-unicode="254D">&#x254D;</div>
-                <div class="row-5 col-e cell" data-label="E" data-unicode="254E">&#x254E;</div>
-                <div class="row-5 col-f cell" data-label="F" data-unicode="254F">&#x254F;</div>
+                <div class="row-5 col-0 cell" data-unicode="2540">&#x2540;</div>
+                <div class="row-5 col-1 cell" data-unicode="2541">&#x2541;</div>
+                <div class="row-5 col-2 cell" data-unicode="2542">&#x2542;</div>
+                <div class="row-5 col-3 cell" data-unicode="2543">&#x2543;</div>
+                <div class="row-5 col-4 cell" data-unicode="2544">&#x2544;</div>
+                <div class="row-5 col-5 cell" data-unicode="2545">&#x2545;</div>
+                <div class="row-5 col-6 cell" data-unicode="2546">&#x2546;</div>
+                <div class="row-5 col-7 cell" data-unicode="2547">&#x2547;</div>
+                <div class="row-5 col-8 cell" data-unicode="2548">&#x2548;</div>
+                <div class="row-5 col-9 cell" data-unicode="2549">&#x2549;</div>
+                <div class="row-5 col-a cell" data-unicode="254A">&#x254A;</div>
+                <div class="row-5 col-b cell" data-unicode="254B">&#x254B;</div>
+                <div class="row-5 col-c cell" data-unicode="254C">&#x254C;</div>
+                <div class="row-5 col-d cell" data-unicode="254D">&#x254D;</div>
+                <div class="row-5 col-e cell" data-unicode="254E">&#x254E;</div>
+                <div class="row-5 col-f cell" data-unicode="254F">&#x254F;</div>
                 <div class="row-6 col-u">U+255x</div>
-                <div class="row-6 col-0 cell" data-label="0" data-unicode="2550">&#x2550;</div>
-                <div class="row-6 col-1 cell" data-label="1" data-unicode="2551">&#x2551;</div>
-                <div class="row-6 col-2 cell" data-label="2" data-unicode="2552">&#x2552;</div>
-                <div class="row-6 col-3 cell" data-label="3" data-unicode="2553">&#x2553;</div>
-                <div class="row-6 col-4 cell" data-label="4" data-unicode="2554">&#x2554;</div>
-                <div class="row-6 col-5 cell" data-label="5" data-unicode="2555">&#x2555;</div>
-                <div class="row-6 col-6 cell" data-label="6" data-unicode="2556">&#x2556;</div>
-                <div class="row-6 col-7 cell" data-label="7" data-unicode="2557">&#x2557;</div>
-                <div class="row-6 col-8 cell" data-label="8" data-unicode="2558">&#x2558;</div>
-                <div class="row-6 col-9 cell" data-label="9" data-unicode="2559">&#x2559;</div>
-                <div class="row-6 col-a cell" data-label="A" data-unicode="255A">&#x255A;</div>
-                <div class="row-6 col-b cell" data-label="B" data-unicode="255B">&#x255B;</div>
-                <div class="row-6 col-c cell" data-label="C" data-unicode="255C">&#x255C;</div>
-                <div class="row-6 col-d cell" data-label="D" data-unicode="255D">&#x255D;</div>
-                <div class="row-6 col-e cell" data-label="E" data-unicode="255E">&#x255E;</div>
-                <div class="row-6 col-f cell" data-label="F" data-unicode="255F">&#x255F;</div>
+                <div class="row-6 col-0 cell" data-unicode="2550">&#x2550;</div>
+                <div class="row-6 col-1 cell" data-unicode="2551">&#x2551;</div>
+                <div class="row-6 col-2 cell" data-unicode="2552">&#x2552;</div>
+                <div class="row-6 col-3 cell" data-unicode="2553">&#x2553;</div>
+                <div class="row-6 col-4 cell" data-unicode="2554">&#x2554;</div>
+                <div class="row-6 col-5 cell" data-unicode="2555">&#x2555;</div>
+                <div class="row-6 col-6 cell" data-unicode="2556">&#x2556;</div>
+                <div class="row-6 col-7 cell" data-unicode="2557">&#x2557;</div>
+                <div class="row-6 col-8 cell" data-unicode="2558">&#x2558;</div>
+                <div class="row-6 col-9 cell" data-unicode="2559">&#x2559;</div>
+                <div class="row-6 col-a cell" data-unicode="255A">&#x255A;</div>
+                <div class="row-6 col-b cell" data-unicode="255B">&#x255B;</div>
+                <div class="row-6 col-c cell" data-unicode="255C">&#x255C;</div>
+                <div class="row-6 col-d cell" data-unicode="255D">&#x255D;</div>
+                <div class="row-6 col-e cell" data-unicode="255E">&#x255E;</div>
+                <div class="row-6 col-f cell" data-unicode="255F">&#x255F;</div>
                 <div class="row-7 col-u">U+256x</div>
-                <div class="row-7 col-0 cell" data-label="0" data-unicode="2560">&#x2560;</div>
-                <div class="row-7 col-1 cell" data-label="1" data-unicode="2561">&#x2561;</div>
-                <div class="row-7 col-2 cell" data-label="2" data-unicode="2562">&#x2562;</div>
-                <div class="row-7 col-3 cell" data-label="3" data-unicode="2563">&#x2563;</div>
-                <div class="row-7 col-4 cell" data-label="4" data-unicode="2564">&#x2564;</div>
-                <div class="row-7 col-5 cell" data-label="5" data-unicode="2565">&#x2565;</div>
-                <div class="row-7 col-6 cell" data-label="6" data-unicode="2566">&#x2566;</div>
-                <div class="row-7 col-7 cell" data-label="7" data-unicode="2567">&#x2567;</div>
-                <div class="row-7 col-8 cell" data-label="8" data-unicode="2568">&#x2568;</div>
-                <div class="row-7 col-9 cell" data-label="9" data-unicode="2569">&#x2569;</div>
-                <div class="row-7 col-a cell" data-label="A" data-unicode="256A">&#x256A;</div>
-                <div class="row-7 col-b cell" data-label="B" data-unicode="256B">&#x256B;</div>
-                <div class="row-7 col-c cell" data-label="C" data-unicode="256C">&#x256C;</div>
-                <div class="row-7 col-d cell" data-label="D" data-unicode="256D">&#x256D;</div>
-                <div class="row-7 col-e cell" data-label="E" data-unicode="256E">&#x256E;</div>
-                <div class="row-7 col-f cell" data-label="F" data-unicode="256F">&#x256F;</div>
+                <div class="row-7 col-0 cell" data-unicode="2560">&#x2560;</div>
+                <div class="row-7 col-1 cell" data-unicode="2561">&#x2561;</div>
+                <div class="row-7 col-2 cell" data-unicode="2562">&#x2562;</div>
+                <div class="row-7 col-3 cell" data-unicode="2563">&#x2563;</div>
+                <div class="row-7 col-4 cell" data-unicode="2564">&#x2564;</div>
+                <div class="row-7 col-5 cell" data-unicode="2565">&#x2565;</div>
+                <div class="row-7 col-6 cell" data-unicode="2566">&#x2566;</div>
+                <div class="row-7 col-7 cell" data-unicode="2567">&#x2567;</div>
+                <div class="row-7 col-8 cell" data-unicode="2568">&#x2568;</div>
+                <div class="row-7 col-9 cell" data-unicode="2569">&#x2569;</div>
+                <div class="row-7 col-a cell" data-unicode="256A">&#x256A;</div>
+                <div class="row-7 col-b cell" data-unicode="256B">&#x256B;</div>
+                <div class="row-7 col-c cell" data-unicode="256C">&#x256C;</div>
+                <div class="row-7 col-d cell" data-unicode="256D">&#x256D;</div>
+                <div class="row-7 col-e cell" data-unicode="256E">&#x256E;</div>
+                <div class="row-7 col-f cell" data-unicode="256F">&#x256F;</div>
                 <div class="row-8 col-u">U+257x</div>
-                <div class="row-8 col-0 cell" data-label="0" data-unicode="2570">&#x2570;</div>
-                <div class="row-8 col-1 cell" data-label="1" data-unicode="2571">&#x2571;</div>
-                <div class="row-8 col-2 cell" data-label="2" data-unicode="2572">&#x2572;</div>
-                <div class="row-8 col-3 cell" data-label="3" data-unicode="2573">&#x2573;</div>
-                <div class="row-8 col-4 cell" data-label="4" data-unicode="2574">&#x2574;</div>
-                <div class="row-8 col-5 cell" data-label="5" data-unicode="2575">&#x2575;</div>
-                <div class="row-8 col-6 cell" data-label="6" data-unicode="2576">&#x2576;</div>
-                <div class="row-8 col-7 cell" data-label="7" data-unicode="2577">&#x2577;</div>
-                <div class="row-8 col-8 cell" data-label="8" data-unicode="2578">&#x2578;</div>
-                <div class="row-8 col-9 cell" data-label="9" data-unicode="2579">&#x2579;</div>
-                <div class="row-8 col-a cell" data-label="A" data-unicode="257A">&#x257A;</div>
-                <div class="row-8 col-b cell" data-label="B" data-unicode="257B">&#x257B;</div>
-                <div class="row-8 col-c cell" data-label="C" data-unicode="257C">&#x257C;</div>
-                <div class="row-8 col-d cell" data-label="D" data-unicode="257D">&#x257D;</div>
-                <div class="row-8 col-e cell" data-label="E" data-unicode="257E">&#x257E;</div>
-                <div class="row-8 col-f cell" data-label="F" data-unicode="257F">&#x257F;</div>
+                <div class="row-8 col-0 cell" data-unicode="2570">&#x2570;</div>
+                <div class="row-8 col-1 cell" data-unicode="2571">&#x2571;</div>
+                <div class="row-8 col-2 cell" data-unicode="2572">&#x2572;</div>
+                <div class="row-8 col-3 cell" data-unicode="2573">&#x2573;</div>
+                <div class="row-8 col-4 cell" data-unicode="2574">&#x2574;</div>
+                <div class="row-8 col-5 cell" data-unicode="2575">&#x2575;</div>
+                <div class="row-8 col-6 cell" data-unicode="2576">&#x2576;</div>
+                <div class="row-8 col-7 cell" data-unicode="2577">&#x2577;</div>
+                <div class="row-8 col-8 cell" data-unicode="2578">&#x2578;</div>
+                <div class="row-8 col-9 cell" data-unicode="2579">&#x2579;</div>
+                <div class="row-8 col-a cell" data-unicode="257A">&#x257A;</div>
+                <div class="row-8 col-b cell" data-unicode="257B">&#x257B;</div>
+                <div class="row-8 col-c cell" data-unicode="257C">&#x257C;</div>
+                <div class="row-8 col-d cell" data-unicode="257D">&#x257D;</div>
+                <div class="row-8 col-e cell" data-unicode="257E">&#x257E;</div>
+                <div class="row-8 col-f cell" data-unicode="257F">&#x257F;</div>
             </div>
         </div>
         <h2>Block Elements</h2>
@@ -1483,47 +1520,111 @@
                 <div class="row-u col-e">E</div>
                 <div class="row-u col-f">F</div>
                 <div class="row-1 col-u">U+258x</div>
-                <div class="row-1 col-0 cell" data-label="upper half block" data-unicode="2580">&#9600;</div>
-                <div class="row-1 col-1 cell" data-label="lower one eighth block" data-unicode="2581">&#9601;</div>
-                <div class="row-1 col-2 cell" data-label="lower one quarter block" data-unicode="2582">&#9602;</div>
-                <div class="row-1 col-3 cell" data-label="lower three eighths block" data-unicode="2583">&#9603;</div>
-                <div class="row-1 col-4 cell" data-label="Lower half block" data-unicode="2584">&#9604;</div>
-                <div class="row-1 col-5 cell" data-label="Lower five eighths block" data-unicode="2585">&#9605;</div>
-                <div class="row-1 col-6 cell" data-label="Lower three quarters block" data-unicode="2586">&#9606;</div>
-                <div class="row-1 col-7 cell" data-label="Lower seven eighths block" data-unicode="2587">&#9607;</div>
-                <div class="row-1 col-8 cell" data-label="Full block" data-unicode="2588">&#9608;</div>
-                <div class="row-1 col-9 cell" data-label="Left seven eighths block" data-unicode="2589">&#9609;</div>
-                <div class="row-1 col-a cell" data-label="Left three quarters block" data-unicode="258A">&#9610;</div>
-                <div class="row-1 col-b cell" data-label="Left five eighths block" data-unicode="258B">&#9611;</div>
-                <div class="row-1 col-c cell" data-label="Left half block" data-unicode="258C">&#9612;</div>
-                <div class="row-1 col-d cell" data-label="Left three eighths block" data-unicode="258D">&#9613;</div>
-                <div class="row-1 col-e cell" data-label="Left one quarter block" data-unicode="258E">&#9614;</div>
-                <div class="row-1 col-f cell" data-label="Left one eighth block" data-unicode="258F">&#9615;</div>
+                <div class="row-1 col-0 cell" data-unicode="2580">&#9600;</div>
+                <div class="row-1 col-1 cell" data-unicode="2581">&#9601;</div>
+                <div class="row-1 col-2 cell" data-unicode="2582">&#9602;</div>
+                <div class="row-1 col-3 cell" data-unicode="2583">&#9603;</div>
+                <div class="row-1 col-4 cell" data-unicode="2584">&#9604;</div>
+                <div class="row-1 col-5 cell" data-unicode="2585">&#9605;</div>
+                <div class="row-1 col-6 cell" data-unicode="2586">&#9606;</div>
+                <div class="row-1 col-7 cell" data-unicode="2587">&#9607;</div>
+                <div class="row-1 col-8 cell" data-unicode="2588">&#9608;</div>
+                <div class="row-1 col-9 cell" data-unicode="2589">&#9609;</div>
+                <div class="row-1 col-a cell" data-unicode="258A">&#9610;</div>
+                <div class="row-1 col-b cell" data-unicode="258B">&#9611;</div>
+                <div class="row-1 col-c cell" data-unicode="258C">&#9612;</div>
+                <div class="row-1 col-d cell" data-unicode="258D">&#9613;</div>
+                <div class="row-1 col-e cell" data-unicode="258E">&#9614;</div>
+                <div class="row-1 col-f cell" data-unicode="258F">&#9615;</div>
                 <div class="row-2 col-u">U+259x</div>
-                <div class="row-2 col-0 cell" data-label="Right half block" data-unicode="2590">&#9616;</div>
-                <div class="row-2 col-1 cell" data-label="Light shade" data-unicode="2591">&#9617;</div>
-                <div class="row-2 col-2 cell" data-label="Medium shade" data-unicode="2592">&#9618;</div>
-                <div class="row-2 col-3 cell" data-label="Dark shade" data-unicode="2593">&#9619;</div>
-                <div class="row-2 col-4 cell" data-label="Upper one eighth block" data-unicode="2594">&#9620;</div>
-                <div class="row-2 col-5 cell" data-label="Right one eighth block" data-unicode="2595">&#9621;</div>
-                <div class="row-2 col-6 cell" data-label="Quadrant lower left" data-unicode="2596">&#9622;</div>
-                <div class="row-2 col-7 cell" data-label="Quadrant lower right" data-unicode="2597">&#9623;</div>
-                <div class="row-2 col-8 cell" data-label="Quadrant upper left" data-unicode="2598">&#9624;</div>
-                <div class="row-2 col-9 cell" data-label="Quadrant upper left and lower left and lower right"
-                    data-unicode="2599">&#9625;</div>
-                <div class="row-2 col-a cell" data-label="Quadrant upper left and lower right" data-unicode="259A">
+                <div class="row-2 col-0 cell" data-unicode="2590">&#9616;</div>
+                <div class="row-2 col-1 cell" data-unicode="2591">&#9617;</div>
+                <div class="row-2 col-2 cell" data-unicode="2592">&#9618;</div>
+                <div class="row-2 col-3 cell" data-unicode="2593">&#9619;</div>
+                <div class="row-2 col-4 cell" data-unicode="2594">&#9620;</div>
+                <div class="row-2 col-5 cell" data-unicode="2595">&#9621;</div>
+                <div class="row-2 col-6 cell" data-unicode="2596">&#9622;</div>
+                <div class="row-2 col-7 cell" data-unicode="2597">&#9623;</div>
+                <div class="row-2 col-8 cell" data-unicode="2598">&#9624;</div>
+                <div class="row-2 col-9 cell" data-unicode="2599">&#9625;</div>
+                <div class="row-2 col-a cell" data-unicode="259A">
                     &#9626;
                 </div>
-                <div class="row-2 col-b cell" data-label="Quadrant upper left and upper right and lower left"
-                    data-unicode="259B">&#9627;</div>
-                <div class="row-2 col-c cell" data-label="Quadrant upper left and upper right and lower right"
-                    data-unicode="259C">&#9628;</div>
-                <div class="row-2 col-d cell" data-label="Quadrant upper right" data-unicode="259D">&#9629;</div>
-                <div class="row-2 col-e cell" data-label="Quadrant upper right and lower left" data-unicode="259E">
+                <div class="row-2 col-b cell" data-unicode="259B">&#9627;</div>
+                <div class="row-2 col-c cell" data-unicode="259C">&#9628;</div>
+                <div class="row-2 col-d cell" data-unicode="259D">&#9629;</div>
+                <div class="row-2 col-e cell" data-unicode="259E">
                     &#9630;
                 </div>
-                <div class="row-2 col-f cell" data-label="Quadrant upper right and lower left and lower right"
-                    data-unicode="259F">&#9631;</div>
+                <div class="row-2 col-f cell" data-unicode="259F">&#9631;</div>
+            </div>
+        </div>
+        <h2>Unown Language</h2>
+        <div class="content">
+            <p style="margin-bottom: 1rem;">The unown language can be accessed by typing <code>unown</code> + <code>a-z</code> or <code>!</code> / <code>?</code>.</p>
+            <div class="table">
+                <div class="row-u col-u">&nbsp;</div>
+                <div class="row-u col-0">a</div>
+                <div class="row-u col-1">b</div>
+                <div class="row-u col-2">c</div>
+                <div class="row-u col-3">d</div>
+                <div class="row-u col-4">e</div>
+                <div class="row-u col-5">f</div>
+                <div class="row-u col-6">g</div>
+                <div class="row-u col-7">h</div>
+                <div class="row-u col-8">i</div>
+                <div class="row-u col-9">j</div>
+                <div class="row-u col-a">k</div>
+                <div class="row-u col-b">l</div>
+                <div class="row-u col-c">m</div>
+                <div class="row-u col-d">n</div>
+                <div class="row-u col-e">o</div>
+                <div class="row-u col-f">p</div>
+                <div class="row-1 col-u">unown</div>
+                <div class="row-1 col-0 cell" data-unicode="unowna">unowna</div>
+                <div class="row-1 col-1 cell" data-unicode="unownb">unownb</div>
+                <div class="row-1 col-2 cell" data-unicode="unownc">unownc</div>
+                <div class="row-1 col-3 cell" data-unicode="unownd">unownd</div>
+                <div class="row-1 col-4 cell" data-unicode="unowne">unowne</div>
+                <div class="row-1 col-5 cell" data-unicode="unownf">unownf</div>
+                <div class="row-1 col-6 cell" data-unicode="unowng">unowng</div>
+                <div class="row-1 col-7 cell" data-unicode="unownh">unownh</div>
+                <div class="row-1 col-8 cell" data-unicode="unowni">unowni</div>
+                <div class="row-1 col-9 cell" data-unicode="unownj">unownj</div>
+                <div class="row-1 col-a cell" data-unicode="unownk">unownk</div>
+                <div class="row-1 col-b cell" data-unicode="unownl">unownl</div>
+                <div class="row-1 col-c cell" data-unicode="unownm">unownm</div>
+                <div class="row-1 col-d cell" data-unicode="unownn">unownn</div>
+                <div class="row-1 col-e cell" data-unicode="unowno">unowno</div>
+                <div class="row-1 col-f cell" data-unicode="unownp">unownp</div>
+            </div>
+            <div class="table">
+                <div class="row-u col-u">&nbsp;</div>
+                <div class="row-u col-0">q</div>
+                <div class="row-u col-1">r</div>
+                <div class="row-u col-2">s</div>
+                <div class="row-u col-3">t</div>
+                <div class="row-u col-4">u</div>
+                <div class="row-u col-5">v</div>
+                <div class="row-u col-6">w</div>
+                <div class="row-u col-7">x</div>
+                <div class="row-u col-8">y</div>
+                <div class="row-u col-9">z</div>
+                <div class="row-u col-a">!</div>
+                <div class="row-u col-b">?</div>
+                <div class="row-1 col-u">unown</div>
+                <div class="row-1 col-0 cell" data-unicode="unownq">unownq</div>
+                <div class="row-1 col-1 cell" data-unicode="unownr">unownr</div>
+                <div class="row-1 col-2 cell" data-unicode="unowns">unowns</div>
+                <div class="row-1 col-3 cell" data-unicode="unownt">unownt</div>
+                <div class="row-1 col-4 cell" data-unicode="unownu">unownu</div>
+                <div class="row-1 col-5 cell" data-unicode="unownv">unownv</div>
+                <div class="row-1 col-6 cell" data-unicode="unownw">unownw</div>
+                <div class="row-1 col-7 cell" data-unicode="unownx">unownx</div>
+                <div class="row-1 col-8 cell" data-unicode="unowny">unowny</div>
+                <div class="row-1 col-9 cell" data-unicode="unownz">unownz</div>
+                <div class="row-1 col-a cell" data-unicode="unown!">unown!</div>
+                <div class="row-1 col-b cell" data-unicode="unown?">unown?</div>
             </div>
         </div>
         <h2>Code Examples</h2>
@@ -1636,7 +1737,20 @@
             <span>Total Characters</span>
         </div>
         <div class="detail">
-            <span>Dzuk [Social Media Links here]</span>
+            <span>
+                Dzuk
+                <span class="socials">
+                    <a href="https://weirder.earth/@dzuk">
+                        <svg viewBox="0 0 22 22">
+                            <path
+                                d="M12 18H15V19H14V20H13V21H7V20H6V19H5V18H4V17H3V14H2V5H3V4H4V3H6V2H16V3H18V4H19V5H20V13H19V14H18V15H16V16H8V18H10V19H12V18M6 13H8V7H9V8H10V11H12V8H13V7H14V13H16V7H15V5H12V7H10V5H7V7H6V13Z" />
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/Dzuque">
+
+                    </a>
+                </span>
+            </span>
             <span>Designer</span>
         </div>
         <div class="detail">
