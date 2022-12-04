@@ -103,12 +103,20 @@
         }
 
         .tooltip {
+            position: fixed;
             color: #FFF;
             border-color: #111;
             background-color: #111;
             border-radius: 4px 4px;
             padding: 2px 4px;
-            opacity: 0.85;
+        }
+
+        .overlay-desktop {
+            position: fixed;
+            margin-left: -0.5rem;
+            border-left: 0.5rem solid #111;
+            background: #F2ECD0;
+            padding: 0.5rem;
         }
 
         .overlay {
@@ -945,19 +953,23 @@
             'unown?': 'unown ?',
         };
         let tooltip = null;
-        function showTooltip(source, text) {
+        function showDesktopOverlay(source, text) {
             if (tooltip) { tooltip.remove(); }
+            // Two types of tooltips
+            // 1. Above or below; 2. Right
+            const maxWidth = document.body.getBoundingClientRect().width;
+            const mRect = document.querySelector('main').getBoundingClientRect();
+            const type = maxWidth > 1000 ? 'AboveBelow' : 'Right';
             const rect = source.getBoundingClientRect();
             const pRect = source.parentNode.getBoundingClientRect();
             tooltip = document.createElement('div');
             tooltip.innerText = text;
-            tooltip.classList.add('tooltip');
-            tooltip.style.position = 'fixed';
-            tooltip.style.left = `${pRect.right + 4}px`;
+            tooltip.classList.add('overlay-desktop');
+            tooltip.style.left = `${mRect.right}px`;
             tooltip.style.top = `${rect.top + 2}px`;
             document.body.appendChild(tooltip);
         }
-        function hideTooltip() {
+        function hideDesktopOverlay() {
             if (!tooltip) { return; }
             tooltip.remove();
         }
@@ -1027,20 +1039,43 @@
                 const u = unicode.dataset.unicode;
                 unicode.dataset.label = map[u];
             });
-            // Tooltips for Hex Grid
+            // Overlays for Hex Grid
             const cells = document.getElementsByClassName('cell');
             [...cells].forEach(cell => {
                 cell.addEventListener('mouseenter', (e) => {
                     if (isMobile()) { return; }
-                    showTooltip(e.target, e.target.dataset.label);
+                    showDesktopOverlay(e.target, e.target.dataset.label);
                 });
                 cell.addEventListener('mouseleave', (e) => {
                     if (isMobile()) { return; }
-                    hideTooltip();
+                    hideDesktopOverlay();
                 });
                 cell.addEventListener('click', (e) => {
                     if (!isMobile()) { return; }
                     showMobileOverlay(e.target.dataset.unicode, e.target.dataset.label);
+                });
+            });
+            // Tooltips
+            const tooltips = document.querySelectorAll('[data-tooltip]');
+            [...tooltips].forEach((tooltip) => {
+                const label = tooltip.dataset.tooltip;
+                // No longer required
+                tooltip.removeAttribute('title');
+                // Wire up tooltips
+                tooltip.addEventListener('mouseenter', () => {
+                    const existingTooltip = document.querySelector('.tooltip');
+                    if (existingTooltip) { existingTooltip.remove(); }
+                    const rect = tooltip.getBoundingClientRect();
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('tooltip');
+                    wrapper.innerText = label;
+                    wrapper.style.top = `${rect.bottom + 8}px`;
+                    wrapper.style.left = `${rect.left - 8}px`;
+                    document.body.appendChild(wrapper);
+                });
+                tooltip.addEventListener('mouseleave', () => {
+                    const existingTooltip = document.querySelector('.tooltip');
+                    if (existingTooltip) { existingTooltip.remove(); }
                 });
             });
             // Tabs
@@ -1764,19 +1799,19 @@
                 <span>
                     Dzuk
                     <span class="socials">
-                        <a href="https://dzuk.zone" data-label="dzuk.zone Website" title="dzuk.zone Website">
+                        <a href="https://dzuk.zone" data-tooltip="dzuk.zone Website" title="dzuk.zone Website">
                             <svg viewBox="0 0 22 22">
                                 <path
                                     d="M7 13H8V12H9V11H7V12H6V13H5V17H9V16H10V15H11V13H10V14H9V15H7V13M12 17H11V18H10V19H4V18H3V12H4V11H5V10H6V9H9V6H10V5H11V4H12V3H18V4H19V10H18V11H17V12H16V13H13V16H12V17M17 5H13V6H12V7H11V9H12V8H13V7H15V9H14V10H13V11H15V10H16V9H17V5M13 11H12V12H11V13H13V11M9 9V11H10V10H11V9H9Z" />
                             </svg>
                         </a>
-                        <a href="https://weirder.earth/@dzuk" data-label="Dzuk on Mastodon" title="Dzuk on Mastodon">
+                        <a href="https://weirder.earth/@dzuk" data-tooltip="Dzuk on Mastodon" title="Dzuk on Mastodon">
                             <svg viewBox="0 0 22 22">
                                 <path
                                     d="M12 18H15V19H14V20H13V21H7V20H6V19H5V18H4V17H3V14H2V5H3V4H4V3H6V2H16V3H18V4H19V5H20V13H19V14H18V15H16V16H8V18H10V19H12V18M6 13H8V7H9V8H10V11H12V8H13V7H14V13H16V7H15V5H12V7H10V5H7V7H6V13Z" />
                             </svg>
                         </a>
-                        <a href="https://twitter.com/Dzuque" data-label="Dzuque on Twitter" title="Dzuque on Twitter">
+                        <a href="https://twitter.com/Dzuque" data-tooltip="Dzuque on Twitter" title="Dzuque on Twitter">
                             <svg viewBox="0 0 22 22">
                                 <path
                                     d="M10 19V20H4V19H1V18H3V17H6V16H5V15H4V14H3V12H2V11H1V9H3V8H2V7H1V4H2V5H4V6H6V7H10V6H11V4H12V3H13V2H16V3H17V4H19V5H20V6H19V11H18V13H17V15H16V16H15V17H14V18H12V19H10Z" />
@@ -1789,7 +1824,7 @@
             <div class="detail">
                 <span>
                     Austin Andrews
-                    <a href="https://fosstodon.org/@templarian" data-label="Templarian on Mastodon"
+                    <a href="https://fosstodon.org/@templarian" data-tooltip="Templarian on Mastodon"
                         title="Templarian on Mastodon">
                         <svg viewBox="0 0 22 22">
                             <path
@@ -1800,21 +1835,29 @@
                 <span>Box, Block, and Unown Characters</span>
             </div>
             <div class="detail">
-                <span>TBD</span>
+                <span>
+                    OFL 1.1
+                    <a href="" data-tooltip="View License" title="View License">
+                        <svg viewBox="0 0 22 22">
+                            <path
+                                d="M7 13H8V12H9V11H7V12H6V13H5V17H9V16H10V15H11V13H10V14H9V15H7V13M12 17H11V18H10V19H4V18H3V12H4V11H5V10H6V9H9V6H10V5H11V4H12V3H18V4H19V10H18V11H17V12H16V13H13V16H12V17M17 5H13V6H12V7H11V9H12V8H13V7H15V9H14V10H13V11H15V10H16V9H17V5M13 11H12V12H11V13H13V11M9 9V11H10V10H11V9H9Z" />
+                        </svg>
+                    </a>
+                </span>
                 <span>License</span>
             </div>
             <div class="seperator"></div>
             <div class="detail">
                 <span>
                     Pictogrammers
-                    <a href="https://pictogrammers.com" data-label="Pictogrammers.com Website"
+                    <a href="https://pictogrammers.com" data-tooltip="Pictogrammers.com Website"
                         title="Pictogrammers.com Website">
                         <svg viewBox="0 0 22 22">
                             <path
                                 d="M7 13H8V12H9V11H7V12H6V13H5V17H9V16H10V15H11V13H10V14H9V15H7V13M12 17H11V18H10V19H4V18H3V12H4V11H5V10H6V9H9V6H10V5H11V4H12V3H18V4H19V10H18V11H17V12H16V13H13V16H12V17M17 5H13V6H12V7H11V9H12V8H13V7H15V9H14V10H13V11H15V10H16V9H17V5M13 11H12V12H11V13H13V11M9 9V11H10V10H11V9H9Z" />
                         </svg>
                     </a>
-                    <a href="https://fosstodon.org/@pictogrammers" data-label="Pictogrammers on Mastodon"
+                    <a href="https://fosstodon.org/@pictogrammers" data-tooltip="Pictogrammers on Mastodon"
                         title="Pictogrammers on Mastodon">
                         <svg viewBox="0 0 22 22">
                             <path
@@ -1827,7 +1870,7 @@
             <div class="detail">
                 <span>
                     Memory Icon Set
-                    <a href="https://github.com/Pictogrammers/Memory" data-label="Memory Icons GitHub"
+                    <a href="https://github.com/Pictogrammers/Memory" data-tooltip="Memory Icons GitHub"
                         title="Memory Icons GitHub">
                         <svg viewBox="0 0 22 22">
                             <path
