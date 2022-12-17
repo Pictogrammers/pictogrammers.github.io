@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg" />
+    <title>@pictogrammers/bitmask-to-svg</title>
+    <script type="module" src="demo.js"></script>
+    <style>
+        html {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+        }
+        body {
+            padding: 1rem 1.5rem;
+        }
+        h1 {
+            font-weight: normal;
+            font-size: 1.5rem;
+        }
+        p {
+            line-height: 1.5rem;
+        }
+        .demo {
+            display: flex;
+            padding: 0.5rem 0;
+        }
+        .demo div {
+            display: flex;
+            margin: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            background-color: #FFF;
+        }
+        .demo span {
+            display: flex;
+            font-size: 2rem;
+            border: 2px solid #555;
+            align-self: center;
+            line-height: 1rem;
+            padding: 0 0.25rem 0.5rem 0.25rem;
+            border-radius: 0.5rem;
+            background: #555;
+            width: 1rem;
+            color: #FFF;
+            user-select: none;
+            pointer-events: none;
+            justify-content: center;
+        }
+        code {
+            display: inline-block;
+            background: #EEE;
+            border: 1px solid #DDD;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            word-break: break-all;
+        }
+        .instructions {
+            color: #555;
+            line-height: 1.5rem;
+            margin: 0 0 0.5rem 0;
+        }
+        .instructions span {
+            display: inline-block;
+            border: 2px solid #555;
+            vertical-align: middle;
+            line-height: 1rem;
+            padding: 0.25rem;
+            border-radius: 0.5rem;
+            background: #555;
+            color: #FFF;
+            user-select: none;
+            pointer-events: none;
+            text-align: center;
+            width: 1rem;
+            font-weight: bold;
+            margin: -0.25rem 0.15rem 0 0;
+        }
+        .output {
+            margin: 1rem 0;
+        }
+        .output code {
+            display: block;
+            border-radius: 0.25rem 0.25rem 0 0;
+            padding: 0.5rem;
+        }
+        .output span {
+            display: block;
+            padding: 0.15rem 0.5rem 0.25rem 0.5rem;
+            border-radius: 0 0 0.25rem 0.25rem;
+            background: #555;
+            color: #EEE;
+            text-align: right;
+        }
+        ul {
+            line-height: 1.5rem;
+            list-style: square;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bitmask to SVG Path</h1>
+
+    <p>JavaScript Library to convert a 1D/2D Array to an SVG Path.</p>
+
+    <div>
+        <code>npm install @pictogrammers/bitmask-to-svg</code>
+    </div>
+
+    <div class="demo">
+        <div>
+            <canvas width="50" height="70"></canvas>
+        </div>
+        <span>&#8250;</span>
+        <div>
+            <svg style="width:50px;height:70px" viewBox="0 0 50 70" shape-rendering="crispEdges">
+                <path d="" fill="black" stroke="red"></path>
+            </svg>
+        </div>
+    </div>
+    <div class="instructions">
+        <span aria-label="instructions">i</span> Click to add or remove pixels.
+    </div>
+    <div class="output">
+        <code data-path></code>
+        <span>Output Path</span>
+    </div>
+    <ul>
+        <li><a href="https://github.com/Pictogrammers/bitmask-to-svg">View Source on GitHub</a></li>
+        <li><a href="https://pictogrammers.com">Pictogrammers</a></li>
+    </ul>
+</body>
+
+</html>
