@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/@pictogrammers/pixel-editor/static/css/main.425381b7.css",
+    "main.js": "/@pictogrammers/pixel-editor/static/js/main.1f188fec.js",
+    "static/js/787.57c4024c.chunk.js": "/@pictogrammers/pixel-editor/static/js/787.57c4024c.chunk.js",
+    "index.html": "/@pictogrammers/pixel-editor/index.html",
+    "main.425381b7.css.map": "/@pictogrammers/pixel-editor/static/css/main.425381b7.css.map",
+    "main.1f188fec.js.map": "/@pictogrammers/pixel-editor/static/js/main.1f188fec.js.map",
+    "787.57c4024c.chunk.js.map": "/@pictogrammers/pixel-editor/static/js/787.57c4024c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.425381b7.css",
+    "static/js/main.1f188fec.js"
+  ]
+}
