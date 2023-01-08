@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/@pictogrammers/pixel-editor/static/css/main.b7dcc795.css",
-    "main.js": "/@pictogrammers/pixel-editor/static/js/main.3a7617fb.js",
+    "main.css": "/@pictogrammers/pixel-editor/static/css/main.9e66e8f0.css",
+    "main.js": "/@pictogrammers/pixel-editor/static/js/main.cef8964c.js",
     "static/js/787.57c4024c.chunk.js": "/@pictogrammers/pixel-editor/static/js/787.57c4024c.chunk.js",
     "index.html": "/@pictogrammers/pixel-editor/index.html",
-    "main.b7dcc795.css.map": "/@pictogrammers/pixel-editor/static/css/main.b7dcc795.css.map",
-    "main.3a7617fb.js.map": "/@pictogrammers/pixel-editor/static/js/main.3a7617fb.js.map",
+    "main.9e66e8f0.css.map": "/@pictogrammers/pixel-editor/static/css/main.9e66e8f0.css.map",
+    "main.cef8964c.js.map": "/@pictogrammers/pixel-editor/static/js/main.cef8964c.js.map",
     "787.57c4024c.chunk.js.map": "/@pictogrammers/pixel-editor/static/js/787.57c4024c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7dcc795.css",
-    "static/js/main.3a7617fb.js"
+    "static/css/main.9e66e8f0.css",
+    "static/js/main.cef8964c.js"
   ]
 }
