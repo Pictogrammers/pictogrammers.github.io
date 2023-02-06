@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/@pictogrammers/pixel-editor/static/css/main.8b061e59.css",
-    "main.js": "/@pictogrammers/pixel-editor/static/js/main.476a2a8e.js",
+    "main.css": "/@pictogrammers/pixel-editor/static/css/main.ebada814.css",
+    "main.js": "/@pictogrammers/pixel-editor/static/js/main.8675e2f0.js",
     "static/js/787.57c4024c.chunk.js": "/@pictogrammers/pixel-editor/static/js/787.57c4024c.chunk.js",
     "index.html": "/@pictogrammers/pixel-editor/index.html",
-    "main.8b061e59.css.map": "/@pictogrammers/pixel-editor/static/css/main.8b061e59.css.map",
-    "main.476a2a8e.js.map": "/@pictogrammers/pixel-editor/static/js/main.476a2a8e.js.map",
+    "main.ebada814.css.map": "/@pictogrammers/pixel-editor/static/css/main.ebada814.css.map",
+    "main.8675e2f0.js.map": "/@pictogrammers/pixel-editor/static/js/main.8675e2f0.js.map",
     "787.57c4024c.chunk.js.map": "/@pictogrammers/pixel-editor/static/js/787.57c4024c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8b061e59.css",
-    "static/js/main.476a2a8e.js"
+    "static/css/main.ebada814.css",
+    "static/js/main.8675e2f0.js"
   ]
 }
