@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/@pictogrammers/pixel-editor/static/css/main.ebada814.css",
-    "main.js": "/@pictogrammers/pixel-editor/static/js/main.8675e2f0.js",
+    "main.js": "/@pictogrammers/pixel-editor/static/js/main.93232789.js",
     "static/js/787.57c4024c.chunk.js": "/@pictogrammers/pixel-editor/static/js/787.57c4024c.chunk.js",
     "index.html": "/@pictogrammers/pixel-editor/index.html",
     "main.ebada814.css.map": "/@pictogrammers/pixel-editor/static/css/main.ebada814.css.map",
-    "main.8675e2f0.js.map": "/@pictogrammers/pixel-editor/static/js/main.8675e2f0.js.map",
+    "main.93232789.js.map": "/@pictogrammers/pixel-editor/static/js/main.93232789.js.map",
     "787.57c4024c.chunk.js.map": "/@pictogrammers/pixel-editor/static/js/787.57c4024c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ebada814.css",
-    "static/js/main.8675e2f0.js"
+    "static/js/main.93232789.js"
   ]
 }
