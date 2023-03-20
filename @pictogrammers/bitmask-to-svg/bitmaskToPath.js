@@ -15,7 +15,7 @@ export default function bitmaskToPath(data, options = {}) {
     else if (data[0] instanceof Array) {
         bitmask = data.flat();
         width = data[0].length;
-        height = bitmask.length;
+        height = data.length;
     }
     else {
         throw new Error(`options.width is required for 1 dimensional array.`);
@@ -164,10 +164,10 @@ export default function bitmaskToPath(data, options = {}) {
         path += `M${edge.x * scale},${edge.y * scale}`;
         for (var itr = edge.next; itr != edge; itr = itr === null || itr === void 0 ? void 0 : itr.next) {
             if ((itr === null || itr === void 0 ? void 0 : itr.type) == 'H') {
-                path += `H${(itr === null || itr === void 0 ? void 0 : itr.x) * scale}`;
+                path += `H${((itr === null || itr === void 0 ? void 0 : itr.x) * scale) + offsetX}`;
             }
             else if ((itr === null || itr === void 0 ? void 0 : itr.type) == 'V') {
-                path += `V${(itr === null || itr === void 0 ? void 0 : itr.y) * scale}`;
+                path += `V${((itr === null || itr === void 0 ? void 0 : itr.y) * scale) + offsetY}`;
             }
         }
         path += 'Z';
