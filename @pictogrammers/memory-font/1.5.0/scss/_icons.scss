@@ -1,0 +1,10 @@
+@each $key, $value in $memory-icons {
+    .#{$memory-css-prefix}-#{$key}::before {
+        content: char($value);
+    }
+}
+
+.#{$memory-css-prefix}-blank::before {
+    content: "\F68C";
+    visibility: hidden;
+}

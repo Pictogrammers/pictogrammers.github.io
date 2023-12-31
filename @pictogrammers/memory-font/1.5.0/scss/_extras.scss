@@ -1,0 +1,65 @@
+$memory-sizes: 18 24 36 48 !default;
+@each $memory-size in $memory-sizes {
+    .#{$memory-css-prefix}-#{$memory-size}px {
+        &.#{$memory-css-prefix}-set,
+        &.#{$memory-css-prefix}:before {
+            font-size: $memory-size * 1px;
+        }
+    }
+}
+
+.#{$memory-css-prefix}-dark {
+    &:before {
+        color: rgba(0, 0, 0, 0.54);
+    }
+    &.#{$memory-css-prefix}-inactive:before {
+        color: rgba(0, 0, 0, 0.26);
+    }
+}
+.#{$memory-css-prefix}-light {
+    &:before {
+        color: rgba(255, 255, 255, 1);
+    }
+    &.#{$memory-css-prefix}-inactive:before {
+        color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+$memory-degrees: 45 90 135 180 225 270 315 !default;
+@each $memory-degree in $memory-degrees {
+    .#{$memory-css-prefix}-rotate-#{$memory-degree}{
+        &:before {
+            -webkit-transform: rotate(#{$memory-degree}deg);
+            -ms-transform: rotate(#{$memory-degree}deg);
+            transform: rotate(#{$memory-degree}deg);
+        }
+        /*
+        // Not included in production
+        &.#{$memory-css-prefix}-flip-h:before {
+            -webkit-transform: scaleX(-1) rotate(#{$memory-degree}deg);
+            transform: scaleX(-1) rotate(#{$memory-degree}deg);
+            filter: FlipH;
+            -ms-filter: "FlipH";
+        }
+        &.#{$memory-css-prefix}-flip-v:before {
+            -webkit-transform: scaleY(-1) rotate(#{$memory-degree}deg);
+            -ms-transform: rotate(#{$memory-degree}deg);
+            transform: scaleY(-1) rotate(#{$memory-degree}deg);
+            filter: FlipV;
+            -ms-filter: "FlipV";
+        }
+        */
+    }
+}
+.#{$memory-css-prefix}-flip-h:before {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+.#{$memory-css-prefix}-flip-v:before {
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+    filter: FlipV;
+    -ms-filter: "FlipV";
+}

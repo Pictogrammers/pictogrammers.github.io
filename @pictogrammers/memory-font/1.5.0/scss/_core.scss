@@ -1,0 +1,10 @@
+.#{$memory-css-prefix}:before,
+.#{$memory-css-prefix}-set {
+  display: inline-block;
+  font: normal normal normal #{$memory-font-size-base}/1 '#{$memory-font-name}'; // shortening font declaration
+  font-size: inherit; // can't have font-size inherit on line above, so need to override
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

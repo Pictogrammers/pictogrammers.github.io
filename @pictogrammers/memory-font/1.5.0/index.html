@@ -1,0 +1,717 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate">
+    <title>Memory Icons</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        div,
+        blockquote,
+        footer {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        h1 {
+            padding: 20px 20px 16px 20px;
+            font-size: 26px;
+            line-height: 26px;
+            font-weight: normal;
+            color: #FFF;
+            background-color: #2196F3;
+        }
+
+        h1 svg {
+            vertical-align: middle;
+            width: 26px;
+            height: 26px;
+            margin: 0 6px 4px 0;
+        }
+
+        h1 svg path {
+            fill: #FFF;
+        }
+
+        h1 .version {
+            font-size: 14px;
+            background: #FFF;
+            padding: 4px 10px;
+            float: right;
+            border-radius: 2px;
+            margin: -3px 0 0 0;
+            color: #666;
+            font-weight: bold;
+        }
+
+        h1 .version::before {
+            content: 'v';
+        }
+
+        h1 code {
+            font-size: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4px 12px;
+            border-radius: 3px;
+            float: right;
+            margin: -3px 10px 0 0;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        h1 code:hover {
+            border: 1px solid #FFF;
+        }
+
+        h1 code svg {
+            width: 24px;
+            height: 24px;
+            margin: -1px -4px 0 -2px
+        }
+
+        h2 {
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        h2 small {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        h2 small::before {
+            content: '(';
+        }
+
+        h2 small::after {
+            content: ')';
+        }
+
+        h2 span {
+            position: relative;
+        }
+
+        h2.newicons span::before {
+            position: absolute;
+            content: ' ';
+            width: 100%;
+            height: 0.2rem;
+            bottom: -0.25rem;
+            background: #3C90BE;
+            border-radius: 0.1rem;
+        }
+
+        h2.deprecatedicons span::before {
+            position: absolute;
+            content: ' ';
+            width: 100%;
+            height: 0.2rem;
+            bottom: -0.25rem;
+            background: #BE3C3C;
+            border-radius: 0.1rem;
+        }
+
+        h3 {
+            font-size: 14px;
+            padding: 10px 20px 0 20px;
+            font-weight: bold;
+        }
+
+        p {
+            padding: 10px 20px;
+        }
+
+        p code {
+            display: inline-block;
+            vertical-align: middle;
+            background: #F1F1F1;
+            padding: 3px 5px;
+            border-radius: 3px;
+            border: 1px solid #DDD;
+        }
+
+        p i.memory {
+            vertical-align: middle;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        p i.memory.dark-demo {
+            background: #333;
+        }
+
+        p.note {
+            color: #999;
+            font-size: 14px;
+            padding: 0 20px 5px 20px;
+        }
+
+        p.deprecated {
+            margin: -0.5rem 0 0.25rem 0;
+        }
+
+        p.extras {
+            margin-top: -0.5rem;
+        }
+
+        div.icons {
+            padding: 0 20px 10px 20px;
+            -webkit-column-count: 5;
+            -moz-column-count: 5;
+            column-count: 5;
+            -webkit-column-gap: 20px;
+            -moz-column-gap: 20px;
+            column-gap: 20px;
+        }
+
+        div.icons div {
+            line-height: 2em;
+        }
+
+        div.icons div span {
+            cursor: pointer;
+            font-size: 14px;
+            text-overflow: ellipsis;
+            display: inline-block;
+            max-width: calc(100% - 90px);
+            overflow: hidden;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        div.icons div code:hover,
+        div.icons div span:hover,
+        div.icons div i:hover {
+            color: #3c90be;
+        }
+
+        div.icons div code:hover {
+            border-color: #3c90be;
+        }
+
+        div.icons div code {
+            border: 1px solid #DDD;
+            width: 46px;
+            margin-left: 2px;
+            margin-right: 4px;
+            border-radius: 4px;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 24px;
+            cursor: pointer;
+        }
+
+        div.icons div i {
+            display: inline-block;
+            width: 32px;
+            height: 24px;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            line-height: 24px;
+        }
+
+        div.icons .memory::before {
+            font-size: 24px;
+        }
+
+        div.icons div.new::before {
+            content: ' ';
+            width: 0.2rem;
+            height: 1.75rem;
+            position: absolute;
+            margin-top: 0.25rem;
+            margin-left: -0.25rem;
+            background: #3C90BE;
+            border-radius: 0.1rem;
+        }
+
+        div.icons div.deprecated::before {
+            content: ' ';
+            width: 0.2rem;
+            height: 1.75rem;
+            position: absolute;
+            margin-top: 0.25rem;
+            margin-left: -0.25rem;
+            background: #BE3C3C;
+            border-radius: 0.1rem;
+        }
+
+        pre {
+            margin: 0 20px;
+            font-family: Consolas, monospace;
+            padding: 10px;
+            border: 1px solid #DDD;
+            background: #F1F1F1;
+        }
+
+        blockquote {
+            position: relative;
+            margin: 1rem 1rem 0 1rem;
+            padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+        }
+
+        blockquote.note::before {
+            content: ' ';
+            width: 0.25rem;
+            height: 100%;
+            background: #DDD;
+            position: absolute;
+            border-radius: 0.25rem;
+            top: 0;
+            left: 0;
+        }
+
+        blockquote.deprecated::before {
+            content: ' ';
+            width: 0.25rem;
+            height: 100%;
+            background: #BE3C3C;
+            position: absolute;
+            border-radius: 0.25rem;
+            top: 0;
+            left: 0;
+        }
+
+        div.copied {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            width: 200px;
+            text-align: center;
+            color: #3c763d;
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-left: -100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        div.examples {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0.5rem 1.25rem;
+        }
+
+        div.examples > div {
+            display: flex;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        div.examples > div > div:first-child {
+            display: flex;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.4);
+            background: #FFF;
+            z-index: 1;
+            align-items: center;
+            justify-content: center;
+        }
+
+        div.examples > div > div:first-child + div {
+            display: flex;
+            margin-left: -0.25rem;
+            padding: 0.5rem 0.75rem 0.5rem 1rem;
+            background: #222;
+            border-radius: 0 0.25rem 0.25rem 0;
+        }
+
+        div.examples > div > div:first-child + div > code {
+            color: #FFF;
+            align-self: center;
+        }
+
+        div.examples > div > div.dark:first-child {
+            background: #444;
+        }
+
+        div.examples i {
+            display: flex;
+        }
+
+        div.examples-size > div > div:first-child {
+            min-width: 3rem;
+        }
+
+        footer {
+            display: flex;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #DDD;
+            background: #F1F1F1;
+        }
+
+        footer > div:first-child {
+            flex: 1;
+        }
+
+        footer > div:last-child {
+            text-align: right;
+        }
+
+        footer a {
+            color: #e91e63;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <link href="css/memory-icons.min.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <h1>
+        <svg>
+            <path d="M0,0H8V3H18V0H26V8H23V18H26V26H18V23H8V21H18V18H21V8H18V5H8V8H5V18H8V26H0V18H3V8H0V0M2,2V6H6V2H2M2,20V24H6V20H2M20,2V6H24V2H20M20,20V24H24V20H20Z"></path>
+        </svg>
+        Memory Icons
+        <span class="version">1.5.0</span>
+        <code id="npm" title="Copy to Clipboard">
+            <svg viewBox="0 0 24 24">
+                <path d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z" />
+            </svg>
+            npm install @pictogramers/memory-font
+        </code>
+    </h1>
+
+    <h2 class="usage">Usage</h2>
+    <pre><code>&lt;span class=&quot;memory memory-<span id="name">name</span>&quot;&gt;&lt;/span&gt;</code></pre>
+
+    <blockquote class="note">
+        Click the icon, hex codepoint, or name below to copy the value to your clipboard.
+    </blockquote>
+
+    <h2 class="newicons"><span>New</span> Icons <small id="newIconsCount">-</small></h2>
+    <div class="icons" id="newIcons"></div>
+
+    <h2 class="icons">All Icons <small id="iconsCount">-</small></h2>
+    <div class="icons" id="icons"></div>
+
+    <h2 class="deprecatedicons"><span>Deprecated</span> Icons <small id="deprecatedIconsCount">-</small></h2>
+    <p class="deprecated" id="deprecated">
+        Deprecated icons will be removed in a future major release.
+    </p>
+    <div class="icons" id="deprecatedIcons"></div>
+
+    <h2 class="extras">Extras</h2>
+
+    <p class="extras">The helper CSS classes are listed below.</p>
+
+    <section>
+        <h3>Size</h3>
+
+        <div class="examples examples-size">
+            <div>
+                <div>
+                    <i class="memory memory-18px memory-account"></i>
+                </div>
+                <div>
+                    <code>memory-18px</code>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <i class="memory memory-24px memory-account"></i>
+                </div>
+                <div>
+                    <code>memory-24px</code>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <i class="memory memory-36px memory-account"></i>
+                </div>
+                <div>
+                    <code>memory-36px</code>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <i class="memory memory-48px memory-account"></i>
+                </div>
+                <div>
+                    <code>memory-48px</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h3>Rotate</h3>
+
+    <div class="examples">
+        <div>
+            <div>
+                <i class="memory memory-36px memory-account"></i>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-rotate-45 memory-account"></i>
+            </div>
+            <div>
+                <code>memory-rotate-45</code> 
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-rotate-90 memory-account"></i>
+            </div>
+            <div>
+                <code>memory-rotate-90</code>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-rotate-135 memory-account"></i>
+            </div>
+            <div>
+                <code>memory-rotate-135</code>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-rotate-180 memory-account"></i>
+            </div>
+            <div>
+                <code>memory-rotate-180</code>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-rotate-225 memory-account"></i>
+            </div>
+            <div>
+                <code>memory-rotate-225</code>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-rotate-270 memory-account"></i>
+            </div>
+            <div>
+                <code>memory-rotate-270</code>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-rotate-315 memory-account"></i>
+            </div>
+            <div>
+                <code>memory-rotate-315</code> 
+            </div>
+        </div>
+    </div>
+
+    <h3>Flip</h3>
+
+    <div class="examples">
+        <div>
+            <div>
+                <i class="memory memory-36px memory-account-alert"></i>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-flip-h memory-account-alert"></i>
+            </div>
+            <div>
+                <code>memory-flip-h</code> 
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-flip-v memory-account-alert"></i>
+            </div>
+            <div>
+                <code>memory-flip-v</code> 
+            </div>
+        </div>
+    </div>
+
+    <p class="note"><strong>Note:</strong> We do not include the ability to use <code>memory-flip-*</code> and
+        <code>memory-rotate-*</code> at the same time.</p>
+
+    <h3>Spin</h3>
+
+    <div class="examples">
+        <div>
+            <div>
+                <i class="memory memory-36px memory-spin memory-loading"></i>
+            </div>
+            <div>
+                <code>memory-spin</code>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-spin memory-star"></i>
+            </div>
+            <div>
+                <code>memory-spin</code>
+            </div>
+        </div>
+    </div>
+
+    <h3>Color</h3>
+
+    <div class="examples">
+        <div>
+            <div class="dark">
+                <i class="memory memory-36px memory-light memory-account dark-demo"></i>
+            </div>
+            <div>
+                <code>memory-light</code>
+            </div>
+        </div>
+        <div>
+            <div class="dark">
+                <i class="memory memory-36px memory-light memory-inactive memory-account dark-demo"></i>
+            </div>
+            <div>
+                <code>memory-light memory-inactive</code>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-dark memory-account"></i>
+            </div>
+            <div>
+                <code>memory-dark</code>
+            </div>
+        </div>
+        <div>
+            <div>
+                <i class="memory memory-36px memory-dark memory-inactive memory-account"></i>
+            </div>
+            <div>
+                <code>memory-dark memory-inactive</code> 
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            Generated with <a href="https://npmjs.com/package/@mdi/font-build">@mdi/font-build</a>
+            by <a href="http://Pictogrammers.com/">Pictogrammers.com</a>.
+        </div>
+        <div>
+            <a href="https://www.npmjs.com/org/mdi" target="_blank">NPM @mdi Organization</a>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        function isNew(icon) {
+            return icon.version === '1.5.0';
+        }
+        function isDeprecated(icon) {
+            return typeof icon.deprecated == 'undefined'
+                ? false
+                : icon.deprecated;
+        }
+        function copyText(text) {
+            var copyFrom = document.createElement('textarea');
+            copyFrom.setAttribute("style", "position:fixed;opacity:0;top:100px;left:100px;");
+            copyFrom.value = text;
+            document.body.appendChild(copyFrom);
+            copyFrom.select();
+            document.execCommand('copy');
+            var copied = document.createElement('div');
+            copied.setAttribute('class', 'copied');
+            copied.appendChild(document.createTextNode('Copied to Clipboard'));
+            document.body.appendChild(copied);
+            setTimeout(function () {
+                document.body.removeChild(copyFrom);
+                document.body.removeChild(copied);
+            }, 1500);
+        };
+        function getIconItem(icon, isNewIcon, isDeprecatedIcon) {
+            var div = document.createElement('div'),
+                i = document.createElement('i');
+            i.className = 'memory memory-' + icon.name;
+            div.appendChild(i);
+            var code = document.createElement('code');
+            code.appendChild(document.createTextNode(icon.hex));
+            div.appendChild(code);
+            var span = document.createElement('span');
+            span.appendChild(document.createTextNode('memory-' + icon.name));
+            div.appendChild(span);
+            span.onclick = function () {
+                document.getElementById('name').innerHTML = icon.name;
+            };
+            i.onmouseup = function () {
+                copyText(String.fromCodePoint(parseInt(icon.hex, 16)));
+            };
+            code.onmouseup = function () {
+                copyText(icon.hex);
+            };
+            span.onmouseup = function () {
+                copyText('memory-' + icon.name);
+            };
+            if (isNewIcon) {
+                div.className = 'new';
+            }
+            if (isDeprecatedIcon) {
+                div.className = 'deprecated';
+            }
+            return div;
+        }
+        (function () {
+            var iconsCount = 0;
+            var newIconsCount = 0;
+            var deprecatedIconsCount = 0;
+            var icons = [{name:"account",hex:"F00CA",version:"1.1.0"},{name:"account-box",hex:"F00CB",version:"1.1.0"},{name:"alert",hex:"F0003",version:"1.0.0"},{name:"alert-box",hex:"F0147",version:"1.1.0"},{name:"alert-box-fill",hex:"F0148",version:"1.1.0"},{name:"alert-circle",hex:"F0149",version:"1.1.0"},{name:"alert-circle-fill",hex:"F014A",version:"1.1.0"},{name:"alert-hexagon",hex:"F0198",version:"1.3.0"},{name:"alert-hexagon-fill",hex:"F025A",version:"1.5.0"},{name:"alert-octagon",hex:"F0100",version:"1.1.0"},{name:"alert-rhombus",hex:"F0153",version:"1.1.0"},{name:"alert-rhombus-fill",hex:"F0154",version:"1.1.0"},{name:"align-horizontal-center",hex:"F0187",version:"1.2.0"},{name:"align-horizontal-distribute",hex:"F017F",version:"1.2.0"},{name:"align-horizontal-left",hex:"F017D",version:"1.2.0"},{name:"align-horizontal-right",hex:"F017E",version:"1.2.0"},{name:"align-vertical-bottom",hex:"F017B",version:"1.2.0"},{name:"align-vertical-center",hex:"F0188",version:"1.2.0"},{name:"align-vertical-distribute",hex:"F0180",version:"1.2.0"},{name:"align-vertical-top",hex:"F017C",version:"1.2.0"},{name:"alpha-a",hex:"F0094",version:"1.0.0"},{name:"alpha-a-fill",hex:"F0095",version:"1.0.0"},{name:"alpha-b",hex:"F0096",version:"1.0.0"},{name:"alpha-b-fill",hex:"F0097",version:"1.0.0"},{name:"alpha-c",hex:"F0098",version:"1.0.0"},{name:"alpha-c-fill",hex:"F0099",version:"1.0.0"},{name:"alpha-d",hex:"F009A",version:"1.0.0"},{name:"alpha-d-fill",hex:"F009B",version:"1.0.0"},{name:"alpha-e",hex:"F009C",version:"1.0.0"},{name:"alpha-e-fill",hex:"F009D",version:"1.0.0"},{name:"alpha-f",hex:"F009E",version:"1.0.0"},{name:"alpha-f-fill",hex:"F009F",version:"1.0.0"},{name:"alpha-g",hex:"F00A0",version:"1.0.0"},{name:"alpha-g-fill",hex:"F00A1",version:"1.0.0"},{name:"alpha-h",hex:"F00A2",version:"1.0.0"},{name:"alpha-h-fill",hex:"F00A3",version:"1.0.0"},{name:"alpha-i",hex:"F00A4",version:"1.0.0"},{name:"alpha-i-fill",hex:"F00A5",version:"1.0.0"},{name:"alpha-j",hex:"F00A6",version:"1.0.0"},{name:"alpha-j-fill",hex:"F00A7",version:"1.0.0"},{name:"alpha-k",hex:"F00A8",version:"1.0.0"},{name:"alpha-k-fill",hex:"F00A9",version:"1.0.0"},{name:"alpha-l",hex:"F00AA",version:"1.0.0"},{name:"alpha-l-fill",hex:"F00AB",version:"1.0.0"},{name:"alpha-m",hex:"F00AC",version:"1.0.0"},{name:"alpha-m-fill",hex:"F00AD",version:"1.0.0"},{name:"alpha-n",hex:"F00AE",version:"1.0.0"},{name:"alpha-n-fill",hex:"F00AF",version:"1.0.0"},{name:"alpha-o",hex:"F00B0",version:"1.0.0"},{name:"alpha-o-fill",hex:"F00B1",version:"1.0.0"},{name:"alpha-p",hex:"F00B2",version:"1.0.0"},{name:"alpha-p-fill",hex:"F00B3",version:"1.0.0"},{name:"alpha-q",hex:"F00B4",version:"1.0.0"},{name:"alpha-q-fill",hex:"F00B5",version:"1.0.0"},{name:"alpha-r",hex:"F00B6",version:"1.0.0"},{name:"alpha-r-fill",hex:"F00B7",version:"1.0.0"},{name:"alpha-s",hex:"F00B8",version:"1.0.0"},{name:"alpha-s-fill",hex:"F00B9",version:"1.0.0"},{name:"alpha-t",hex:"F00BA",version:"1.0.0"},{name:"alpha-t-fill",hex:"F00BB",version:"1.0.0"},{name:"alpha-u",hex:"F00BC",version:"1.0.0"},{name:"alpha-u-fill",hex:"F00BD",version:"1.0.0"},{name:"alpha-v",hex:"F00BE",version:"1.0.0"},{name:"alpha-v-fill",hex:"F00BF",version:"1.0.0"},{name:"alpha-w",hex:"F00C0",version:"1.0.0"},{name:"alpha-w-fill",hex:"F00C1",version:"1.0.0"},{name:"alpha-x",hex:"F00C2",version:"1.0.0"},{name:"alpha-x-fill",hex:"F00C3",version:"1.0.0"},{name:"alpha-y",hex:"F00C4",version:"1.0.0"},{name:"alpha-y-fill",hex:"F00C5",version:"1.0.0"},{name:"alpha-z",hex:"F00C6",version:"1.0.0"},{name:"alpha-z-fill",hex:"F00C7",version:"1.0.0"},{name:"anvil",hex:"F027A",version:"1.5.0"},{name:"application",hex:"F015B",version:"1.1.0"},{name:"application-code",hex:"F015C",version:"1.1.0"},{name:"apps",hex:"F0240",version:"1.4.0"},{name:"apps-box",hex:"F0241",version:"1.4.0"},{name:"apps-box-fill",hex:"F0242",version:"1.4.0"},{name:"archive",hex:"F00D7",version:"1.1.0"},{name:"arrow",hex:"F0004",version:"1.0.0"},{name:"arrow-bottom-left",hex:"F0068",version:"1.0.0"},{name:"arrow-bottom-left-circle",hex:"F00DB",version:"1.1.0"},{name:"arrow-bottom-right",hex:"F0069",version:"1.0.0"},{name:"arrow-bottom-right-circle",hex:"F00DC",version:"1.1.0"},{name:"arrow-down",hex:"F0005",version:"1.0.0"},{name:"arrow-down-bold",hex:"F0006",version:"1.0.0"},{name:"arrow-down-box",hex:"F0218",version:"1.3.0"},{name:"arrow-down-circle",hex:"F00D0",version:"1.1.0"},{name:"arrow-down-left",hex:"F0007",version:"1.0.0"},{name:"arrow-down-left-box",hex:"F021C",version:"1.3.0"},{name:"arrow-down-right",hex:"F0008",version:"1.0.0"},{name:"arrow-down-right-box",hex:"F021D",version:"1.3.0"},{name:"arrow-left",hex:"F0009",version:"1.0.0"},{name:"arrow-left-bold",hex:"F000A",version:"1.0.0"},{name:"arrow-left-box",hex:"F0219",version:"1.3.0"},{name:"arrow-left-circle",hex:"F00D1",version:"1.1.0"},{name:"arrow-left-down",hex:"F000B",version:"1.0.0"},{name:"arrow-left-right",hex:"F000C",version:"1.0.0"},{name:"arrow-left-up",hex:"F000D",version:"1.0.0"},{name:"arrow-right",hex:"F000E",version:"1.0.0"},{name:"arrow-right-bold",hex:"F000F",version:"1.0.0"},{name:"arrow-right-box",hex:"F021A",version:"1.3.0"},{name:"arrow-right-circle",hex:"F00D2",version:"1.1.0"},{name:"arrow-right-down",hex:"F0010",version:"1.0.0"},{name:"arrow-right-up",hex:"F0011",version:"1.0.0"},{name:"arrow-top-left",hex:"F006A",version:"1.0.0"},{name:"arrow-top-left-circle",hex:"F00DD",version:"1.1.0"},{name:"arrow-top-right",hex:"F006B",version:"1.0.0"},{name:"arrow-top-right-circle",hex:"F00DE",version:"1.1.0"},{name:"arrow-up",hex:"F0012",version:"1.0.0"},{name:"arrow-up-bold",hex:"F0013",version:"1.0.0"},{name:"arrow-up-box",hex:"F021B",version:"1.3.0"},{name:"arrow-up-circle",hex:"F00D3",version:"1.1.0"},{name:"arrow-up-down",hex:"F0014",version:"1.0.0"},{name:"arrow-up-left",hex:"F0015",version:"1.0.0"},{name:"arrow-up-left-box",hex:"F021E",version:"1.3.0"},{name:"arrow-up-right",hex:"F0016",version:"1.0.0"},{name:"arrow-up-right-box",hex:"F021F",version:"1.3.0"},{name:"aspect-ratio",hex:"F0194",version:"1.3.0"},{name:"axe",hex:"F0017",version:"1.0.0"},{name:"bag-personal",hex:"F00F1",version:"1.1.0"},{name:"bag-personal-fill",hex:"F00CC",version:"1.1.0"},{name:"bank",hex:"F0160",version:"1.2.0"},{name:"barcode",hex:"F028B",version:"1.5.0"},{name:"battery-0",hex:"F0018",version:"1.0.0"},{name:"battery-100",hex:"F0019",version:"1.0.0"},{name:"battery-25",hex:"F001A",version:"1.0.0"},{name:"battery-50",hex:"F001B",version:"1.0.0"},{name:"battery-75",hex:"F001C",version:"1.0.0"},{name:"battle-axe",hex:"F001D",version:"1.0.0"},{name:"beer",hex:"F0237",version:"1.4.0"},{name:"bell",hex:"F0246",version:"1.4.0"},{name:"blood",hex:"F0161",version:"1.2.0"},{name:"book",hex:"F001E",version:"1.0.0"},{name:"bookmark",hex:"F001F",version:"1.0.0"},{name:"border-bottom",hex:"F00F2",version:"1.1.0"},{name:"border-bottom-left",hex:"F00F3",version:"1.1.0"},{name:"border-bottom-left-right",hex:"F0101",version:"1.1.0"},{name:"border-bottom-right",hex:"F00F4",version:"1.1.0"},{name:"border-inside",hex:"F00F5",version:"1.1.0"},{name:"border-left",hex:"F00F6",version:"1.1.0"},{name:"border-left-right",hex:"F0102",version:"1.1.0"},{name:"border-none",hex:"F00F7",version:"1.1.0"},{name:"border-outside",hex:"F00F8",version:"1.1.0"},{name:"border-right",hex:"F00F9",version:"1.1.0"},{name:"border-top",hex:"F00FA",version:"1.1.0"},{name:"border-top-bottom",hex:"F0103",version:"1.1.0"},{name:"border-top-left",hex:"F00FB",version:"1.1.0"},{name:"border-top-left-bottom",hex:"F0104",version:"1.1.0"},{name:"border-top-left-right",hex:"F0105",version:"1.1.0"},{name:"border-top-right",hex:"F00FC",version:"1.1.0"},{name:"border-top-right-bottom",hex:"F0106",version:"1.1.0"},{name:"bow",hex:"F0020",version:"1.0.0"},{name:"bow-arrow",hex:"F0021",version:"1.0.0"},{name:"box",hex:"F0022",version:"1.0.0"},{name:"box-light-dashed-down-left",hex:"F0146",version:"1.1.0"},{name:"box-light-dashed-down-right",hex:"F0145",version:"1.1.0"},{name:"box-light-dashed-horizontal",hex:"F0238",version:"1.4.0"},{name:"box-light-dashed-up-left",hex:"F0143",version:"1.1.0"},{name:"box-light-dashed-up-right",hex:"F0144",version:"1.1.0"},{name:"box-light-dashed-vertical",hex:"F0239",version:"1.4.0"},{name:"box-light-dashed-vertical-horizontal",hex:"F023A",version:"1.4.0"},{name:"box-light-double-down-left",hex:"F01B0",version:"1.3.0"},{name:"box-light-double-down-right",hex:"F01B1",version:"1.3.0"},{name:"box-light-double-horizontal",hex:"F0118",version:"1.1.0"},{name:"box-light-double-horizontal-down",hex:"F019F",version:"1.3.0"},{name:"box-light-double-horizontal-light-down",hex:"F01B5",version:"1.3.0"},{name:"box-light-double-horizontal-light-up",hex:"F01B6",version:"1.3.0"},{name:"box-light-double-horizontal-up",hex:"F01A0",version:"1.3.0"},{name:"box-light-double-round-down-left",hex:"F0117",version:"1.1.0"},{name:"box-light-double-round-down-right",hex:"F0116",version:"1.1.0"},{name:"box-light-double-round-up-left",hex:"F0115",version:"1.1.0"},{name:"box-light-double-round-up-right",hex:"F0114",version:"1.1.0"},{name:"box-light-double-up-left",hex:"F01B2",version:"1.3.0"},{name:"box-light-double-up-right",hex:"F01B3",version:"1.3.0"},{name:"box-light-double-vertical",hex:"F0119",version:"1.1.0"},{name:"box-light-double-vertical-horizontal",hex:"F01B4",version:"1.3.0"},{name:"box-light-double-vertical-left",hex:"F01A1",version:"1.3.0"},{name:"box-light-double-vertical-light-left",hex:"F01B7",version:"1.3.0"},{name:"box-light-double-vertical-light-right",hex:"F01B8",version:"1.3.0"},{name:"box-light-double-vertical-right",hex:"F01A2",version:"1.3.0"},{name:"box-light-down-left",hex:"F010F",version:"1.1.0"},{name:"box-light-down-left-circle",hex:"F0125",version:"1.1.0"},{name:"box-light-down-left-stipple",hex:"F01C5",version:"1.3.0"},{name:"box-light-down-left-stipple-inner",hex:"F01C6",version:"1.3.0"},{name:"box-light-down-left-stipple-outer",hex:"F01C7",version:"1.3.0"},{name:"box-light-down-right",hex:"F010E",version:"1.1.0"},{name:"box-light-down-right-circle",hex:"F0126",version:"1.1.0"},{name:"box-light-down-right-stipple",hex:"F01C8",version:"1.3.0"},{name:"box-light-down-right-stipple-inner",hex:"F01C9",version:"1.3.0"},{name:"box-light-down-right-stipple-outer",hex:"F01CA",version:"1.3.0"},{name:"box-light-fold-down-left",hex:"F01A3",version:"1.3.0"},{name:"box-light-fold-down-right",hex:"F01A4",version:"1.3.0"},{name:"box-light-fold-up-left",hex:"F01A5",version:"1.3.0"},{name:"box-light-fold-up-right",hex:"F01A6",version:"1.3.0"},{name:"box-light-horizontal",hex:"F010A",version:"1.1.0"},{name:"box-light-horizontal-circle",hex:"F0171",version:"1.2.0"},{name:"box-light-horizontal-down",hex:"F01A7",version:"1.3.0"},{name:"box-light-horizontal-down-stipple",hex:"F01CB",version:"1.3.0"},{name:"box-light-horizontal-down-stipple-down",hex:"F01CC",version:"1.3.0"},{name:"box-light-horizontal-down-stipple-down-left",hex:"F01CD",version:"1.3.0"},{name:"box-light-horizontal-down-stipple-down-right",hex:"F01CE",version:"1.3.0"},{name:"box-light-horizontal-menu-down",hex:"F0173",version:"1.2.0"},{name:"box-light-horizontal-menu-left",hex:"F017A",version:"1.2.0"},{name:"box-light-horizontal-menu-right",hex:"F0179",version:"1.2.0"},{name:"box-light-horizontal-menu-up",hex:"F0174",version:"1.2.0"},{name:"box-light-horizontal-stipple",hex:"F01CF",version:"1.3.0"},{name:"box-light-horizontal-stipple-down",hex:"F01D0",version:"1.3.0"},{name:"box-light-horizontal-stipple-up",hex:"F01D1",version:"1.3.0"},{name:"box-light-horizontal-up",hex:"F01A8",version:"1.3.0"},{name:"box-light-horizontal-up-stipple",hex:"F01D2",version:"1.3.0"},{name:"box-light-horizontal-up-stipple-down",hex:"F01D3",version:"1.3.0"},{name:"box-light-horizontal-up-stipple-up",hex:"F01D4",version:"1.3.0"},{name:"box-light-horizontal-up-stipple-up-left",hex:"F01D5",version:"1.3.0"},{name:"box-light-horizontal-up-stipple-up-right",hex:"F01D6",version:"1.3.0"},{name:"box-light-round-down-left",hex:"F0113",version:"1.1.0"},{name:"box-light-round-down-left-stipple",hex:"F01D7",version:"1.3.0"},{name:"box-light-round-down-left-stipple-inner",hex:"F01D8",version:"1.3.0"},{name:"box-light-round-down-left-stipple-outer",hex:"F01D9",version:"1.3.0"},{name:"box-light-round-down-right",hex:"F0112",version:"1.1.0"},{name:"box-light-round-down-right-stipple",hex:"F01DA",version:"1.3.0"},{name:"box-light-round-down-right-stipple-inner",hex:"F01DB",version:"1.3.0"},{name:"box-light-round-down-right-stipple-outer",hex:"F01DC",version:"1.3.0"},{name:"box-light-round-up-left",hex:"F0111",version:"1.1.0"},{name:"box-light-round-up-left-stipple",hex:"F01DD",version:"1.3.0"},{name:"box-light-round-up-left-stipple-inner",hex:"F01DE",version:"1.3.0"},{name:"box-light-round-up-left-stipple-outer",hex:"F01DF",version:"1.3.0"},{name:"box-light-round-up-right",hex:"F0110",version:"1.1.0"},{name:"box-light-round-up-right-stipple",hex:"F01E0",version:"1.3.0"},{name:"box-light-round-up-right-stipple-inner",hex:"F01E1",version:"1.3.0"},{name:"box-light-round-up-right-stipple-outer",hex:"F01E2",version:"1.3.0"},{name:"box-light-up-left",hex:"F010D",version:"1.1.0"},{name:"box-light-up-left-circle",hex:"F0127",version:"1.1.0"},{name:"box-light-up-left-stipple",hex:"F01E3",version:"1.3.0"},{name:"box-light-up-left-stipple-inner",hex:"F01E4",version:"1.3.0"},{name:"box-light-up-left-stipple-outer",hex:"F01E5",version:"1.3.0"},{name:"box-light-up-right",hex:"F010C",version:"1.1.0"},{name:"box-light-up-right-circle",hex:"F0128",version:"1.1.0"},{name:"box-light-up-right-stipple",hex:"F01E6",version:"1.3.0"},{name:"box-light-up-right-stipple-inner",hex:"F01E7",version:"1.3.0"},{name:"box-light-up-right-stipple-outer",hex:"F01E8",version:"1.3.0"},{name:"box-light-vertical",hex:"F010B",version:"1.1.0"},{name:"box-light-vertical-circle",hex:"F0172",version:"1.2.0"},{name:"box-light-vertical-horizontal",hex:"F0228",version:"1.4.0"},{name:"box-light-vertical-horizontal-stipple",hex:"F01E9",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-down",hex:"F01EA",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-down-left",hex:"F01EB",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-down-right",hex:"F01EC",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-left",hex:"F01ED",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-left-down-right",hex:"F01EE",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-left-up-right",hex:"F01EF",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-right",hex:"F01F0",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-right-down-left",hex:"F01F1",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-right-up-left",hex:"F01F2",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-up",hex:"F01F3",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-up-left",hex:"F01F4",version:"1.3.0"},{name:"box-light-vertical-horizontal-stipple-up-right",hex:"F01F5",version:"1.3.0"},{name:"box-light-vertical-left",hex:"F01A9",version:"1.3.0"},{name:"box-light-vertical-left-stipple",hex:"F01F6",version:"1.3.0"},{name:"box-light-vertical-left-stipple-down-left",hex:"F01F7",version:"1.3.0"},{name:"box-light-vertical-left-stipple-left",hex:"F01F8",version:"1.3.0"},{name:"box-light-vertical-left-stipple-up-left",hex:"F01F9",version:"1.3.0"},{name:"box-light-vertical-menu-down",hex:"F0178",version:"1.2.0"},{name:"box-light-vertical-menu-left",hex:"F0175",version:"1.2.0"},{name:"box-light-vertical-menu-right",hex:"F0176",version:"1.2.0"},{name:"box-light-vertical-menu-up",hex:"F0177",version:"1.2.0"},{name:"box-light-vertical-right",hex:"F01AA",version:"1.3.0"},{name:"box-light-vertical-right-stipple",hex:"F01FA",version:"1.3.0"},{name:"box-light-vertical-right-stipple-down-right",hex:"F01FB",version:"1.3.0"},{name:"box-light-vertical-right-stipple-left",hex:"F01FC",version:"1.3.0"},{name:"box-light-vertical-right-stipple-right",hex:"F01FD",version:"1.3.0"},{name:"box-light-vertical-right-stipple-up-right",hex:"F01FE",version:"1.3.0"},{name:"box-light-vertical-stipple",hex:"F01FF",version:"1.3.0"},{name:"box-light-vertical-stipple-left",hex:"F0200",version:"1.3.0"},{name:"box-light-vertical-stipple-right",hex:"F0201",version:"1.3.0"},{name:"box-outer-light-all",hex:"F0133",version:"1.1.0"},{name:"box-outer-light-dashed-all",hex:"F0122",version:"1.1.0"},{name:"box-outer-light-dashed-down",hex:"F0120",version:"1.1.0"},{name:"box-outer-light-dashed-down-left",hex:"F013D",version:"1.1.0"},{name:"box-outer-light-dashed-down-left-right",hex:"F011C",version:"1.1.0"},{name:"box-outer-light-dashed-down-right",hex:"F013C",version:"1.1.0"},{name:"box-outer-light-dashed-fold-down-left",hex:"F01AB",version:"1.3.0"},{name:"box-outer-light-dashed-fold-down-right",hex:"F01AC",version:"1.3.0"},{name:"box-outer-light-dashed-fold-up-left",hex:"F01AD",version:"1.3.0"},{name:"box-outer-light-dashed-fold-up-right",hex:"F01AE",version:"1.3.0"},{name:"box-outer-light-dashed-left",hex:"F0121",version:"1.1.0"},{name:"box-outer-light-dashed-left-right",hex:"F0123",version:"1.1.0"},{name:"box-outer-light-dashed-right",hex:"F011F",version:"1.1.0"},{name:"box-outer-light-dashed-up",hex:"F011E",version:"1.1.0"},{name:"box-outer-light-dashed-up-down",hex:"F0124",version:"1.1.0"},{name:"box-outer-light-dashed-up-down-left",hex:"F011D",version:"1.1.0"},{name:"box-outer-light-dashed-up-down-right",hex:"F011B",version:"1.1.0"},{name:"box-outer-light-dashed-up-left",hex:"F013E",version:"1.1.0"},{name:"box-outer-light-dashed-up-left-right",hex:"F011A",version:"1.1.0"},{name:"box-outer-light-dashed-up-right",hex:"F013B",version:"1.1.0"},{name:"box-outer-light-down",hex:"F0131",version:"1.1.0"},{name:"box-outer-light-down-left",hex:"F0139",version:"1.1.0"},{name:"box-outer-light-down-left-right",hex:"F012B",version:"1.1.0"},{name:"box-outer-light-down-left-stipple",hex:"F0202",version:"1.3.0"},{name:"box-outer-light-down-right",hex:"F0138",version:"1.1.0"},{name:"box-outer-light-down-right-stipple",hex:"F0203",version:"1.3.0"},{name:"box-outer-light-down-stipple",hex:"F0204",version:"1.3.0"},{name:"box-outer-light-down-vertical-stipple",hex:"F0205",version:"1.3.0"},{name:"box-outer-light-down-vertical-stipple-left",hex:"F0206",version:"1.3.0"},{name:"box-outer-light-down-vertical-stipple-right",hex:"F0207",version:"1.3.0"},{name:"box-outer-light-left",hex:"F0132",version:"1.1.0"},{name:"box-outer-light-left-horizontal-stipple",hex:"F0208",version:"1.3.0"},{name:"box-outer-light-left-horizontal-stipple-down",hex:"F0209",version:"1.3.0"},{name:"box-outer-light-left-horizontal-stipple-up",hex:"F020A",version:"1.3.0"},{name:"box-outer-light-left-right",hex:"F012E",version:"1.1.0"},{name:"box-outer-light-left-right-stipple",hex:"F020B",version:"1.3.0"},{name:"box-outer-light-left-stipple",hex:"F020C",version:"1.3.0"},{name:"box-outer-light-right",hex:"F0130",version:"1.1.0"},{name:"box-outer-light-right-horizontal-stipple",hex:"F020D",version:"1.3.0"},{name:"box-outer-light-right-horizontal-stipple-down",hex:"F020E",version:"1.3.0"},{name:"box-outer-light-right-horizontal-stipple-up",hex:"F020F",version:"1.3.0"},{name:"box-outer-light-right-stipple",hex:"F0211",version:"1.3.0"},{name:"box-outer-light-round-down-left",hex:"F0141",version:"1.1.0"},{name:"box-outer-light-round-down-right",hex:"F0140",version:"1.1.0"},{name:"box-outer-light-round-up-left",hex:"F013F",version:"1.1.0"},{name:"box-outer-light-round-up-right",hex:"F0142",version:"1.1.0"},{name:"box-outer-light-up",hex:"F012F",version:"1.1.0"},{name:"box-outer-light-up-down",hex:"F012D",version:"1.1.0"},{name:"box-outer-light-up-down-left",hex:"F012C",version:"1.1.0"},{name:"box-outer-light-up-down-right",hex:"F012A",version:"1.1.0"},{name:"box-outer-light-up-down-stipple",hex:"F0210",version:"1.3.0"},{name:"box-outer-light-up-left",hex:"F013A",version:"1.1.0"},{name:"box-outer-light-up-left-right",hex:"F0129",version:"1.1.0"},{name:"box-outer-light-up-left-stipple",hex:"F0212",version:"1.3.0"},{name:"box-outer-light-up-right",hex:"F0137",version:"1.1.0"},{name:"box-outer-light-up-right-stipple",hex:"F0213",version:"1.3.0"},{name:"box-outer-light-up-stipple",hex:"F0214",version:"1.3.0"},{name:"box-outer-light-up-vertical-stipple",hex:"F0215",version:"1.3.0"},{name:"box-outer-light-up-vertical-stipple-left",hex:"F0216",version:"1.3.0"},{name:"box-outer-light-up-vertical-stipple-right",hex:"F0217",version:"1.3.0"},{name:"briefcase",hex:"F00D8",version:"1.1.0"},{name:"broadcast",hex:"F0243",version:"1.4.0"},{name:"bug",hex:"F0023",version:"1.0.0"},{name:"bug-fill",hex:"F00FD",version:"1.1.0"},{name:"calculator",hex:"F0155",version:"1.1.0"},{name:"calendar",hex:"F0024",version:"1.0.0"},{name:"calendar-import",hex:"F0251",version:"1.4.0"},{name:"calendar-month",hex:"F0025",version:"1.0.0"},{name:"cancel",hex:"F00DF",version:"1.1.0"},{name:"card",hex:"F0026",version:"1.0.0"},{name:"card-text",hex:"F0027",version:"1.0.0"},{name:"cart",hex:"F00FE",version:"1.1.0"},{name:"cash",hex:"F028A",version:"1.5.0"},{name:"cast",hex:"F0245",version:"1.4.0"},{name:"castle",hex:"F0227",version:"1.3.0"},{name:"chart-bar",hex:"F0107",version:"1.1.0"},{name:"chat",hex:"F00ED",version:"1.1.0"},{name:"chat-processing",hex:"F0247",version:"1.4.0"},{name:"check",hex:"F0028",version:"1.0.0"},{name:"checkbox-blank",hex:"F0029",version:"1.0.0"},{name:"checkbox-cross",hex:"F006C",version:"1.0.0"},{name:"checkbox-intermediate",hex:"F0248",version:"1.4.0"},{name:"checkbox-intermediate-variant",hex:"F0249",version:"1.4.0"},{name:"checkbox-marked",hex:"F002A",version:"1.0.0"},{name:"checker-large",hex:"F0162",version:"1.2.0"},{name:"checker-medium",hex:"F0163",version:"1.2.0"},{name:"checker-small",hex:"F0164",version:"1.2.0"},{name:"checkerboard",hex:"F018B",version:"1.2.0"},{name:"chest",hex:"F025B",version:"1.5.0"},{name:"chest-fill",hex:"F025C",version:"1.5.0"},{name:"chevron-down",hex:"F002B",version:"1.0.0"},{name:"chevron-down-circle",hex:"F006D",version:"1.0.0"},{name:"chevron-left",hex:"F002C",version:"1.0.0"},{name:"chevron-left-circle",hex:"F006E",version:"1.0.0"},{name:"chevron-right",hex:"F002D",version:"1.0.0"},{name:"chevron-right-circle",hex:"F006F",version:"1.0.0"},{name:"chevron-up",hex:"F002E",version:"1.0.0"},{name:"chevron-up-circle",hex:"F0070",version:"1.0.0"},{name:"circle",hex:"F002F",version:"1.0.0"},{name:"clipboard",hex:"F00D4",version:"1.1.0"},{name:"clock",hex:"F0071",version:"1.0.0"},{name:"clock-fill",hex:"F025D",version:"1.5.0"},{name:"close",hex:"F025E",version:"1.5.0"},{name:"close-outline",hex:"F025F",version:"1.5.0"},{name:"cloud",hex:"F0287",version:"1.5.0"},{name:"cloud-down",hex:"F0288",version:"1.5.0"},{name:"cloud-up",hex:"F0289",version:"1.5.0"},{name:"coffee",hex:"F00D9",version:"1.1.0"},{name:"coin-copper",hex:"F0165",version:"1.2.0"},{name:"coin-electrum",hex:"F0166",version:"1.2.0"},{name:"coin-gold",hex:"F0167",version:"1.2.0"},{name:"coin-platinum",hex:"F0168",version:"1.2.0"},{name:"coin-silver",hex:"F0169",version:"1.2.0"},{name:"comment",hex:"F0108",version:"1.1.0"},{name:"comment-text",hex:"F0109",version:"1.1.0"},{name:"comment-user",hex:"F0196",version:"1.3.0"},{name:"compass",hex:"F0030",version:"1.0.0"},{name:"compass-east-arrow",hex:"F0072",version:"1.0.0"},{name:"compass-north-arrow",hex:"F0073",version:"1.0.0"},{name:"compass-north-east",hex:"F0074",version:"1.0.0"},{name:"compass-north-west",hex:"F0075",version:"1.0.0"},{name:"compass-south-arrow",hex:"F0076",version:"1.0.0"},{name:"compass-south-east",hex:"F0077",version:"1.0.0"},{name:"compass-south-west",hex:"F0078",version:"1.0.0"},{name:"compass-west-arrow",hex:"F0079",version:"1.0.0"},{name:"credit-card",hex:"F00E0",version:"1.1.0"},{name:"crossbow",hex:"F0272",version:"1.5.0"},{name:"crown",hex:"F00C8",version:"1.0.0"},{name:"cube",hex:"F016C",version:"1.2.0"},{name:"cube-unfolded",hex:"F0002",version:"1.0.0"},{name:"dagger",hex:"F016A",version:"1.2.0"},{name:"database",hex:"F0031",version:"1.0.0"},{name:"device",hex:"F00C9",version:"1.0.0"},{name:"diamond",hex:"F00EF",version:"1.1.0"},{name:"division",hex:"F0158",version:"1.1.0"},{name:"door",hex:"F0032",version:"1.0.0"},{name:"door-box",hex:"F014B",version:"1.1.0"},{name:"door-open",hex:"F0033",version:"1.0.0"},{name:"dot-hexagon",hex:"F0199",version:"1.3.0"},{name:"dot-hexagon-fill",hex:"F0260",version:"1.5.0"},{name:"dot-octagon",hex:"F0191",version:"1.3.0"},{name:"dot-octagon-fill",hex:"F0261",version:"1.5.0"},{name:"download",hex:"F0034",version:"1.0.0"},{name:"email",hex:"F00D5",version:"1.1.0"},{name:"eye",hex:"F0244",version:"1.4.0"},{name:"eye-fill",hex:"F024B",version:"1.4.0"},{name:"file",hex:"F0035",version:"1.0.0"},{name:"fill",hex:"F01AF",version:"1.3.0"},{name:"filter",hex:"F024A",version:"1.4.0"},{name:"fire",hex:"F015D",version:"1.1.0"},{name:"flask",hex:"F0036",version:"1.0.0"},{name:"flask-empty",hex:"F0037",version:"1.0.0"},{name:"flask-round-bottom",hex:"F0038",version:"1.0.0"},{name:"flask-round-bottom-empty",hex:"F0039",version:"1.0.0"},{name:"floppy-disk",hex:"F00DA",version:"1.1.0"},{name:"folder",hex:"F003A",version:"1.0.0"},{name:"folder-open",hex:"F003B",version:"1.0.0"},{name:"format-align-bottom",hex:"F0186",version:"1.2.0"},{name:"format-align-center",hex:"F0182",version:"1.2.0"},{name:"format-align-justify",hex:"F0184",version:"1.2.0"},{name:"format-align-left",hex:"F0181",version:"1.2.0"},{name:"format-align-right",hex:"F0183",version:"1.2.0"},{name:"format-align-top",hex:"F0185",version:"1.2.0"},{name:"format-bold",hex:"F018D",version:"1.2.0"},{name:"format-float-left",hex:"F018F",version:"1.2.0"},{name:"format-float-right",hex:"F0190",version:"1.2.0"},{name:"format-horizontal-align-center",hex:"F0189",version:"1.2.0"},{name:"format-italic",hex:"F018E",version:"1.2.0"},{name:"format-line-spacing",hex:"F018C",version:"1.2.0"},{name:"format-text",hex:"F0262",version:"1.5.0"},{name:"format-text-multiline",hex:"F0263",version:"1.5.0"},{name:"format-text-single-line",hex:"F0264",version:"1.5.0"},{name:"format-vertical-align-center",hex:"F018A",version:"1.2.0"},{name:"gamepad",hex:"F0040",version:"1.0.0"},{name:"gamepad-center",hex:"F01B9",version:"1.3.0"},{name:"gamepad-center-fill",hex:"F003C",version:"1.0.0"},{name:"gamepad-down",hex:"F01BA",version:"1.3.0"},{name:"gamepad-down-fill",hex:"F003D",version:"1.0.0"},{name:"gamepad-down-left",hex:"F01BE",version:"1.3.0"},{name:"gamepad-down-left-fill",hex:"F003E",version:"1.0.0"},{name:"gamepad-down-right",hex:"F01BF",version:"1.3.0"},{name:"gamepad-down-right-fill",hex:"F003F",version:"1.0.0"},{name:"gamepad-fill",hex:"F01C2",version:"1.3.0"},{name:"gamepad-left",hex:"F01BB",version:"1.3.0"},{name:"gamepad-left-fill",hex:"F0041",version:"1.0.0"},{name:"gamepad-right",hex:"F01BC",version:"1.3.0"},{name:"gamepad-right-fill",hex:"F0042",version:"1.0.0"},{name:"gamepad-up",hex:"F01BD",version:"1.3.0"},{name:"gamepad-up-fill",hex:"F0043",version:"1.0.0"},{name:"gamepad-up-left",hex:"F01C0",version:"1.3.0"},{name:"gamepad-up-left-fill",hex:"F0044",version:"1.0.0"},{name:"gamepad-up-right",hex:"F01C1",version:"1.3.0"},{name:"gamepad-up-right-fill",hex:"F0045",version:"1.0.0"},{name:"glaive",hex:"F0265",version:"1.5.0"},{name:"glasses",hex:"F0192",version:"1.3.0"},{name:"halberd",hex:"F0273",version:"1.5.0"},{name:"heart",hex:"F0046",version:"1.0.0"},{name:"heart-broken",hex:"F016B",version:"1.2.0"},{name:"help",hex:"F024C",version:"1.4.0"},{name:"help-box",hex:"F0266",version:"1.5.0"},{name:"help-box-fill",hex:"F0267",version:"1.5.0"},{name:"hexagon",hex:"F019A",version:"1.3.0"},{name:"home-thatched",hex:"F027B",version:"1.5.0"},{name:"image",hex:"F0047",version:"1.0.0"},{name:"javalin",hex:"F027C",version:"1.5.0"},{name:"journal",hex:"F027D",version:"1.5.0"},{name:"key",hex:"F024D",version:"1.4.0"},{name:"label",hex:"F00E1",version:"1.1.0"},{name:"label-variant",hex:"F00E2",version:"1.1.0"},{name:"lance",hex:"F0274",version:"1.5.0"},{name:"led",hex:"F00E3",version:"1.1.0"},{name:"lightbulb",hex:"F00E4",version:"1.1.0"},{name:"linen",hex:"F027E",version:"1.5.0"},{name:"lock",hex:"F0048",version:"1.0.0"},{name:"lock-open",hex:"F0049",version:"1.0.0"},{name:"login",hex:"F007A",version:"1.0.0"},{name:"logout",hex:"F007B",version:"1.0.0"},{name:"magnify-minus",hex:"F019D",version:"1.3.0"},{name:"magnify-plus",hex:"F019C",version:"1.3.0"},{name:"map",hex:"F004A",version:"1.0.0"},{name:"menu-bottom-left",hex:"F0088",version:"1.0.0"},{name:"menu-bottom-right",hex:"F0089",version:"1.0.0"},{name:"menu-down",hex:"F007C",version:"1.0.0"},{name:"menu-down-fill",hex:"F008A",version:"1.0.0"},{name:"menu-left",hex:"F007D",version:"1.0.0"},{name:"menu-left-fill",hex:"F008B",version:"1.0.0"},{name:"menu-left-right",hex:"F007E",version:"1.0.0"},{name:"menu-right",hex:"F007F",version:"1.0.0"},{name:"menu-right-fill",hex:"F008C",version:"1.0.0"},{name:"menu-top-left",hex:"F008D",version:"1.0.0"},{name:"menu-top-right",hex:"F008E",version:"1.0.0"},{name:"menu-up",hex:"F0080",version:"1.0.0"},{name:"menu-up-down",hex:"F0081",version:"1.0.0"},{name:"menu-up-fill",hex:"F008F",version:"1.0.0"},{name:"message",hex:"F004B",version:"1.0.0"},{name:"message-processing",hex:"F00E5",version:"1.1.0"},{name:"message-text",hex:"F004C",version:"1.0.0"},{name:"message-user",hex:"F0197",version:"1.3.0"},{name:"microphone",hex:"F00CD",version:"1.1.0"},{name:"minus",hex:"F0157",version:"1.1.0"},{name:"minus-box",hex:"F014E",version:"1.1.0"},{name:"minus-box-fill",hex:"F014F",version:"1.1.0"},{name:"minus-circle",hex:"F00E9",version:"1.1.0"},{name:"minus-circle-fill",hex:"F0150",version:"1.1.0"},{name:"monitor",hex:"F004D",version:"1.0.0"},{name:"monitor-image",hex:"F004E",version:"1.0.0"},{name:"multiply",hex:"F0159",version:"1.1.0"},{name:"music-note",hex:"F00E6",version:"1.1.0"},{name:"necklace",hex:"F00CE",version:"1.1.0"},{name:"note",hex:"F004F",version:"1.0.0"},{name:"note-nailed",hex:"F027F",version:"1.5.0"},{name:"notebook",hex:"F0050",version:"1.0.0"},{name:"notification",hex:"F00D6",version:"1.1.0"},{name:"number",hex:"F0268",version:"1.5.0"},{name:"octagon",hex:"F00FF",version:"1.1.0"},{name:"paperclip",hex:"F016D",version:"1.2.0"},{name:"pause",hex:"F0134",version:"1.1.0"},{name:"peace",hex:"F0193",version:"1.3.0"},{name:"pencil",hex:"F0051",version:"1.0.0"},{name:"pickaxe",hex:"F0052",version:"1.0.0"},{name:"pictogrammers",hex:"F0001",version:"1.0.0"},{name:"pike",hex:"F0280",version:"1.5.0"},{name:"play",hex:"F0135",version:"1.1.0"},{name:"plus",hex:"F0156",version:"1.1.0"},{name:"plus-box",hex:"F0151",version:"1.1.0"},{name:"plus-box-fill",hex:"F0152",version:"1.1.0"},{name:"plus-circle",hex:"F00EA",version:"1.1.0"},{name:"plus-circle-fill",hex:"F014C",version:"1.1.0"},{name:"poll",hex:"F024E",version:"1.4.0"},{name:"pound",hex:"F024F",version:"1.4.0"},{name:"quarterstaff",hex:"F0275",version:"1.5.0"},{name:"radiobox",hex:"F0053",version:"1.0.0"},{name:"radiobox-marked",hex:"F0054",version:"1.0.0"},{name:"range",hex:"F0269",version:"1.5.0"},{name:"relative-scale",hex:"F0195",version:"1.3.0"},{name:"remove-circle",hex:"F00EB",version:"1.1.0"},{name:"ring",hex:"F0281",version:"1.5.0"},{name:"rotate-clockwise",hex:"F0082",version:"1.0.0"},{name:"rotate-counterclockwise",hex:"F0083",version:"1.0.0"},{name:"scimitar",hex:"F0276",version:"1.5.0"},{name:"script",hex:"F0055",version:"1.0.0"},{name:"search",hex:"F019B",version:"1.3.0"},{name:"shield",hex:"F0056",version:"1.0.0"},{name:"shovel",hex:"F0277",version:"1.5.0"},{name:"skull",hex:"F00EC",version:"1.1.0"},{name:"slider-end",hex:"F026A",version:"1.5.0"},{name:"slider-right",hex:"F026B",version:"1.5.0"},{name:"speaker",hex:"F00F0",version:"1.1.0"},{name:"spear",hex:"F0282",version:"1.5.0"},{name:"stool",hex:"F0283",version:"1.5.0"},{name:"stop",hex:"F0136",version:"1.1.0"},{name:"sword",hex:"F0057",version:"1.0.0"},{name:"table-top-door-horizontal",hex:"F0226",version:"1.3.0"},{name:"table-top-door-one-way-down",hex:"F0225",version:"1.3.0"},{name:"table-top-door-one-way-left",hex:"F0224",version:"1.3.0"},{name:"table-top-door-one-way-right",hex:"F0223",version:"1.3.0"},{name:"table-top-door-one-way-up",hex:"F0222",version:"1.3.0"},{name:"table-top-door-secret-horizontal",hex:"F022B",version:"1.4.0"},{name:"table-top-door-secret-vertical",hex:"F0229",version:"1.4.0"},{name:"table-top-door-vertical",hex:"F0221",version:"1.3.0"},{name:"table-top-horizontal-rotate-clockwise",hex:"F023B",version:"1.4.0"},{name:"table-top-horizontal-rotate-counterclockwise",hex:"F023C",version:"1.4.0"},{name:"table-top-horizontal-stairs-ascend-left",hex:"F022A",version:"1.4.0"},{name:"table-top-horizontal-stairs-ascend-right",hex:"F022C",version:"1.4.0"},{name:"table-top-horizontal-stairs-descend-down",hex:"F0231",version:"1.4.0"},{name:"table-top-horizontal-stairs-descend-left",hex:"F022D",version:"1.4.0"},{name:"table-top-horizontal-stairs-descend-right",hex:"F022E",version:"1.4.0"},{name:"table-top-horizontal-stairs-descend-up",hex:"F0232",version:"1.4.0"},{name:"table-top-spiral-stairs-down",hex:"F0252",version:"1.4.0"},{name:"table-top-spiral-stairs-left",hex:"F0253",version:"1.4.0"},{name:"table-top-spiral-stairs-right",hex:"F0254",version:"1.4.0"},{name:"table-top-spiral-stairs-round-down",hex:"F0256",version:"1.4.0"},{name:"table-top-spiral-stairs-round-left",hex:"F0257",version:"1.4.0"},{name:"table-top-spiral-stairs-round-right",hex:"F0258",version:"1.4.0"},{name:"table-top-spiral-stairs-round-up",hex:"F0259",version:"1.4.0"},{name:"table-top-spiral-stairs-up",hex:"F0255",version:"1.4.0"},{name:"table-top-stairs-down",hex:"F0233",version:"1.4.0"},{name:"table-top-stairs-left",hex:"F0234",version:"1.4.0"},{name:"table-top-stairs-right",hex:"F0235",version:"1.4.0"},{name:"table-top-stairs-up",hex:"F0236",version:"1.4.0"},{name:"table-top-vertical-rotate-clockwise",hex:"F023D",version:"1.4.0"},{name:"table-top-vertical-rotate-counterclockwise",hex:"F023E",version:"1.4.0"},{name:"table-top-vertical-stairs-ascend-down",hex:"F022F",version:"1.4.0"},{name:"table-top-vertical-stairs-ascend-up",hex:"F0230",version:"1.4.0"},{name:"tag",hex:"F0058",version:"1.0.0"},{name:"tag-text",hex:"F0059",version:"1.0.0"},{name:"target",hex:"F014D",version:"1.1.0"},{name:"tent",hex:"F023F",version:"1.4.0"},{name:"terminal",hex:"F00CF",version:"1.1.0"},{name:"text-box",hex:"F005A",version:"1.0.0"},{name:"text-image",hex:"F00E7",version:"1.1.0"},{name:"tile-caution-heavy",hex:"F016E",version:"1.2.0"},{name:"tile-caution-thin",hex:"F016F",version:"1.2.0"},{name:"tile-diamond-hex",hex:"F0170",version:"1.2.0"},{name:"time-sand",hex:"F0284",version:"1.5.0"},{name:"toggle-switch-off",hex:"F005B",version:"1.0.0"},{name:"toggle-switch-on",hex:"F005C",version:"1.0.0"},{name:"toolbox",hex:"F00EE",version:"1.1.0"},{name:"tooltip-above",hex:"F005D",version:"1.0.0"},{name:"tooltip-above-alert",hex:"F0090",version:"1.0.0"},{name:"tooltip-above-help",hex:"F026C",version:"1.5.0"},{name:"tooltip-above-text",hex:"F0062",version:"1.0.0"},{name:"tooltip-below",hex:"F005E",version:"1.0.0"},{name:"tooltip-below-alert",hex:"F0091",version:"1.0.0"},{name:"tooltip-below-help",hex:"F026D",version:"1.5.0"},{name:"tooltip-below-text",hex:"F0063",version:"1.0.0"},{name:"tooltip-end",hex:"F005F",version:"1.0.0"},{name:"tooltip-end-alert",hex:"F0092",version:"1.0.0"},{name:"tooltip-end-help",hex:"F026E",version:"1.5.0"},{name:"tooltip-end-text",hex:"F0060",version:"1.0.0"},{name:"tooltip-start",hex:"F0061",version:"1.0.0"},{name:"tooltip-start-alert",hex:"F0093",version:"1.0.0"},{name:"tooltip-start-help",hex:"F026F",version:"1.5.0"},{name:"tooltip-start-text",hex:"F0064",version:"1.0.0"},{name:"torch",hex:"F0285",version:"1.5.0"},{name:"toy-brick",hex:"F0250",version:"1.4.0"},{name:"trash",hex:"F0065",version:"1.0.0"},{name:"trident",hex:"F0278",version:"1.5.0"},{name:"umbrella",hex:"F0220",version:"1.3.0"},{name:"upload",hex:"F0066",version:"1.0.0"},{name:"volume-high",hex:"F0084",version:"1.0.0"},{name:"volume-low",hex:"F0085",version:"1.0.0"},{name:"volume-medium",hex:"F0086",version:"1.0.0"},{name:"volume-mute",hex:"F0087",version:"1.0.0"},{name:"wall",hex:"F015A",version:"1.1.0"},{name:"wall-fill",hex:"F0067",version:"1.0.0"},{name:"wall-front",hex:"F019E",version:"1.3.0"},{name:"wall-front-damaged",hex:"F01C4",version:"1.3.0"},{name:"wall-front-gate",hex:"F01C3",version:"1.3.0"},{name:"water",hex:"F015F",version:"1.2.0"},{name:"water-fill",hex:"F015E",version:"1.1.0"},{name:"weight",hex:"F0270",version:"1.5.0"},{name:"weight-fill",hex:"F0271",version:"1.5.0"},{name:"well",hex:"F00E8",version:"1.1.0"},{name:"whip",hex:"F0279",version:"1.5.0"},{name:"wind",hex:"F0286",version:"1.5.0"}];
+            icons.push({ "name": "blank", "hex": "f68c" });
+            icons.forEach(function (icon) {
+                var item = getIconItem(icon, isNew(icon), isDeprecated(icon));
+                document.getElementById('icons').appendChild(item);
+                if (isNew(icon)) {
+                    var newItem = getIconItem(icon, false, false);
+                    document.getElementById('newIcons').appendChild(newItem);
+                    newIconsCount++;
+                }
+                if (isDeprecated(icon)) {
+                    var deprecatedItem = getIconItem(icon, false, false);
+                    document.getElementById('deprecatedIcons').appendChild(deprecatedItem);
+                    deprecatedIconsCount++;
+                }
+                iconsCount++;
+            });
+            var whereDeprecated = function (icon) {
+                return icon.deprecated === true;
+            };
+            if (!(icons.find(whereDeprecated))) {
+                document.getElementById('deprecated').style.display = 'none';
+            }
+            document.getElementById('iconsCount').innerText = iconsCount;
+            document.getElementById('newIconsCount').innerText = newIconsCount;
+            document.getElementById('deprecatedIconsCount').innerText = deprecatedIconsCount;
+            document.getElementById('npm').addEventListener('click', function () {
+                copyText('npm install @pictogramers/memory-font');
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
