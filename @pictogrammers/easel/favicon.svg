@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+    <style>
+    #main {
+        fill: #FFFFFF;
+    }
+    #square {
+        fill: #453C4F;
+    }
+    @media (prefers-color-scheme: dark) {
+        #main {
+            fill: #453C4F;
+        }
+        #square {
+            fill: #FFFFFF;
+        }
+    }
+    </style>
+    <rect id="square" x="2" y="2" width="60" height="60" rx="6" fill-opacity="0.9"/>
+    <path id="main" d="M 8,0L 56,0C 60.4183,0 64,3.58173 64,8L 64,56C 64,60.4183 60.4183,64 56,64L 8,64C 3.58172,64 0,60.4183 0,56L 0,8C 0,3.58173 3.58172,0 8,0 Z M 12,12.0001L 12,52.0001L 32,52.0002L 32,44.0003L 20,44.0001L 20,36.0001L 32,36.0002L 32,28.0003L 20,28.0001L 20,20.0001L 32,20.0002L 32,12.0003L 12,12.0001 Z M 40,12.0001L 40,52.0001L 48,52.0001L 48,12.0001L 40,12.0001 Z "/>
+</svg>
