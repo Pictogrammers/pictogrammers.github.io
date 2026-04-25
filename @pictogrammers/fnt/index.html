@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FNT Viewer</title>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    pre { background: #f4f4f4; padding: 1rem; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>FNT Viewer</h1>
+  <input type="file" accept=".fnt" id="picker">
+  <pre id="output">Upload a .fnt file to see its parsed JSON.</pre>
+
+  <script type="module">
+    // Inlined from @pictogrammers/fnt/dist/readFnt.js
+    const utf8 = new TextDecoder("utf-8");
+    function dv(data) { return new DataView(data.buffer, data.byteOffset, data.byteLength); }
+    function readNullTerminatedString(data, offset) {
+      let end = offset;
+      while (end < data.length && data[end] !== 0) end++;
+      return { value: utf8.decode(data.subarray(offset, end)), end: end + 1 };
+    }
+    function codePointToChar(id) { try { return String.fromCodePoint(id); } catch { return ""; } }
+    function parseInfoBlock(data) {
+      const v = dv(data), bitField = data[2], { value: face } = readNullTerminatedString(data, 14);
+      return { fontSize: v.getInt16(0, true), smooth: !!(bitField & 0x01), unicode: !!(bitField & 0x02), italic: !!(bitField & 0x04), bold: !!(bitField & 0x08), fixedHeight: !!(bitField & 0x10), charSet: data[3], stretchH: v.getUint16(4, true), aa: data[6], padding: { up: data[7], right: data[8], down: data[9], left: data[10] }, spacing: { horizontal: data[11], vertical: data[12] }, outline: data[13], face };
+    }
+    function parseCommonBlock(data) {
+      const v = dv(data);
+      return { lineHeight: v.getUint16(0, true), base: v.getUint16(2, true), scaleW: v.getUint16(4, true), scaleH: v.getUint16(6, true), pages: v.getUint16(8, true), packed: !!(data[10] & 0x80), alphaChnl: data[11], redChnl: data[12], greenChnl: data[13], blueChnl: data[14] };
+    }
+    function parsePagesBlock(data) {
+      const pages = []; let offset = 0;
+      while (offset < data.length) { const { value, end } = readNullTerminatedString(data, offset); if (value.length > 0) pages.push(value); if (end <= offset) break; offset = end; }
+      return pages;
+    }
+    function parseCharsBlock(data) {
+      const count = Math.floor(data.length / 20), v = dv(data), chars = [];
+      for (let i = 0; i < count; i++) { const b = i * 20, id = v.getUint32(b, true); chars.push({ id, char: codePointToChar(id), x: v.getUint16(b+4,true), y: v.getUint16(b+6,true), width: v.getUint16(b+8,true), height: v.getUint16(b+10,true), xoffset: v.getInt16(b+12,true), yoffset: v.getInt16(b+14,true), xadvance: v.getInt16(b+16,true), page: data[b+18], chnl: data[b+19] }); }
+      return chars;
+    }
+    function parseKerningsBlock(data) {
+      const count = Math.floor(data.length / 10), v = dv(data), kernings = [];
+      for (let i = 0; i < count; i++) { const b = i * 10, first = v.getUint32(b,true), second = v.getUint32(b+4,true); kernings.push({ first, firstChar: codePointToChar(first), second, secondChar: codePointToChar(second), amount: v.getInt16(b+8,true) }); }
+      return kernings;
+    }
+    function readFnt(input) {
+      const data = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
+      if (data.length < 4 || data[0] !== 0x42 || data[1] !== 0x4d || data[2] !== 0x46) throw new Error("Not a valid BMF font file");
+      if (data[3] !== 3) throw new Error(`Unsupported BMF version ${data[3]}, expected 3`);
+      const view = dv(data); let info, common, pages = [], chars = [], kernings = [], offset = 4;
+      while (offset < data.length) {
+        const blockType = data[offset], blockSize = view.getUint32(offset + 1, true), blockData = data.subarray(offset + 5, offset + 5 + blockSize);
+        offset += 5 + blockSize;
+        if (blockType === 1) info = parseInfoBlock(blockData);
+        else if (blockType === 2) common = parseCommonBlock(blockData);
+        else if (blockType === 3) pages = parsePagesBlock(blockData);
+        else if (blockType === 4) chars = parseCharsBlock(blockData);
+        else if (blockType === 5) kernings = parseKerningsBlock(blockData);
+      }
+      if (!info) throw new Error("Missing info block");
+      if (!common) throw new Error("Missing common block");
+      return { info, common, pages, chars, kernings };
+    }
+
+    document.getElementById('picker').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const font = readFnt(await file.arrayBuffer());
+        document.getElementById('output').textContent = JSON.stringify(font, null, 2);
+      } catch (err) {
+        document.getElementById('output').textContent = `Error: ${err.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
