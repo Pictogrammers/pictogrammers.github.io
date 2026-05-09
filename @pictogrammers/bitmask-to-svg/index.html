@@ -27,7 +27,25 @@
             display: flex;
             padding: 0.5rem 0;
         }
-        .demo div {
+        .demo div.options {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 1rem 0.5rem 0;
+        }
+        .demo div.options h3 {
+            margin: 0.25rem 0;
+            font-size: 1.125rem;
+        }
+        .demo div.options input {
+            font-family: monospace;
+            border: 1px solid #222;
+            width: 100%;
+            padding: 0.25rem;
+        }
+        .demo div.options input:invalid {
+            border-color: red;
+        }
+        .demo div.grid {
             display: flex;
             margin: 1rem;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -86,17 +104,49 @@
             border-radius: 0.25rem 0.25rem 0 0;
             padding: 0.5rem;
         }
-        .output span {
-            display: block;
+        .output div {
+            display: flex;
             padding: 0.15rem 0.5rem 0.25rem 0.5rem;
             border-radius: 0 0 0.25rem 0.25rem;
             background: #555;
             color: #EEE;
-            text-align: right;
+            justify-content: space-between;
         }
         ul {
             line-height: 1.5rem;
             list-style: square;
+        }
+        .grid {
+            background: linear-gradient(-90deg, rgba(0, 0, 0, .05) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, .05) 1px, transparent 1px) #fff;
+            background-size: calc((var(--grid-size) + 1) * 1px) calc((var(--grid-size) + 1) * 1px), calc((var(--grid-size) + 1) * 1px) calc((var(--grid-size) + 1) * 1px);
+            background-position: 0 -1px;
+        }
+        .palette {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+        }
+        .palette > button {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid #000;
+            outline: 1px solid #FFF;
+            outline-offset: -2px;
+            padding: 0;
+            background-color: #FFF;
+        }
+        .palette > button.selected {
+            border-color: #3CA9FB;
+            border-width: 2px;
+            outline-offset: -3px;
+        }
+        .data {
+            border: 1px solid #DDD;
+            border-radius: 0.25rem;
+            margin: 0;
+            padding: 0.5rem;
+            background: #EEE;
         }
     </style>
 </head>
@@ -111,27 +161,59 @@
     </div>
 
     <div class="demo">
-        <div>
-            <canvas width="50" height="70"></canvas>
+        <div id="grid" class="grid">
+            <canvas width="100" height="100"></canvas>
+        </div>
+        <div class="options">
+            <h3>Palette</h3>
+            <div class="palette" id="palette">
+                <button title="Clear" data-color="0">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                    </svg>
+                </button>
+            </div>
+            <h3>Group</h3>
+            <input id="group" type="text" value="[[1], [2], [3], [4]]" pattern="^\[\[(\d+(?:,\s*\d+)*)\](?:,\s*\[(\d+(?:,\s*\d+)*)\])*\]$" />
         </div>
         <span>&#8250;</span>
-        <div>
-            <svg style="width:50px;height:70px" viewBox="0 0 50 70" shape-rendering="crispEdges">
+        <div class="grid">
+            <svg id="preview" style="width:100px;height:100px" viewBox="0 0 100 100" shape-rendering="crispEdges">
                 <path d="" fill="black" stroke="red" stroke-width="2"></path>
             </svg>
         </div>
     </div>
     <div class="instructions">
-        <span aria-label="instructions">i</span> Click to add or remove pixels.
+        <span aria-label="instructions">i</span> Click to add or remove pixels. Preview the first path above.
     </div>
     <div class="output">
         <code data-path></code>
-        <span>Output Path</span>
+        <div>
+            <label>
+                Scale
+            <select id="scale">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option selected value="10">10</option>
+                </select>
+            </label>
+            <span>Output Paths</span>
+        </div>
     </div>
+    <h3>Source</h3>
     <ul>
         <li><a href="https://github.com/Pictogrammers/bitmask-to-svg">View Source on GitHub</a></li>
         <li><a href="https://pictogrammers.com">Pictogrammers</a></li>
     </ul>
+    <h3>Data</h3>
+    <pre class="data" id="data"></pre>
 </body>
 
 </html>
